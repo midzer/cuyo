@@ -1,0 +1,1547 @@
+.TH CUAL 6 "2014-10-25"
+.\"
+.\"   Copyright <=2002 by Immanuel Halupczok
+.\"   Modified 2003,2005-2008,2010-2012,2014 by the cuyo developers
+.\"   Maintenance modifications 2012 by the cuyo developers
+.\"   Maintenance modifications 2012 by Bernhard R. Link
+.\"
+.\"   This program is free software; you can redistribute it and/or modify
+.\"   it under the terms of the GNU General Public License as published by
+.\"   the Free Software Foundation; either version 2 of the License, or
+.\"   (at your option) any later version.
+.\"
+.\"   This program is distributed in the hope that it will be useful,
+.\"   but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"   GNU General Public License for more details.
+.\"
+.\"   You should have received a copy of the GNU General Public License
+.\"   along with this program; if not, write to the Free Software
+.\"   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+.\"
+.de TQ
+.br
+.ns
+.TP \\$1
+..
+.SH NAME
+Cual \- Cuyo Animation Language
+.PP
+Cual is the main language used to describe the animations in cuyo.
+Strictly speaking it's
+the stuff between the << >> brackets in the level description files
+(xxx.ld).
+.PP
+On the other hand this man page aims at being a complete description
+of how to write levels for cuyo. 
+But it's still under construction.
+See the file "example.ld" to get an idea
+of how the rest of the level description works. 
+There's also a bit of example Cual code in "example.ld". 
+And of course, all the existing levels are examples.
+.PP
+Note that Cual is probably still very buggy. 
+So if strange things happen and
+you're sure it's not your fault, tell me (cuyo@karimmi.de).
+.
+.SH HOW IT WORKS
+.
+The level description is organized in sections. 
+There is a global section and
+every level has its own section, which is a subsection of the global section.
+It is common practice to place each level in a separate file, which then
+basically starts by opening its section and ends by closing it.
+.PP
+A section is defined by \fIname\fB = {\fIcontents\fB}\fR.
+\fIname\fR is the name of the new section and \fIcontents\fR contains
+the definitions that pertain to that section. 
+This is a sequence of definitions of the form \fIname\fB = \fIstuff\fR.
+Here \fIstuff\fR can be \fB{\fIcontents\fB}\fR as above, or it can be a single
+datum, or it can be a comma-separated list of data. 
+Inside such a list, \fIdatum\fB * \fInumber\fR
+can be used as a shorthand for \fIdatum\fB, \fR...\fB, \fIdatum\fR, i.e. a
+\fInumber\fR-fold repetition of \fIdatum\fR. 
+A datum can be an identifier, a string (enclosed by '"'), a word, or a number. 
+In place of a number
+\fB<\fIexpression\fB>\fR
+can be used, where \fIexpression\fR is an arbitrary expression made up from
+literal numbers, previously defined numeric data, and the operators
+\fB+\fR, \fB\-\fR, \fB*\fR, \fB/\fR and \fB%\fR.
+.PP
+Definitions can also depend on versions. 
+See section \fBVERSIONING\fR below.
+.PP
+Apart from definitions, a section can also contain cual definitions
+(see below). 
+These have to be enclosed in \fB<<\fR and \fB>>\fR.
+.PP
+Each blob has its own (main) Cual procedure which does the drawing and the
+animation stuff. 
+The procedure only depends on the kind of the blob, that
+is, it is the same for blobs of the same kind. 
+However each blob has its own instance of the variables.
+.PP
+In every game step, the procedure of each of the blobs is called once.
+(There are 12.5 game steps per second.) 
+It has to draw the blob each time, even if nothing has changed. 
+(However, there's an internal routine in cuyo
+which checks if the same is drawn as in the last step and which then
+supresses the drawing.)
+.PP
+There may be other procedures associated to a kind of blob, which are
+executed at special events, for example when a falling blob lands.
+In contrast to the main procedure, these event handlers are not allowed to
+draw anything. 
+See section \fBEVENT HANDLERS\fR for a list of the existing events.
+.PP
+The name of the main procedure of a blob (the one which draws the blob)
+is the name of the kind of the blob. 
+Normally, that name is the word listed after \fIpics=\fR entry in the .ld file; 
+but if that "word" contains a dot, 
+only the part before the dot makes up the name. 
+(E. g. with \fBpics=redblob.xpm,greenblob.xpm\fR, 
+the names are "redblob" and "greenblob".)
+.PP
+The name of an event handler procedure is the name of the kind, followed
+by a dot, followed by the event name. 
+(E.g. "redblob.land" for the landing event of the redblob from above.)
+.PP
+[Explain the default procedures.]
+.
+.SH LEVEL DATA
+.SS String valued data
+.
+.TP
+.B name
+The name of the level.
+This appears in the list of levels as well as in the level intro.
+.TP
+.B description
+This is an optional further description of the level in its intro.
+.TP
+.B author
+The name of the level author(s) for credit at the beginning of a level.
+.
+.SS Identifier valued data
+.
+.TP
+.B bgpic
+Background picture (file name). 
+If too small, placed at bottom.
+Defaults to none.
+.TP
+.B toppic
+Appearance of the top border coming down (file name).
+Defaults to none.
+.TP
+.B explosionpic
+Appearance of the explosions (file name).
+Has a default.
+.
+.SS Number valued data
+.
+.TP
+.B numexplode
+The size that a group of blobs has to reach in order to explode.
+This is only the level-wide default. 
+Each kind can override this.
+Whether the group does explode is also controlled by \fBbehaviour\fR.
+See section \fBVARIABLES AND CONSTANTS\fR for details.
+.TP
+.B toptime
+Time the border takes to come down, in number of game steps.
+Each game step lasts 80ms. 
+The default value is 50 (i.e. one pixel every four seconds).
+.TP
+.B topoverlap
+Placement of \fBtoppic\fR relative to the actual border.
+More precisely, number of pixels the lower border of the picture
+is below the actual border.
+Defaults to the height of the picture.
+.TP
+.B topstop
+When the border comes down at the end of the level, number
+of pixels it should stop before the bottom. 
+Set this to the same value as topoverlap 
+if you want your toppic to be comletely visible at the end.
+Defaults to 0.
+.TP
+.B chaingrass
+Must be 0 or 1.
+If set to 1, chain reactions are necessary to kill the grass.
+Defaults to 0.
+More precisely, \fBchaingrass\fR only controls the default for
+\fBbehaviour\fR for grass blobs.
+See section \fBVARIABLES AND CONSTANTS\fR for details.
+.TP
+.B mirror
+Must be 0 or 1.
+If set to 1, the level appears upside-down.
+Defaults to 0.
+.TP
+.B randomfallpos
+Must be 0 or 1.
+If set to 1, the initial fall position is randomized horizontally.
+Defaults to 0.
+.TP
+.B neighbours
+Determines in which directions the blobs can connect to each other in order
+to form groups. 
+This is only the level-wide default. 
+Each kind can override this. 
+See section \fBVARIABLES AND CONSTANTS\fR for values.
+Defaults to \fBneighbours_rect\fR.
+.TP
+.B hexflip
+In hex mode, determines whether the even or the odd columns are shifted upwards.
+By default (hexflip = 0), the odd columns are shifted. 1 means: shift even columns
+of player 1; 2 means: shift even columns of player 2; 3 means: shift even columns
+of both players.
+.TP
+.B randomgreys
+The expected time between two randomly appearing greys in game steps (80ms).
+Use \-1 for none at all, which is the default.
+.TP
+.B nogreyprob
+The probability that a grey does not appear.
+See \fBgreyprob\fR and \fBcolourprob\fR in section \fBKIND DATA\fR for details.
+The default is 0.
+.TP
+.B aiu_color, aiu_grass, aiu_grey, aiu_two_above, aiu_monochromic_vertical, aiu_height
+Parameters for the AI player's utility function.
+Default respectively to <10*(number of kinds)>, 20, 10, <aiu_color/2>,
+<aiu_color>, and 10.
+See section \fBTHE AI UTILITY FUNCTION\fR for details.
+.
+.SS Colour valued data
+(A colour is an RGB triple of numbers between 0 and 255.)
+.
+.TP
+.B bgcolor
+The background colour. 
+Defaults to white.
+.TP
+.B textcolor
+Colour of any text. 
+This includes the beginning-of-level information, message()s, and score. 
+Defaults to a certain shade of dark grey.
+.TP
+.B topcolor
+The colour of the top border comming down
+(where not determined by \fBtoppic\fR).
+Defaults to a certain shade of light grey.
+.
+.SS Other data
+.
+.TP
+.B startdist
+Distribution of blobs at the beginning of the level.
+It is a list of strings, the format of which
+is described in the section \fBSTARTDIST\fR.
+.TP
+.B pics, greypic, startpic, emptypic
+Lists of kinds. 
+These can be either file names referring to the picture
+to be used, or declarations of kinds that have to be defined later on.
+The different keywords (e.g. pics, emptypic) define different defaults.
+In fact, only the first three may be real lists,
+\fBemptypic\fR is limited to exactly one entry.
+In these lists, it is advisable to use \fB*\fR whenever possible.
+Besides being shorter to write, it also speeds up loading of the level
+and cuts down memory usage.
+This is because cuyo does some initializations only once for each entry
+with multiplier.
+.RS
+.PP
+The intentions of these lists are normal blob kinds resp. grey blob kind 
+resp. grass blob kind resp. nothing-blob. 
+However, the only differences between
+\fBpics\fR, \fBgreypic\fR and \fBstartpic\fR are
+the default values for \fBbehaviour\fR, \fBcolourprob\fR, \fBgoalprob\fR,
+\fBgreyprob\fR, \fBversions\fR and \fBdistkey\fR (see there). 
+All of these can also be overridden individually.
+Also, the default drawing code is different.
+(The default drawing code for \fBstartpic\fR does not draw connections.)
+.RE
+.TP
+.B \fIkind\fR
+Each kind can have its own section.
+See \fBKIND DATA\fR below for the entries of that section.
+.
+.SH KIND DATA
+.
+.TP
+.B numexplode, neighbours
+Defining these data in the section of a kind
+overrides the level-wide value for the kind.
+See section \fBLEVEL DATA\fR for a description of these data.
+.TP
+.B pics
+A list of file names of pictures to be used for this kind.
+The \fIn\fRth entry can later be accessed in cual with \fBfile=\fIn\-1\fR.
+.TP
+.B colourprob
+The probability that this kind appears as one of the two steered falling blobs.
+More precisely, this is a nonnegative integer weight.
+For determining the actual probability,
+the value is divided by the sum of the \fBcolourprob\fRs of all kinds.
+This sum must be positive.
+The default is 1 for kinds declared with \fBpics=\fR and 0 for all other kinds.
+The probability is also used for \fB+\fR in \fBstartdist\fR.
+For more details see section \fBSTARTDIST\fR.
+.TP
+.B goalprob
+This affects the semantics of \fB*\fR in \fBstartdist\fR
+in the same way, as \fBcolourprob\fR does for \fB+\fR.
+The default is 1 for kinds declared with \fBstartpic=\fR
+and 0 for all other kinds.
+.TP
+.B greyprob
+The probability that this kind appears as a grey blob.
+This is similar to \fBcolourprob\fR, but there is a difference:
+For greyprob, \fBnogreyprob\fR is included in the sum,
+so that it might happen that no blob appears at all.
+There is a notable difference between a positive \fBnogreyprob\fR
+and a positive \fBgreyprob\fR in kind \fBnothing\fR,
+when several lines of grey blobs appear:
+In the latter case, empty blobs appear in the wall of greys, making holes.
+In the former case, the wall is made less high. 
+Usually this is preferable.
+The default is 1 for kinds declared with \fBgreypic=\fR
+and 0 for all other kinds.
+The value also affects the semantics of \fB\-\fR in \fBstartdist\fR.
+In this case, \fBnogreyprob\fR is not included in the sum.
+.TP
+.B versions
+At the creation of a blob, its \fBversion\fR variable is initialized.
+Usually, it is chosen at random from \fB0\fR to \fBversions\-1\fR,
+but \fBstartdist\fR provides the possibility to specify it exactly.
+See section \fBSTARTDIST\fR for details.
+The default is 1.
+.TP
+.B distkey
+An alphanumerical key, which is used in \fBstartdist\fR to identify
+this kind of blob.
+The default is \fBA\fR for kinds declared with \fBstartpic\fR
+and undefined for all other kinds.
+See section \fBSTARTDIST\fR for details.
+.
+.SH CUAL DEFINITIONS
+.
+Inside << >>, variable and procedure definitions are expected.
+.TP
+.B \fIprocname\fB = \fIcode\fB ;
+Defines a "procedure". 
+The next section describes how \fIcode\fR looks like.
+Example:
+.RS
+.PP
+  redblob = {
+.br
+    schema16; 0*;
+.br
+    1; A,B,C; *;
+.br
+  };
+.RE
+.TP
+.B var \fIvarname1\fR [\fB= \fIdef1\fR [\fB: reapply\fR]]\fB, \fIvarname2\fR [\fB= \fIdef2\fR [\fB: reapply\fR]]\fB, \fR...\fB ;
+Defines variables with default values.
+If no default is specified, zero is used.
+See section \fBVARIABLES AND CONSTANTS\fR about the
+meaning of the default value and the optional suffix \fB: reapply\fR.
+.TP
+.B default \fIvarname1\fB = \fIdef1\fR [\fB: reapply\fR]\fB, \fIvarname2\fB = \fIdef2\fR [\fB: reapply\fR]\fB, \fR...\fB ;
+Changes the default for already defined variables.
+Again, the suffix \fB: reapply\fR is optional.
+This is useful to give to a single kind a different default for a variable
+than to the other kinds.
+Also, the default of a system variable can be changed this way.
+.
+.SH CODE
+.
+A code fragment can be one of the following:
+.TP
+.B { \fIcode\fB; \fIcode\fB; ...}
+Executes one command after the other.
+.TP
+.B \fIcode\fB, \fIcode\fB, ...
+This is useful for simple animations.
+Executes exactly one of the commands:
+In the n-th call, the n-th command is
+executed. After the last command, the first one is executed again. 
+However, if one of the commands is "busy" (see section \fBBUSIENESS\fR),
+this one will be executed until
+it stops being busy, and only after that,
+the next command will be executed.
+.TP
+.B \fIprocname\fB
+Executes the procedure \fIprocname\fR, which has to be already defined. 
+The result is the same as if the code from procname
+would have been inserted in that place.
+.TP
+.B &\fIprocname\fB
+Executes the procedure \fIprocname\fR; however, every instance
+of such a procname is the same. 
+This concerns busieness and the state of an animation sequence.
+(See sections \fBBUSIENESS\fR and \fBAMPERSAND-CALL\fR.)
+.TP
+.B busy
+Does nothing except being busy. 
+(See section \fBBUSIENESS\fR.)
+.TP
+.B \fIvarname\fB = \fIexpr\fB
+Sets the variable. 
+See section \fBVARIABLES AND CONSTANTS\fR for details.
+.TP
+The same with \fB+=\fR, \fB\-=\fR, \fB*=\fR, \fB/=\fR, \fB%=\fR, \fB.+=\fR, \fB.\-=\fR. 
+Does what you would expect.
+.TP
+.B [ \fIvarname\fB = \fIexpr\fB ] \fIcode\fB
+Sets the variable \fIvarname\fR to \fIexpr\fR, executes \fIcode\fR
+and then resets the variable to the old value.
+.TP
+.B \fInumber\fB
+A shortcut for \fBfile = \fInumber\fR.
+.TP
+.B \fIletter\fB
+A shortcut for \fBpos = \fInumber\fR, where different letters mean different numbers:
+A: 0, B: 1, ..., Z: 25, a: 26, ..., z: 51
+.TP
+.B *
+Draw the icon specified by the variables
+\fIkind\fR, \fIfile\fR and \fIpos\fR.
+May also draw only a part
+of the icon, if specified by the variable
+\fIqu\fR
+(see section \fBVARIABLES AND CONSTANTS\fR).
+.TP
+.B *@(\fIposition\fB)
+Like \fB*\fR, but draws the icon at some other position.
+This drawing is performed \fIafter\fR all drawing by *.
+If \fB*@\fR is used from several blobs, 
+the further order of drawing is not specified. 
+It is guaranteed, however, 
+that at any given time this order is the same for all positions. 
+(See section \fBVARIABLES AND CONSTANTS\fR for more details about @.)
+.TP
+.B @(\fIposition\fB)*
+Like \fB*\fR, but draws the icon at some other position.
+This drawing is performed \fIbefore\fR all drawing by *.
+If \fB@*\fR is used from several blobs, 
+the further order of drawing is not specified. 
+It is guaranteed, however, 
+that at any given time this order is the same for all positions. 
+(See section \fBVARIABLES AND CONSTANTS\fR for more details about @.)
+.TP
+.B if \fIexpr\fB \fIif-arrow\fB \fIif-code\fB ;
+.TQ
+.TQ
+.B if \fIexpr\fB \fIif-arrow\fB \fIif-code\fB else \fR[\fIelse-arrow\fR]\fB \fIelse-code\fB ;
+The arrows can be either "\->" or "=>".
+If you use "\->" arrows, it does exactly what
+you would expect.
+If the if-arrow  is "=>",
+then once the expression gets
+true, the if-code
+will be executed every subsequent
+time (without testing the condition),
+as long as it is "busy". 
+For more details see section \fBBUSIENESS\fR.
+If the else-arrow is "=>",
+then once the expression gets false, the
+else-code will be executed every subsequent
+time as long as it is busy.
+The else-arrow may only be omitted, if the if-arrow is "\->".
+Then the else-arrow also is "\->".
+(But this might change in the future.)
+.TP
+.B switch {
+.TQ
+.B \  \fIexpr1\fB \fIarrow1\fB \fIcode1\fB ;
+.TQ
+.B \  \fIexpr2\fB \fIarrow2\fB \fIcode2\fB ;
+.TQ
+.B \  ...
+.TQ
+.B }
+The arrows can be either "\->" or "=>".
+Does the same as:
+.RS
+.PP
+  if \fIexpr1\fR \fIarrow1\fR \fIcode1\fR
+.br
+  else => if \fIexpr2\fR \fIarrow2\fR \fIcode2\fR
+.br
+  ...
+.PP
+The last \fIexpr\fR may be omitted.
+This is equivalent to setting it to true.
+.RE
+.TP
+.B bonus(\fIexpr\fB)
+The player gets \fIexpr\fR bonus points.
+.TP
+.B message(\fIString\fB)
+The string is displayed (blinking) on the screen.
+To be used together with bonus(...).
+Example:
+.RS
+.PP
+  bonus(50);
+.br
+  message("You get 50 bonus points");
+.RE
+.TP
+.B explode
+Makes the blob explode. 
+For the next 8 steps or so, the
+blob is still what it was before, but the explosion is
+drawn over the graphics. 
+After that, it's changed to a nothing-blob.
+.TP
+.B lose
+The players immediately lose the level.
+.TP
+.B sound(\fIFilename\fB)
+Plays the given sound file.
+.PP
+You can also omit the code completely.
+Then, of course, it does not do anything.
+This can be useful as part of \fB,\fR-sequences.
+.PP
+There's a shortcut for drawing: You may omit the ";" between
+a number, a letter and the "*".
+.
+.SH EXPRESSIONS
+.
+The only data type in cual is int. 
+Bools are represented by 0 and 1, like in C. 
+(And any number other than 0 is interpreted as true, if a boolean is expected.)
+.PP
+Of course, variables, constants and numbers are expressions, and
+you can use parentheses. 
+There are the following operators
+(listed here in order of increasing precedence):
+.PP
+.RS
+.TP
+.B ||
+Boolean or
+.TP
+.B &&
+Boolean and
+.TP
+.BR == ", " != ", " < ", " > ", " <= ", " >=
+Comparison
+.TP
+.B ==..
+A special comparison
+.TP
+.B !
+Boolean not
+.TP
+.BR + ", " \-
+Add, substract
+.TP
+.B :
+Special operator
+.TP
+.BR * ", " / ", " %
+Multiply, divide, modulo
+.TP
+.BR & ", " | ", " .+ ", " .\-
+Bitwise and, bitwise or, setting of bits (same as bitwise or), unsetting of bits
+.TP
+.B \-
+Unary minus
+.TP
+.B \.
+Testing of bits (\fIa\fB.\fIb\fR is the same as \fIa\fB&\fIb\fB != 0\fR)
+.RE
+.PP
+\fB/\fR and \fB%\fR work mathematically correct and do not make funny changes
+when the sign of the numerator changes.
+More specifically, if \fIb\fR is positive, then \fIa\fB/\fIb\fR
+is the largest integer \fIn\fR such that \fIn\fB*\fIb\fB<=\fIa\fR. 
+If \fIb\fR is negative, then \fIa\fB/\fIb\fR is the largest integer \fIn\fR
+such that \fIn\fB*\fIb\fB>=\fIa\fR. 
+In both cases \fIa\fB%\fIb\fR is such
+that \fB(\fIa\fB/\fIb\fB)*\fIb\fB+\fIa\fB%\fIb\fB = \fIa\fR. 
+Examples:
+.TS
+tab(#); l l.
+.sp
+13/5=2 # 13%5=3
+\-13/5=\-3 # \-13%5=2
+13/\-5=\-3 # 13%\-5=\-2
+\-13/\-5=2 # \-13%\-5=\-3
+.TE
+.PP
+The following are the special operators:
+.TP
+.B \fIexpr1\fB == \fIexpr2\fB .. \fIexpr3\fB
+Is true, if \fIexpr1\fR lies between \fIexpr2\fR and \fIexpr3\fR.
+You may also omit one of \fIexpr2\fR and \fIexpr3\fR.
+(Then, it does the same as <= resp. >=.)
+The precedence implies that \fBx==y==2..3\fR is the same as \fBx==(y==2..3)\fR
+and is neither \fB(x==y)==2..3\fR nor \fBx==(y==2)..3\fR.
+Note that this operator might
+change in the future. (I plan to make something like
+"\fIexpr\fR in \fIset\fR" in Pascal.)
+.TP
+.B \fIexpr1\fB : \fIexpr2\fB
+Is true (that is, 1) with probability
+\fIexpr1\fR/\fIexpr2\fR
+.TP
+.B \fIneighbour_pattern\fB
+\fIneighbour_pattern\fR is a sequence of six
+or eight characters \fB0\fR, \fB1\fR and \fB?\fR.
+It is true if the sequence fits to the
+neighbour sequence of the blob. 
+The neighbour sequence is a string of "0"s and "1"s
+with a "1" for each neighbour of the same kind,
+starting above and going clockwise. 
+This way, you get a string of "0"s and "1"s (six or eight, depending
+on wether this level is in hex mode).
+.RS
+.PP
+Example: \fB1???0???\fR is true iff the
+blob above this blob is of the
+same kind and the blob below it is of
+different kind.
+.PP
+For an empty blob the semantics is slightly different:
+If in some direction there is no neighbour, because the field ends there,
+the entry in the neighbour sequence is 1 nevertheless.
+So for an empty blob \fB1???0???\fR is true, iff the
+blob above this blob does not exist or is empty as well,
+and the blob below this blob exists and is not empty.
+.PP
+If some blob changes its kind during a step, the expression will still
+test the neighbours as they were at the beginning of the step.
+(See the section \fBVARIABLES AND CONSTANTS\fR for details.)
+.RE
+.PP
+The following functions exist:
+.TP
+.B rnd(\fIexpr\fB)
+Returns a random value between 0 and \fIexpr\fR\-1
+.TP
+.B gcd(\fIexpr1\fB, \fIexpr2\fB)
+Returns the greatest common divisor of \fIexpr1\fR and \fIexpr2\fR
+.
+.SH VARIABLES AND CONSTANTS
+.
+The following kinds of variables and constants exist:
+.TP 3
+\(em
+User defined variables (see section \fBCUAL DEFINITIONS\fR). 
+At the start of the
+level (or at the creation of the blob) the value is the default value you
+provided.
+If you supplied the default with \fB: reapply\fR,
+whenever a blob's kind changes,
+the value of the variable is also set to the default of the new kind.
+There is a subtlety: This only happens if the new value of kind
+is in fact different from the old one.
+.TP
+\(em
+System variables. 
+These variables are always defined and have special
+meanings, e.g. \fBfile\fR and \fBpos\fR. 
+Some of them are read-only.
+.TP
+\(em
+User defined constants. 
+These are defined in the main .ld part, not in cual (not inside << >>).
+.TP
+\(em
+System constants. 
+Some of them depend on properties of the level, some are really constant.
+.PP
+Of each variable, there's one instance in each blob. 
+Normally, you access
+the instance in your own blob, but with the following syntax, you can access
+variables of other blops:
+.PP
+  \fIvarname\fB@@(\fIx\fB, \fIy\fB; \fIside\fB)
+.br
+  \fIvarname\fB@@(\fIx\fB; \fIside\fB)
+.br
+  \fIvarname\fB@@(; \fIside\fB)
+.br
+  \fIvarname\fB@(\fIdx\fB, \fIdy\fB; \fIside\fB)
+.br
+  \fIvarname\fB@(\fIdx\fB; \fIside\fB)
+.br
+  \fIvarname\fB@()
+.PP
+If \fIx\fR and \fIy\fR are given,
+these are absolute coordinates in the grid of blops,
+that is the variable is taken from the blob with loc_x=x and loc_y=y
+(see under \fBThe system variables\fR).
+If only \fIx\fR is given, it specifies one of the two blobs that are
+currently falling. 
+If there is only one such blob left, because the other
+one got stuck on some tower, the remaining blob's coordinate is 0.
+Otherwise one of the two has coordinate 0, the other 1.
+.PP
+In the \fB@\fR variants, the coordinates are relative to the current blob.
+The variant \fB@@(; \fIside\fB)\fR refers to the semiglobal blob,
+the variant \fB@()\fR to the global blob (See section \fBTHE GLOBAL BLOB\fR).
+The extra part \fB; \fIside\fR is optional and specifies the side
+of the game. 
+This is only meaningful in two-player mode.
+\fIside\fR = \fB<\fR specifies the left player,
+\fIside\fR = \fB>\fR the right player,
+\fIside\fR = \fB=\fR the player to which the current blob pertains,
+and \fIside\fR = \fB!\fR the other player.
+\fB@()\fR and \fB@@()\fR can also be given as \fB@\fR respectively \fB@@\fR.
+.PP
+This can be done for both, reading and
+writing variables. 
+It also works for system variables (but not for constants).
+.PP
+In hex mode levels, for odd \fIdx\fR, \fIdy\fR should be a "half integer",
+that is a number ending in ".5".
+This is the only place in Cual where non-integers appear.
+Especially, ".5" is not allowed in composite expressions.
+Therefore, also integer \fIdy\fR is always allowed.
+If a half-integer is expected and an integer is given, it is assumed to be
+rounded to above, that is 5 then represents 4.5 and \-5 represents \-5.5.
+.PP
+Caution: With \fBmirror=1\fR the absolute and the relative coordinates use
+different coordinate systems. 
+Handle with extreme care.
+.PP
+Accessing foreign variables is not as easy as it might look at first glance;
+it might easily introduce a dependence of the internal order of execution
+of the blob codes. 
+For this reason,
+.TP 3
+\(em
+reading variables with \fB@\fR or \fB@@\fR
+always returns the value of the variable it had
+at the \fIbeginning\fR of the current step, that is, before any of the
+blob codes has been executed.
+.TP
+\(em
+when writing variables with \fB@\fR or \fB@@\fR,
+the write operation will only be executed
+at the \fIend\fR of the current step. 
+(The write operations are stored in a kind of queue.)
+.PP
+This is also true if a blob accesses its own variables with \fB@(0,0)\fR.
+.PP
+The operators \fB+=\fR, \fB\-=\fR, etc.
+are also performed in the future if the left
+hand side is an \fB@\fR-variable.
+(To be more precice, the right hand side is
+calculated instantanousely.)
+.PP
+For illustration, look at the following six statements:
+.PP
+.TS
+tab(#);
+l l.
+1)#X += 1
+2)#X@(0, 0) += 1
+3)#X = X + 1
+4)#X = X@(0, 0) + 1
+5)#X@(0, 0) = X + 1
+6)#X@(0, 0) = X@(0, 0) + 1
+.TE
+.PP
+Only 1) and 3) do the same; they simply increment X by 1.
+Statement 4) sets X to one more than it was at the beginning of the step.
+Statements 2), 5) and 6) cause the value of X
+to be changed in the future (after the
+current step): X is set to one more
+than:
+.TP
+2)
+the value of X just before the change (that is, X is incremented
+in the future),
+.TP
+5)
+the current value of X,
+.TP
+6)
+the value of X at the beginning of the step.
+.
+.SS Some more details
+.
+.TP 3
+\(em
+Whenever you try to access a variable at a location which doesn't exist,
+you will get the default value.
+If default values depend on the kind,
+the default pertaining to the blob executing the code is used.
+This may change in the future.
+.TP
+\(em
+Changing a variable which doesn't exist does nothing (and does not
+result in an error).
+.TP
+[Add explanation of \fItime slices\fR; roughly:
+@-access of variables in reality don't access the value at the
+beginning/end of the game step, but of the time slice.
+The call of the main procedure of all blobs happens in the same time
+slice, but each other kind of event has its own time slice.]
+.PP
+.
+.SS The system variables
+.
+.TP
+.B file
+Specifies the file number from which to take the icon that
+is drawn by "*". 
+This variable is reset to 0 before the drawing procedure is executed.
+.TP
+.B pos
+Specifies the position in the file of the icon that is drawn
+by "*". 
+This variable is reset to 0 before the drawing procedure is executed.
+.TP
+.B kind
+The kind of the blob. 
+There are constants for the possible values of this variable.
+If you change the kind, you should be aware of three things:
+.RS
+.TP 3
+\(em
+Expressions like "001???01" test the neighbour pattern at
+the \fIbeginning\fR of the current step. 
+So the change of the variable \fIkind\fR will not be reflected.
+.TP
+\(em
+In the current step, the program to draw the blob has already
+been invoked (it might even be the program which changed this variable);
+so in this step, the blob will still look like one of the old
+kind. 
+However, if things are drawn after the kind has been changed,
+icons from the new kind are taken.
+.TP
+\(em
+Defaults of the new kind that are declared with \fB: reapply\fR are applied.
+This happens at the same time that kind changed,
+but only if the new kind is different from the old one.
+.RE
+.TP
+.B version
+Is assigned a hopefully distinctive value at the blob's creation.
+See \fBversions\fR in section \fBKIND DATA\fR for details.
+.TP
+.B qu
+Tells "*" which part of the icon to draw. 
+It's possible to draw the whole icon, or only one of its quarters. 
+If a quarter
+is drawn, you may specify independently which of the quarters to
+take and at which position to draw it. 
+Use the constants (see below).
+This variable is reset to "draw all" before the drawing
+procedure is executed.
+.TP
+.B out1, out2
+Set these Variables for debug output. 
+The values will be printed on top of the blob. 
+These variable are reset to "output nothing"
+before the drawing procedure is executed. 
+(In fact, "output nothing" is one special big value.)
+.TP
+.B weight
+When \fBcalculate_size\fR is set in \fBbehaviour\fR,
+\fBsize\fR will be regularly updated
+to the sum of \fBweight\fR in the connected component.
+The default is 1.
+.TP
+.B inhibit
+Set this variable to a sum of the constants DIR_...; this will
+inhibit that this blob connects into the given directions. 
+This is \fInot\fR for the graphics but for the calculation of the
+connected components and the explosions.
+.TP
+.B behaviour
+This is a bit field.
+Refer to \fBThe Constants\fR below for the meaningful of its bits.
+The default is \fBcalculate_size\fR+\fBexplodes_on_size\fR for normal blobs,
+\fBexplodes_on_explosion\fR+\fBexplodes_on_chainreaction\fR for grey blobs,
+\fBfloats\fR for the empty blob and
+\fBgoalblob\fR+\fBexplodes_on_explosion\fR+\fBexplodes_on_chainreaction\fR or
+\fBgoalblob\fR+\fBexplodes_on_chainreaction\fR
+(depending on whether chaingrass is set) for grass blobs.
+.TP
+.B falling_speed, falling_fast_speed
+These variables are only used in the semiglobal blobs.
+They define the vertical speed of the steered falling blobs.
+The unit is pixels per game step.
+The defaults are 6 and 32.
+.PP
+.
+.SS The system read-only variables
+.
+.TP
+.B time
+The number of time steps since the level was started.
+.TP
+.B turn
+Is 1 resp. 2 if the blob is falling and just being turned
+by the user and 0 otherwise.
+(1 in the first turning step, 2 in the second one.)
+Be aware that if the user presses the turn key fast several
+times, some of these steps may be omitted. 
+(Use the turn event
+if you want to be sure that a program block is executed once
+for every turn.)
+.TP
+.B connect
+Contains internal data. 
+Will be removed. 
+Probably.
+.TP
+.B size
+The size of the component of the blob. 
+(That is, how many blobs are connected.)
+.TP
+.B basekind
+The value of the constant generated for the name of the kind of the blop.
+Example:
+.RS
+.PP
+  \fBpics = orange, pear, apple * 3, banana, apple\fR
+.PP
+Here, all four kinds \fBapple\fR have the same value for basekind,
+and this value is \fBapple\fR.
+.RE
+.TP
+.B loc_x, loc_y
+The absolute coordinates of the blob. 
+(0,0) = top left corner
+.TP
+.B loc_xx, loc_yy
+The absolute coordinates of the blob in pixels.
+This is not always the same as loc_x*32 and loc_y*32,
+particularly for the steered falling blobs.
+.TP
+.B loc_p
+The player of the blob (1 or 2)
+.TP
+.B falling
+true, if the blob is falling or it is a preview of a falling blob.
+(Falling in the sense of steered by the player. 
+Grey blobs are not falling in that sense.)
+.TP
+.B falling_fast
+True, if the blob is falling fast, that is, the user pressed
+the down key.
+.TP
+.B informational
+True, if the blob is one of the info-blobs at the side of the game area.
+In this sense, the previews of the falling blobs also count as info-blobs.
+.TP
+.B players
+The number of players.
+.TP
+.B exploding
+When the blob is exploding, the position in the
+explosion animation (1 to 8); 0 else.
+.RS
+.PP
+Currently, there is one exception: if the explosion has been triggered
+by the \fBexplode\fR command, then \fBexploding\fR will have value 1 only
+\fIafter\fR the current game step [more precisely: time slice; fix that].
+Reason: when reading \fBexploding@(x,y)\fR, we maybe don't know yet that
+the other blob calls \fBexplode\fR.
+.
+.SS The Constants:
+.
+.B Constants for behaviour:
+.TP
+.B goalblob
+Set goalblob if this blob should act like grass: You will have
+to get rid of it to win the level and making this blob explode will give
+more points.
+.TP
+.B calculate_size
+When this bit is set, \fBsize\fR will be regularly updated to the sum
+of \fBweight\fR in the connected component.
+.TP
+.B explodes_on_size
+When this bit is set, a connected component explodes, when it has 
+\fBsize\fR>=\fBnumexplode\fR.
+.TP
+.B explodes_on_explosion, explodes_on_chainreaction
+When these bits are set, the blob explodes whenever an explosion that was
+triggered by \fBexplodes_on_size\fR happens in its neighbourhood.
+\fBexplodes_on_chainreaction\fR refers to those triggering explosions
+that are the second or later part of a chain reaction.
+\fBexplodes_on_explosion\fR refers to the other ones.
+.TP
+.B floats
+When this bit is set, the blob keeps its vertical position
+even if there is an empty blob below.
+This bit has no effect on the steered falling blobs.
+.PP
+.B Constants for kind:
+.TP
+.B <name of kind of blob>
+For each kind of blob, there's one constant with
+the name of that kind. Use it to check if a
+blob is of that kind using \fBkind@(\fIx\fB,\fIy\fB) == \fIaKind\fR
+or to change to that kind using \fBkind = \fIaKind\fR.
+See \fBkind\fR under \fBThe system variables\fR for the side-effects
+of setting \fBkind\fR.
+.RS
+.PP
+Sometimes it is necessary to perform arithmetic on kinds,
+for example when several have been declared using the \fB*\fR multiplier.
+The values of the constants are successive in the order, in which the kinds
+have been declared. 
+When a name is used several times, the first use defines the value. 
+Example:
+.PP
+  \fBstartpic = apple, orange
+.br
+  pics = orange, pear, apple * 3, banana
+.br
+  greypic = pineapple\fR
+.PP
+This initializes 2 kinds with the defaults for startpic,
+6 kinds with the defaults for pics, and 1 kind with the defaults for greypic.
+The value of the constant \fBorange\fR is 1 more than that of \fBapple\fR,
+\fBpear\fR is 2 more than \fBorange\fR, \fBbanana\fR is 4 more than
+\fBpear\fR and \fBpineapple\fR is 1 more than \fBbanana\fR.
+We do not specify what these values actually are.
+.PP
+This constant also exists for the empty kind, if one has been declared
+using \fbemptypic\fR. 
+In this case the value's relation to the other values
+is not specified at all.
+.RE
+.TP
+.B global, semiglobal
+Denote the kind of the global, respectively semiglobal, blob.
+.TP
+.B nothing
+Is the same as the constant for the empty kind.
+Is provided, because sometimes, you don't have
+an empty kind, but you still need to test if a
+blob is empty.
+.TP
+.B outside
+The value of kind if the coordinates are outside
+of the game board.
+.PP
+.B Constants for neighbours:
+.TP
+.B neighbours_rect
+A blob connects up, down, left, and right. 
+This is the default.
+.TP
+.B neighbours_horizontal
+A blob connects left and right.
+.TP
+.B neighbours_vertical
+A blob connects up and down.
+.TP
+.B neighbours_diagonal
+A blob connects diagonally.
+.TP
+.B neighbours_hex6
+When used in the level-wide \fBneighbours\fR, this sets hex mode.
+A blob connects up, down, left with a slight upwards shift,
+left with a slight downwards shift, right with a slight upwards shift,
+and right with a slight downwards shift.
+.TP
+.B neighbours_hex4
+When used in the level-wide \fBneighbours\fR, this sets hex mode.
+A blob connects left with a slight upwards shift,
+left with a slight downwards shift, right with a slight upwards shift,
+and right with a slight downwards shift.
+.TP
+.B neighbours_knight
+A blob connects in knight moves (Two forward and then one sideways.
+Forward is one of up, down, left or right.
+Sideways is perpendicular to forward. 
+This makes a total of eight directions.).
+.TP
+.B neighbours_eight
+Combines \fBneighbours_rect\fR with \fBneighbours_diagonal\fR.
+.TP
+.B neighbours_3D
+A more obscure mode created especially for 3d.ld.
+When used in the level-wide \fBneighbours\fR, this sets hex mode.
+A blob connects up, down, two (but not one) to the left, and two to the right.
+In even columns it also connects right with a slight upwards shift.
+In odd columns it also connects left with a slight downwards shift.
+.TP
+.B neighbours_none
+A blob does not connect at all.
+.PP
+.B Constants for qu:
+.TP
+.B Q_ALL
+Value for qu, which means "draw the complete picture".
+.TP
+.B Q_TL, Q_TR, Q_BL, Q_BR
+Values for qu. 
+"TL" means draw top-left quarter, etc. 
+(See the "*" command in the Code section.)
+.TP
+.B Q_SRC_DST
+SRC and DST may be TL, TR, BL, BR. 
+Take quarter SRC and draw it at position DST.
+.PP
+.B Miscellanious constants:
+.TP
+.B DIR_XX
+To be used with the variable inhibit to prevent the blob
+connecting in the given directions. 
+XX can be U, D, L, R (horizontal and vertical); UL, UR, DL, DR (diagonal);
+UUL, UUR, DDL, DDR, LLU, LLD, RRU, RRD (knight); F, B (3d)
+.
+.SH VERSIONING
+.
+Sometimes it is necessary to define a level slightly differently for different
+purposes. 
+For example you might need to decrease \fBnumexplode\fR for the
+two-player version lest it becomes unplayable. 
+The difficulty settings from cuyo's main menu provide another example.
+.PP
+This is done by qualifiing a definition with the versions it should apply to.
+It is best explained by an example:
+.PP
+  numexplode = 8
+.br
+  numexplode[2] = 6
+.br
+  numexplode[1,hard] = 10
+.PP
+This specifies that normally numexplode should be 8. 
+In two-player mode it should be 6. 
+In one-player hard mode it should be 10. 
+Here the specifiers \fB2\fR
+for two-player mode, \fB1\fR for one-player mode and \fBhard\fR for hard mode
+are used.
+Along with \fBeasy\fR for easy mode these are all predefined specifiers
+intended for levels.
+Additionally (and for internal purposes),
+there are specifiers for the level tracks: 
+\fBmain\fR, \fBall\fR, \fBgame\fR, \fBextreme\fR, \fBnofx\fR, \fBweird\fR,
+and \fBcontrib\fR.
+.PP
+Furthermore, you can make up and use your own specifiers.
+In order for them to take effect, though, you have to give cuyo additional
+information about the current version. 
+This is done on the command line using the \fB\-\-version\fR option. 
+For example
+.PP
+  cuyo \-\-version=hard,geek
+.PP
+Specifies both hard version (you can change that in the menu)
+and version "geek", which is not predefined. 
+.PP
+There are several constraints to be observed:
+.TP 3
+\(em
+All versions of a definition must be made before the first use of the thing
+defined. 
+As sometimes it is not obvious where the defined thing is used
+(for example startpic uses a previous greypic by assigning successive numbers
+to kinds),
+it is best to group all these versions into one block.
+.TP
+\(em
+A given version also applies to every more specialized version, for which no
+definition is given. 
+In the above example, \fBnumexplode\fR is set to \fB6\fR
+in two-player hard mode and in two-player easy mode as well.
+.RS
+.PP
+All resulting conflicts must be resolved. 
+For example, if you make a definition
+for \fB[2]\fR and one for \fB[hard]\fR, you must also make a definition for
+\fB[2,hard]\fR (or, equivalently, for \fB[hard,2]\fR), because otherwise it
+would be ambiguous which of the two former
+should apply in two-player hard mode.
+.RE
+.TP
+\(em
+Cuyo knows that \fBeasy\fR and \fBhard\fR exclude each other.
+Consequently, it is unnecessary (and indeed prohibited) to give an
+\fB[easy,hard]\fR definition, even if both \fB[easy]\fR and \fB[hard]\fR
+are given.
+The same holds for \fB1\fR and \fB2\fR, and for level tracks.
+.TP
+\(em
+Furthermore, cuyo knows that \fB1\fR and \fB2\fR are exhaustive: There is no
+mode which is neither single-player nor two-player. 
+(The human-versus-AI mode counts as two-player as far as cual is concerned.) 
+Therefore, if there are definitions for both, it is unnecessary, (and again
+illegal) also to define a version without any of both.
+For example, if \fB[1,de]\fR and \fB[2,de]\fR are given, \fB[de]\fR must be
+omitted. 
+Alternatively, you could of course give \fB[1,de]\fR and \fB[de]\fR
+or \fB[de]\fR and \fB[de,2]\fR.
+The level track specifiers are exhaustive as well. 
+.
+.SH BUSIENESS
+.
+(No, not Business ;\-)
+.PP
+Busieness is a concept to make it easier to implement simple animated
+sequences which are triggered by certain events. 
+Each code fragment has an internal state which tells if it is busy.
+.TP 3
+\(em
+Normal statements like assignments are never busy.
+.TP
+\(em
+A chain of commands separated by "," is busy as long as not
+all of the commands have been executed.
+.TP
+\(em
+\fIcode1\fR ; \fIcode2\fR is busy as long as at least one of
+\fIcode1\fR and \fIcode2\fR are busy.
+.PP
+Here's an example of how to use busieness for an animation which appears
+at random intervals:
+.PP
+  \fBswitch {
+.br
+    1:100 => {B*, C*, D*, E*};
+.br
+    \-> A*;
+.br
+  };
+.PP
+This code fragment normally draws the icon at position A (0). 
+But in each
+step, with a probability of 1/100, an animation sequence consisting of icons
+B, C, D and E is started. 
+With a normal arrow ("\->") after the "1:100",
+after the step in which B has been drawn, the probability would be 99/100
+that A is drawn again. 
+But with the double arrow, the switch statement
+won't switch back to A until the animation has terminated.
+.PP
+(Btw: It doesn't matter if there's a "\->" or a "=>" before the "A*";
+A* isn't busy anyway.)
+.
+.SH THE GLOBAL BLOB
+.
+Apart from the normal blobs which you can see on screen, there's one global
+blob (for the whole game, not one for each player), which, well, isn't really
+a blob, but behaves a bit like it. 
+It has
+its own set of variables, and it can have a program which is run once every
+step. 
+To define such a global program, use \fBglobal=\fIcode\fR. 
+However, the global
+variables do exist even if you don't define global code. 
+See section \fBVARIABLES AND CONSTANTS\fR on how to access them.
+Note that the global blob is always executed before any of the normal blobs.
+.PP
+There are also semiglobal blobs. 
+There is one for each player.
+These are programmed with \fBsemiglobal=\fIcode\fR.
+.
+.SH EVENT HANDLERS
+.
+The following events exist:
+.TP
+.B init
+Is called only once, when the blob gets into life, just before the first
+time its main drawing routine is called.
+.TP
+.B turn
+Is called for falling blobs each time they are rotated.
+.TP
+.B land
+Is called when the steered blob lands (just after it landed).
+.TP
+.B changeside
+Is called when a blob moves from one player to the other, just after the
+blob has arrived at the new player.
+.TP
+.B connect
+Is called when the connection of blobs is recalculated.
+.TP
+.B row_up
+Is called when a player got a row from the other side, after everything
+is finished and just after the loc_y of all blobs has been decreased by 1.
+Is only called for the semiglobal blob, though.
+.TP
+.B row_down
+Is called when a player gives a row to the other side, before anything
+visible happens, but just after the loc_y of all blobs has been increased by 1.
+Is only called for the semiglobal blob, though.
+.TP
+.B keyleft, keyright, keyturn, keyfall
+Are called when the player presses the left, right, turn or fall key.
+Are only called for the steered falling blobs and the semiglobal blob, though.
+(Note that, in contrast to turn, keyturn is called even if the steered blob
+cannot be rotated due to some obstacles, and also if there is no steered blob.)
+.
+.SH THE LIFE OF A BLOB
+.
+Normal blobs come into life at the beginning of the game, or they fall
+into life: either as colored blobs, steered by the user, or as grey blobs.
+More precisely, the steered blobs already come into life when they appear
+as the preview.
+When a blob moves (by gravitiy or when rows go from one player to another),
+it takes its variables with it.
+When a blob explodes, it does not stop existing. 
+Rather, it transforms into an empty blob. 
+That's important for the variables: The empty blob still
+has all the variables set to the values they had before; only its kind
+is different. 
+Empty blobs are everywhere where there's no other blob.
+(However, the falling blobs steered by the user are in some sense "above"
+everything else; there are empty blobs beneath them.)
+.PP
+The life of empty blobs is different from the one of normal blobs. 
+Empty blobs are not affected by gravity, and they often start or stop existing.
+For example, when a single grey blob is falling down, the empty blob below
+it stops existing when the grey blob arrives and a new empty blob starts
+existing when the grey blob moves on.
+There is only one situation in which empty blobs move: When
+a row moves from one player to the other, and everything moves up resp. down,
+the empty blobs move, too.
+.
+.SH STARTDIST
+.
+The format of the startdist field is rather complicated.
+On the plus side, this means that many things can be done with little effort.
+We first describe the single-character format, which,
+at the time of this writing, has sufficed for all needs.
+After that, we describe the general format as an extension.
+.PP
+Every line of the startdist describes one row of blobs
+in the level's initial state.
+The lines are aligned to the bottom and the topmost lines come first
+(normal reading order).
+Each line must contain exactly 10 or exactly 20 characters,
+except the last which is special.
+In a line of length 20 the first 10 characters describe the left player,
+the second 10 characters describe the right player. 
+A line of length 10 describes both players.
+Hence, each character describes one blob.
+The semantics are:
+.TP
+.B .
+An empty blop.
+.TP
+.B +, \-, *
+A blop chosen at random according to \fBcolourprob\fR,
+respectively \fBgreyprob\fR, respectively \fBgoalprob\fR.
+The value of \fBnogreyprob\fR has no influence.
+.TP
+.B 0..9, A..Z, a..z
+These characters denote a specific kind.
+If the character matches the \fBdistkey\fR of some kinds,
+the first of these is chosen.
+More generally, these characters are ordered such that \fB"9"\fR comes before
+\fB"A"\fR and \fB"Z"\fR comes before \fB"a"\fR.
+In this order, the maximal \fBdistkey\fR, which does not come after the
+character, specifies the blob's \fBkind\fR.
+The difference between the character and the \fBdistkey\fR then specifies the
+blob's \fBversion\fR.
+.RS
+.PP
+Example 1:
+In the special case, where the character exactly matches a \fBdistkey\fR,
+\fBversion\fR is set to 0.
+.PP
+Example 2:
+Suppose kind \fBapple\fR has \fBdistkey = "A"\fR, kind \fBorange\fR has
+\fBdistkey = "O"\fR and no further \fBdistkey\fRs exist.
+Then the character \fB"C"\fR denotes an apple with \fBversion=2\fR,
+the character \fB"N"\fR denotes an apple with \fBversion=13\fR,
+the character \fB"O"\fR denotes an orange with \fBversion=0\fR,
+the character \fB"S"\fR denotes an orange with \fBversion=4\fR,
+the character \fB"a"\fR denotes an orange with \fBversion=12\fR,
+and the character \fB"8"\fR does not denote anything (and hence is illegal).
+.RE
+.TP
+.B %
+An info blop with the version set according to the level-wide neighbours.
+.TP
+.B &
+An info blop with the version set according to the level-wide chaingrass.
+.PP
+The last line may have length 4, 8, 10, or 20.
+If it has length 10 or 20, it is just a normal line as above.
+Otherwise it describes the informational blops next to the field.
+In case of length 4,
+the first entry describes the blop which depicts the number of greys.
+The second entry describes the blop which depicts the number of grass blops.
+The third entry describes the blop which depicts connection information.
+The fourth entry describes the blop whoch depicts chaingrass information. 
+In case of length 8, the above holds for the left player.
+The remaining 4 entries then describe the same for the right player,
+but in reversed order.
+The default is "-*%&&%*-" (or equivalently "-*%&").
+.PP
+As seen above, startdist can reference 62 kind/version combinations
+directly (and more at random).
+Because this might at some time not be enough, the multichar extension
+has been introduced.
+In this case, each blob is described by more than one character.
+However, the number of characters per blob must be the same for all keys.
+Hence, the lengths of \fBstartdist\fR lines then must be this number
+multiplied by 10 or by 20.
+Every multicharacter combination starting with \fB"."\fR, \fB"+"\fR, \fB"\-"\fR,
+or \fB"*"\fR is treated as the corresponding character in single-character
+format. 
+All other character combinations are treated as numbers in base 62
+representation. 
+Here, \fB"A"\fR to \fB"Z"\fR are digits with decimal value 10
+to 35, and \fB"a"\fR to \fB"z"\fR are digits with decimal value 36 to 61.
+Leading spaces are allowed instead of zeroes (however, the all-space string
+is forbidden).
+The maximal \fBdistkey\fR which (as a number) is not larger than the number
+given in \fBstartdist\fR, specifies the blob's \fBkind\fR.
+The difference between the \fBstartdist\fR number and the \fBdistkey\fR
+then specifies the blob's \fBversion\fR.
+In the case of multichar \fBdistkey\fRs, the default for \fBdistkey\fRs
+of kinds declared by \fBstartpic=\fR is 10 in decimal.
+.PP
+For blops whose kinds are chosen at random (i.e. characters \fB"+"\fR,
+\fB"\-"\fR, \fB"*"\fR in single-character \fBstartdist\fRs),
+cuyo tries to make these as different as possible.
+That means, by a certain heuristic, cuyo minimizes the number of neighbouring
+blobs of the same kind. 
+"Neighbouring", of course, refers to the \fBneighbours\fR entry. 
+\fBinhibit\fR and the \fBcalculate_size\fR bit of
+\fBbehaviour\fR have no effect (these are mutable during the lifetime of
+blobs, while at the time of \fBstartdist\fR processing, no blob's lifetime
+has started yet). 
+So the only way to influence the unneighbouring
+(if you really wish to do so), is by setting \fBneighbours\fR appropriately.
+(Of course, this possibility is even more limited, when you intend to
+set the \fBcalculate_size\fR bit during the blob's lifetime.)
+.
+.SH WHERE DO I PUT THE CUAL CODE?
+.
+Cual procedures and variables can be defined in different sections of
+the .ld files:
+.TP 3
+\(em
+Outside of everything; that code is accessible from every level coming
+after that definition.
+.TP
+\(em
+In the section of a level.
+.TP
+\(em
+In the section of a kind.
+.PP
+This basically does what you expect. 
+However, there's one thing you might want to know: Even if you define a variable inside a
+kind, \fIevery\fR blob in that level will have that variable. 
+The only effect
+of defining the variable in the section of a kind is that this kind is the
+only one which can access it.
+.
+.SH AMPERSAND-CALL
+.
+To explain a bit what calling a procecure with an & means, here two examples:
+.PP
+\fIExample 1:\fR
+.br
+<<
+.br
+myblob = {
+.br
+  ...
+.br
+  switch {
+.br
+    myvar \-> { 0A*; 1; A,B,C,D; *; 2A*};
+.br
+          \-> { 0B*; 1; A,B,C,D; *; 2B*};
+.br
+  };
+.br
+};
+.br
+>>
+.PP
+\fIExample 2:\fR
+.br
+<<
+.br
+anim = {1; A,B,C,D; *};
+.br
+
+.br
+myblob = {
+.br
+  ...
+.br
+  switch {
+.br
+    myvar \-> { 0A*; &anim; 2A*};
+.br
+          \-> { 0B*; &anim; 2B*};
+.br
+  };
+.br
+};
+.br
+>>
+.PP
+The difference between these examples is what happens when myvar changes.
+In example 1, the animation "A, B, C, D" will restart at the beginning
+(because the two animations are different ones); in example 2, the
+"same" animation is used
+in both cases, so the animation will simply continue.
+(Removing the ampersands from example 2 will turn the behaviour to the
+one of example 1.)
+.
+.SH THE AI UTILITY FUNCTION
+.
+When deciding how to place the steered falling blobs, the AI player tries to
+maximize a certain utility function.
+Its value is the sum of the values for both steered falling blobs 
+plus \fBaiu_monochromic_vertical\fR
+in case both blobs have the same color and they get placed vertically.
+The value for a single blob is the sum of the following:
+.TP 3
+\(em
+For each new neighbour of blob, the neighbour utility.
+.TP
+\(em
+\fBaiu_two_above\fR, if the blob is two above a blob of same kind.
+.TP
+\(em
+\fBaiu_height*20/\fR(the blob's \fBy\fR coordinate).
+.PP
+The neighbour utility
+for a single new blob and a single one of its new neighbours
+is the sum of the following:
+.TP 3
+\(em
+\fBaiu_color\fR, if the neighbour has the same kind as the blob.
+.TP
+\(em
+\fBaiu_grass\fR, if the neighbour fulfills \fBbehaviour.goalblob\fR.
+.TP
+\(em
+\fBaiu_grey\fR, if the neighbour fulfills \fBbehaviour.explodes_on_explosion\fR.
+.
+.SH SEE ALSO
+.
+\fBcuyo\fP(6)
+.
+.SH BUGS
+.
+Probably a lot. 
+The following are just a few known ones:
+.PP
+There are several problems with busieness and that stuff.
+There are several situations in which Cual doesn't behave in the
+way I would like, and in other situations I don't know how Cual should
+behave.

@@ -1,0 +1,1334 @@
+# Message catalog for the game Cuyo.
+# This is a partly generated file. The copyright of the original messages is identical to the one of the source files they are generated from. The copyright of the translations is by the translators.
+# This file is distributed under the same license as the Cuyo package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+# General notes for translators
+#
+# 1) The German translation was done by the developers themselves, all of whom
+# are native German speakers. So in case of any doubt, the German version is at
+# least as authorative as a base for further translations as the original
+# English version is. Maybe even more so. If in your team there is someone who
+# can translate from German to her language, you might consider to let her do
+# so.
+#
+# 2) The level names and descriptions contain some puns and other obscure
+# references. We consider it fine to translate them rather liberally, and even
+# to replace them by completely different puns. (And we have done so for the
+# German version.)
+#
+# 3) We use a custom pixel font. It only supports ISO-8859-1 characters.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Cuyo VERSION\n"
+"Report-Msgid-Bugs-To: cuyo-devel@nongnu.org\n"
+"POT-Creation-Date: 2014-10-25\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: src/blatt.cpp:215
+msgid "Computer"
+msgstr ""
+
+#: src/blatt.cpp:215
+#, c-format
+msgid "Player %d"
+msgstr ""
+
+#. TRANSLATORS: During game: short version of "%d blops explode"
+#: src/blatt.cpp:258
+#, c-format
+msgid "%d"
+msgstr ""
+
+#. TRANSLATORS: During game: short version of
+#. "between %d and %d blops explode"
+#: src/blatt.cpp:263
+#, c-format
+msgid "%d-%d"
+msgstr ""
+
+#. TRANSLATORS: During game: short version of
+#. "%d or %d blops explode"
+#: src/blatt.cpp:268
+#, c-format
+msgid "%d/%d"
+msgstr ""
+
+#: src/blatt.cpp:1109
+#, c-format
+msgid "%s  -  Debug mode; Press alt-h for help."
+msgstr ""
+
+#. TRANSLATORS: Now follows the main menu. The characters preceded by a tilde
+#. are hotkeys. Please choose them disjoint within the menu. If this
+#. cannot be achieved in a sensible manner, feel free to leave some out.
+#: src/blatt.cpp:1120
+msgid "~New Game"
+msgstr ""
+
+#: src/blatt.cpp:1123
+msgid "~Restart last level"
+msgstr ""
+
+#: src/blatt.cpp:1128
+msgid "Start ~at level..."
+msgstr ""
+
+#: src/blatt.cpp:1131
+msgid "~1 Player"
+msgstr ""
+
+#: src/blatt.cpp:1133
+msgid "~2 Players"
+msgstr ""
+
+#: src/blatt.cpp:1135
+msgid "Player vs. ~Computer"
+msgstr ""
+
+#: src/blatt.cpp:1140
+msgid "~Level track"
+msgstr ""
+
+#: src/blatt.cpp:1146
+msgid "~Difficulty"
+msgstr ""
+
+#: src/blatt.cpp:1151
+msgid ""
+"Setting the difficulty affects some, but not all levels.\n"
+"On difficulty \"Easy\", the \"Standard\" level track\n"
+"consists of levels which are affected by that difficulty,\n"
+"and of levels which are easy in themselves.\n"
+"The same holds for \"Hard\"."
+msgstr ""
+
+#: src/blatt.cpp:1157
+msgid "~Preferences..."
+msgstr ""
+
+#. TRANSLATORS: This is the last entry of the main menu.
+#: src/blatt.cpp:1166
+msgid "~Quit"
+msgstr ""
+
+#: src/blatt.cpp:1176
+#, c-format
+msgid "Keys Player %d:"
+msgstr ""
+
+#: src/blatt.cpp:1178
+msgid "Left"
+msgstr ""
+
+#: src/blatt.cpp:1179
+msgid "Right"
+msgstr ""
+
+#: src/blatt.cpp:1180
+msgid "Turn"
+msgstr ""
+
+#: src/blatt.cpp:1181
+msgid "Down"
+msgstr ""
+
+#: src/blatt.cpp:1185
+msgid "AI Speed"
+msgstr ""
+
+#: src/blatt.cpp:1187
+msgid "Sound"
+msgstr ""
+
+#: src/cuyo.cpp:274
+#, c-format
+msgid ""
+"Score: %d\n"
+"\n"
+"Loading Level %d...\n"
+"\n"
+msgstr ""
+
+#: src/cuyo.cpp:315
+#, c-format
+msgid "1 blop explodes"
+msgid_plural "%d blops explode"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/cuyo.cpp:321
+#, c-format
+msgid "between %d and %d blops explode"
+msgstr ""
+
+#: src/cuyo.cpp:324
+#, c-format
+msgid "%d or %d blops explode"
+msgstr ""
+
+#. TRANSLATORS: The second %s (after "by ") is the level's author's name
+#: src/cuyo.cpp:327
+#, c-format
+msgid ""
+"Score: %d\n"
+"\n"
+"Level %d\n"
+"%s\n"
+"by %s\n"
+"\n"
+"%s\n"
+"%s\n"
+"%s\n"
+"\n"
+"Space = Start"
+msgstr ""
+
+#: src/cuyo.cpp:335
+msgid "Chain reaction necessary\n"
+msgstr ""
+
+#: src/cuyo.cpp:535
+#, c-format
+msgid ""
+"Game over\n"
+"\n"
+"Score: %d\n"
+"\n"
+msgstr ""
+
+#: src/cuyo.cpp:554
+#, c-format
+msgid ""
+"Level %s complete!\n"
+"\n"
+"Time Bonus: %d\n"
+"Score: %d\n"
+"\n"
+"%s"
+msgstr ""
+
+#: src/cuyo.cpp:576
+msgid "Space = Continue"
+msgstr ""
+
+#: src/cuyo.cpp:647
+#, c-format
+msgid ""
+"***\n"
+"You won even a bit more!!!\n"
+"\n"
+"Score: %d\n"
+"***\n"
+"\n"
+msgstr ""
+
+#: src/cuyo.cpp:648
+#, c-format
+msgid ""
+"***\n"
+"You won!!!\n"
+"\n"
+"Score: %d\n"
+"***\n"
+"\n"
+msgstr ""
+
+#. TRANSLATORS: This indicates an unknown value
+#: src/leveldaten.cpp:682
+msgid "???"
+msgstr ""
+
+#. TRANSLATORS: "cuyo" is a program's name,
+#. "-f", "-g", and "-h" are options' names,
+#. "ld" is a file suffix. None of these should be translated.
+#: src/main.cpp:51
+msgid ""
+"usage: cuyo [-g <width>x<height>] [-h] [-f] [ld-file]\n"
+"  -g <width>x<height>  set window size\n"
+"  -f   fullscreen mode\n"
+"  -h   print this help message\n"
+"(More options are documented in the man page.)\n"
+msgstr ""
+
+#: src/main.cpp:90
+#, c-format
+msgid "Argument to -%c missing\n"
+msgstr ""
+
+#: src/main.cpp:100
+#, c-format
+msgid "Unknown option '%c'\n"
+msgstr ""
+
+#: src/main.cpp:197
+msgid "Could not parse option -g\n"
+msgstr ""
+
+#: src/main.cpp:223
+#, c-format
+msgid "%s: Too many arguments\n"
+msgstr ""
+
+#. TRANSLATORS: "Done" is a menu entry for quitting a submenu.
+#: src/menueintrag.cpp:449
+msgid "Done"
+msgstr ""
+
+#: src/menueintrag.cpp:572
+msgid "Press `return' or click for a full list"
+msgstr ""
+
+#: src/menueintrag.cpp:820
+msgid "Type a new key"
+msgstr ""
+
+#: src/menueintrag.cpp:821
+msgid "To enter a new key, click or press `return' first"
+msgstr ""
+
+#: src/menueintrag.cpp:914
+msgid "On"
+msgstr ""
+
+#: src/menueintrag.cpp:914
+msgid "Off"
+msgstr ""
+
+#. TRANSLATORS: "cuyo" is the program's name
+#: src/sdltools.cpp:310
+msgid "Cuyo - debug mode"
+msgstr ""
+
+#. TRANSLATORS: This is a window title
+#: src/sdltools.cpp:315
+#, c-format
+msgid "Cuyo - level %s"
+msgstr ""
+
+#: src/spielfeld.cpp:211
+msgid ""
+"Game paused\n"
+"\n"
+"Space = Resume\n"
+"Esc = Abort Game\n"
+"\n"
+msgstr ""
+
+#. TRANSLATORS: Name of a level track
+#: src/version.cpp:33
+msgid "Standard"
+msgstr ""
+
+#. TRANSLATORS: Name of a level track
+#: src/version.cpp:35
+msgid "All levels"
+msgstr ""
+
+#. TRANSLATORS: Name of a level track
+#: src/version.cpp:37
+msgid "Games"
+msgstr ""
+
+#. TRANSLATORS: Name of a level track
+#: src/version.cpp:39
+msgid "Extremes"
+msgstr ""
+
+#. TRANSLATORS: Name of a level track
+#: src/version.cpp:41
+msgid "No FX"
+msgstr ""
+
+#. TRANSLATORS: Name of a level track
+#: src/version.cpp:43
+msgid "Weird"
+msgstr ""
+
+#. TRANSLATORS: Name of a level track
+#: src/version.cpp:45
+msgid "Contributions"
+msgstr ""
+
+#: src/version.cpp:47
+msgid "A selection of levels for the common taste"
+msgstr ""
+
+#: src/version.cpp:48
+msgid "All official levels"
+msgstr ""
+
+#: src/version.cpp:49
+msgid "Levels simulating board games or other computer games"
+msgstr ""
+
+#: src/version.cpp:50
+msgid "Levels setting records such as `fastest dropping ceiling'"
+msgstr ""
+
+#: src/version.cpp:51
+msgid "Plain levels without any disturbing tweaks to the rules"
+msgstr ""
+
+#: src/version.cpp:52
+msgid "Levels interpreting the general theme of cuyo more broadly"
+msgstr ""
+
+#: src/version.cpp:53
+msgid "Levels donated and maintained by the community"
+msgstr ""
+
+#. TRANSLATORS: Name of a difficulty setting
+#: src/version.cpp:63
+msgid "Easy"
+msgstr ""
+
+#. TRANSLATORS: Name of a difficulty setting
+#: src/version.cpp:65
+msgid "Normal"
+msgstr ""
+
+#. TRANSLATORS: Name of a difficulty setting
+#: src/version.cpp:67
+msgid "Hard"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/3d.ld:28
+msgid "3D"
+msgstr ""
+
+#. TRANSLATORS: level author
+#: data/3d.ld:29 data/ascii.ld:27 data/baelle.ld:28 data/doors.ld:29
+#: data/ebene.ld:28 data/hecken.ld:25 data/hexkugeln.ld:29 data/hormone.ld:28
+#: data/nasenkugeln.ld:33 data/pfeile.ld:31 data/schach.ld:33
+#: data/theater.ld:40 data/tiere.ld:29 data/viecher.ld:33 data/wachsen.ld:26
+#: data/walls.ld:29 data/wuerfel.ld:28
+msgid "Immi"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/3d.ld:30
+msgid "Well, just a little bit 3D."
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/aehnlich.ld:21
+msgid "Similar balls"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/aehnlich.ld:22
+msgid "Numerically equal colours connect"
+msgstr ""
+
+#. TRANSLATORS: level author
+#: data/aehnlich.ld:23 data/angst.ld:27 data/augen.ld:24 data/baender.ld:23
+#: data/bonimali.ld:23 data/bunt.ld:23 data/dungeon.ld:36 data/farming.ld:25
+#: data/fische.ld:22 data/flechtwerk.ld:21 data/go2.ld:29 data/gold.ld:23
+#: data/jump.ld:26 data/kacheln4.ld:24 data/kacheln5.ld:26 data/kacheln6.ld:24
+#: data/kachelnR.ld:30 data/kolben.ld:24 data/maennchen.ld:22 data/maze.ld:24
+#: data/novips.ld:23 data/octopi.ld:24 data/puzzle.ld:24 data/rechnen.ld:22
+#: data/rollenspiel.ld:22 data/schemen.ld:23 data/secret.ld:21
+#: data/silbergold.ld:22 data/slime.ld:25 data/tennis.ld:22 data/trees.ld:25
+#: data/unmoeglich.ld:22 data/zahn.ld:23 data/ziehlen.ld:22
+msgid "Mark Weyer"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/aliens.ld:36
+msgid "Aliens"
+msgstr ""
+
+#. TRANSLATORS: level author
+#: data/aliens.ld:37 data/antarctic.ld:55 data/bonus.ld:29
+#: data/colorshape.ld:35 data/disco.ld:35 data/letters.ld:36 data/memory.ld:50
+#: data/tetris.ld:42
+msgid "Berni"
+msgstr ""
+
+#: data/aliens.ld:203
+msgid "Hurry up!!!"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/angst.ld:24
+msgid "Balls at ease"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/angst.ld:25
+msgid "Frightened balls"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/angst.ld:26
+msgid "Angry balls"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/angst.ld:28
+msgid "These balls are oblivious to the rules of cuyo"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/angst.ld:29
+msgid "These balls are learning the rules of cuyo"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/angst.ld:30
+msgid "These balls have learned the rules of cuyo"
+msgstr ""
+
+#: data/angst.ld:43
+msgid "Also try this level in normal and hard difficulty"
+msgstr ""
+
+#: data/angst.ld:44
+msgid "Also try this level in easy and hard difficulty"
+msgstr ""
+
+#: data/angst.ld:45
+msgid "Also try this level in easy and normal difficulty"
+msgstr ""
+
+#: data/angst.ld:51
+msgid "Commercial break"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/antarctic.ld:53
+msgid "Antarctic"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/antarctic.ld:54
+msgid "Beware of freezing!"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/ascii.ld:26
+msgid "ASCII"
+msgstr ""
+
+#. TRANSLATORS: "basic" is a pun on the programming language BASIC.
+#. TRANSLATORS: level description
+#: data/ascii.ld:40
+msgid "A very basic level"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/augen.ld:23
+msgid "Eyes"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/augen.ld:25
+msgid ""
+"They are watching you.\n"
+"Get rid of them."
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/baelle.ld:27
+msgid "Rotating Balls"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/baelle.ld:42
+msgid "Well, all balls look the same, don't they?"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/baender.ld:22
+msgid "Ribbons"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/baender.ld:24
+msgid "Ribbons connect diagonally."
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/baggis.ld:32
+msgid "Baggis"
+msgstr ""
+
+#. TRANSLATORS: level author
+#: data/baggis.ld:33 data/pacman.ld:31
+msgid "Simon"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/baggis.ld:47
+msgid "Protect yourself from the flash!"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/bonimali.ld:22
+msgid "PowerUps and -Downs"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/bonimali.ld:24
+msgid "Collect PowerUps but avoid the bad ones"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/bonimali.ld:25
+msgid "Collect PowerUps and hand the bad ones to the other player"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/bonimali.ld:26
+msgid ""
+"Collect PowerUps and hand the bad ones to your "
+"opponent^H^H^H^H^H^H^H^Hpartner"
+msgstr ""
+
+#: data/bonimali.ld:122 data/bonimali.ld:232
+msgid "3 blops explode"
+msgstr ""
+
+#: data/bonimali.ld:230
+msgid "4 blops explode"
+msgstr ""
+
+#: data/bonimali.ld:231
+msgid "2 blops explode"
+msgstr ""
+
+#: data/bonimali.ld:269
+msgid "Chain reaction necessary"
+msgstr ""
+
+#: data/bonimali.ld:271
+msgid "Chain reaction not necessary"
+msgstr ""
+
+#: data/bonimali.ld:831
+msgid "Extra points"
+msgstr ""
+
+#: data/bonimali.ld:834
+msgid "Power missiles"
+msgstr ""
+
+#: data/bonimali.ld:835
+msgid "Extra ships"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/bonus.ld:28
+msgid "Bonus"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/bonus.ld:40
+msgid "Hurry up, get bonus points!"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/bunt.ld:22
+msgid "Gaudy balls"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/colorshape.ld:34
+msgid "Shape and Color"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/colorshape.ld:36
+msgid "An explosion changes the way, they connect..."
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/darken.ld:26
+msgid "Darken"
+msgstr ""
+
+#. TRANSLATORS: level author
+#: data/darken.ld:27 data/elemente.ld:26 data/explosive.ld:24
+#: data/paratroopers.ld:29 data/pressure.ld:27 data/reversi_brl.ld:23
+#: data/rohre.ld:29 data/wohnungen.ld:27
+msgid "brl"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/darken.ld:28
+msgid "The less you know..."
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/disco.ld:34
+msgid "Disco"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/disco.ld:36
+msgid "Get rid of the strobos!"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/doors.ld:28
+msgid "Doors"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/doors.ld:30
+msgid "It was late and I was tired"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/dungeon.ld:35
+msgid "Treasure hunt"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/dungeon.ld:37
+msgid "Collect gold for extra points"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/ebene.ld:27
+msgid "Plane"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/elemente.ld:25
+msgid "Elements"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/embroidery.ld:27
+msgid "Embroidery"
+msgstr ""
+
+#. TRANSLATORS: level author
+#: data/embroidery.ld:28 data/himmel.ld:32 data/jahreszeiten.ld:35
+msgid "Jela"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/embroidery.ld:43
+msgid "Do you like doing some Needlework?"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/explosive.ld:23
+msgid "Explosive"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/farming.ld:24
+msgid "Farming"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/farming.ld:26
+msgid ""
+"Almost each level has its very own graphics.\n"
+"At least this level has exactly the same rules as the previous one."
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/fische.ld:21
+msgid "Fish"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/flechtwerk.ld:20
+msgid "Wickerwork"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/fractals.ld:26
+msgid "Fractals"
+msgstr ""
+
+#. TRANSLATORS: level author
+#: data/fractals.ld:27
+msgid "Austin W."
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/fractals.ld:28
+msgid "Three explode if in each aspect they are all the same or all different."
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/go2.ld:28
+msgid "Go"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/go2.ld:30
+msgid "Why to place your goban horizontally"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/gold.ld:22
+msgid "Gold"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/gold.ld:24
+msgid "Yes, it CAN be completed"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/gold.ld:25
+msgid ""
+"Yes, it CAN be completed\n"
+"...cooperatively"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/hecken.ld:24
+msgid "Gardens"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/hecken.ld:37
+msgid ""
+"Gardens need hedges for separation. The hedges do not count for the size of "
+"a garden, though."
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/hexkugeln.ld:28
+msgid "Balls & Rods"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/hexkugeln.ld:48
+msgid "Most dense packing of spheres"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/himmel.ld:31
+msgid "Sky"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/himmel.ld:50
+msgid "In which direction do balloons fall?"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/hormone.ld:27
+msgid "Hormones"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/hormone.ld:42
+msgid "When do the \"hormones\" connect?"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/jahreszeiten.ld:34
+msgid "The four Seasons"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/jahreszeiten.ld:47
+msgid "Everything changes..."
+msgstr ""
+
+#. TRANSLATORS: "Jump" is as in the computer game genre jump-and-run, only
+#. without the run
+#. TRANSLATORS: level name
+#: data/jump.ld:25
+msgid "Jump"
+msgstr ""
+
+#. TRANSLATORS: "8 bit" refers to an era of computer games
+#. TRANSLATORS: level description
+#: data/jump.ld:28
+msgid "8 bit nostalgia"
+msgstr ""
+
+#. TRANSLATORS: "tiling" is used synonymous to tesselation
+#. TRANSLATORS: level name
+#: data/kacheln4.ld:23
+msgid "Tiling II"
+msgstr ""
+
+#. TRANSLATORS: "tiling" is used synonymous to tesselation
+#. TRANSLATORS: level name
+#: data/kacheln5.ld:25
+msgid "Tiling III"
+msgstr ""
+
+#. TRANSLATORS: "tiling" is used synonymous to tesselation
+#. TRANSLATORS: level name
+#: data/kacheln6.ld:23
+msgid "Tiling I"
+msgstr ""
+
+#. TRANSLATORS: "tiling" is used synonymous to tesselation
+#. TRANSLATORS: level name
+#: data/kachelnR.ld:27
+msgid "Tiling IV"
+msgstr ""
+
+#. TRANSLATORS: "tiling" is used synonymous to tesselation
+#. TRANSLATORS: level description
+#: data/kachelnR.ld:29
+msgid "Random aperiodic tiling"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/kolben.ld:22
+msgid "Flasks"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/kolben.ld:23
+msgid "It depends on the gas they are filled with..."
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/kunst.ld:34
+msgid "Modern Art"
+msgstr ""
+
+#. TRANSLATORS: level author
+#: data/kunst.ld:35 data/unterwasser.ld:33
+msgid "Berni & Immi"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/kunst.ld:47
+msgid "Beware of ink!"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/labskaus.ld:66
+msgid "Potpourri"
+msgstr ""
+
+#. TRANSLATORS: level author
+#: data/labskaus.ld:67
+msgid "Mark Weyer (editor)"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/labskaus.ld:68
+msgid "Made of 100% recycled graphics"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/letters.ld:35
+msgid "Letters"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/letters.ld:37
+msgid "Try to find out, which letters do connect!"
+msgstr ""
+
+#: data/letters.ld:84 data/letters.ld:103
+msgid ""
+"You have found\n"
+"the name of the game:\n"
+"*** CUYO ***\n"
+"100 Bonus Points"
+msgstr ""
+
+#: data/letters.ld:132 data/letters.ld:151
+msgid ""
+"You have found\n"
+"the name of the\n"
+"programmer of Cuyo:\n"
+"*** IMMI ***\n"
+"200 Bonus Points"
+msgstr ""
+
+#: data/letters.ld:183 data/letters.ld:205
+msgid ""
+"You have found\n"
+"the name of the\n"
+"programmer of this Level:\n"
+"*** BERNI ***\n"
+"2000 Bonus Points"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/maennchen.ld:21
+msgid "Characters"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/maze.ld:22
+msgid "Maze"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/maze.ld:23
+msgid "Collect all treasures. Finding the exit is optional."
+msgstr ""
+
+#. TRANSLATORS: "Memory" is the name of a commercial brand of the Pairs game,
+#. at least in the German market.
+#. TRANSLATORS: level name
+#: data/memory.ld:49
+msgid "Memory"
+msgstr ""
+
+#. TRANSLATORS: "Memory" is the name of a commercial brand of the Pairs game,
+#. at least in the German market.
+#. TRANSLATORS: level description
+#: data/memory.ld:64
+msgid "Well, memory."
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/mfs.ld:27
+msgid "mfs"
+msgstr ""
+
+#. TRANSLATORS: level author
+#: data/mfs.ld:28
+msgid "Konrad"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/mfs.ld:44
+msgid "Who cleans the room?"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/nasenkugeln.ld:32
+msgid "Noseballs"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/nasenkugeln.ld:44
+msgid ""
+"Put four balls together; then, they will explode. Try to make the grass "
+"explode, too."
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/nasenkugeln.ld:45
+msgid ""
+"Put six balls together; then, they will explode. Try to make the grass "
+"explode, too."
+msgstr ""
+
+#. TRANSLATORS: "equal" here is in the egalitarian sense
+#. TRANSLATORS: level name
+#: data/novips.ld:21
+msgid "All colours are equal"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/novips.ld:22
+msgid "Get rid of everything"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/octopi.ld:23
+msgid "Octopi"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/octopi.ld:25
+msgid ""
+"Octopi connect in eight directions. They also remove the anemones that way."
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/pacman.ld:30
+msgid "Pacman"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/pacman.ld:45
+msgid "Wanna play Pacman?"
+msgstr ""
+
+#. TRANSLATORS: Apparently, "Paratroopers" is the name of a computer game.
+#. TRANSLATORS: level name
+#: data/paratroopers.ld:27
+msgid "Paratroopers"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/paratroopers.ld:28
+msgid "the other way around"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/pfeile.ld:30
+msgid "Arrows"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/pfeile.ld:46
+msgid "Arrows can be turned"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/pressure.ld:26
+msgid "Excess Pressure"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/puzzle.ld:23
+msgid "Jigsaw"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/puzzle.ld:25
+msgid "Get rid of the border"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/rechnen.ld:21
+msgid "Calculations"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/reversi_brl.ld:22
+msgid "Reversi"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/rohre.ld:28
+msgid "Heating"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/rollenspiel.ld:21
+msgid "Fantasy role playing"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/schach.ld:32
+msgid "Chess"
+msgstr ""
+
+#. TRANSLATORS: "King" and "Castling" are chess terms.
+#: data/schach.ld:226
+msgid ""
+"King confused.\n"
+"Castling both sides\n"
+"300 Bonus Points"
+msgstr ""
+
+#. TRANSLATORS: "Queen" and "Castling" are chess terms.
+#: data/schach.ld:232
+msgid ""
+"Castling queen's side\n"
+"150 Bonus Points"
+msgstr ""
+
+#. TRANSLATORS: "King" and "Castling" are chess terms.
+#: data/schach.ld:238
+msgid ""
+"Castling king's side\n"
+"100 Bonus Points"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/schemen.ld:22
+msgid "Silhouettes"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/secret.ld:20
+msgid " "
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/secret.ld:22
+msgid "Congratulations, you found the secret level"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/silbergold.ld:21
+msgid "Silver and Gold"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/slime.ld:24
+msgid "Slime"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/springer.ld:31
+msgid "Knights"
+msgstr ""
+
+#. TRANSLATORS: level author
+#: data/springer.ld:32
+msgid "brl & Immi"
+msgstr ""
+
+#. TRANSLATORS: "Knight" and "Pawn" refer to the chess pieces
+#. TRANSLATORS: level description
+#: data/springer.ld:34
+msgid "Knights connect via knight moves. Pawns don't connect at all."
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/tennis.ld:21
+msgid "Tennis"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/tennis.ld:23
+msgid "Don't be confused by extra balls."
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/tetris.ld:41
+msgid "Tetris"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/tetris.ld:43
+msgid "Complete lines will disappear."
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/theater.ld:39
+msgid "Theater"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/theater.ld:71
+msgid "Please keep quiet. Otherwise you will be blasted."
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/tiere.ld:28
+msgid "Tiling Animals"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/trees.ld:21
+msgid "Holes"
+msgstr ""
+
+#. TRANSLATORS: "singly connected", or simply connected is a term from
+#. mathematics, more specifically topology
+#. TRANSLATORS: level name
+#: data/trees.ld:24
+msgid "Singly connected"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/trees.ld:26
+msgid "Groups with holes explode."
+msgstr ""
+
+#. TRANSLATORS: "complex", "nonpositive" and "Euler characteristic" are terms
+#. from mathematics. "Complex" is here used in the sense of simplicial
+#. complexes or CW complexes.
+#. TRANSLATORS: level description
+#: data/trees.ld:30
+msgid "Complexes with nonpositive Euler characteristic explode."
+msgstr ""
+
+#: data/trees.ld:51
+msgid "Multiple holes"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/unmoeglich.ld:21
+msgid "impossible"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/unterwasser.ld:32
+msgid "Under Water"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/unterwasser.ld:48
+msgid "Bubbles (Level still under construction.)"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/viecher.ld:32
+msgid "Beasts"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/viecher.ld:46
+msgid "Warning! Fire hazard!"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/wachsen.ld:25
+msgid "Growing"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/walls.ld:28
+msgid "Walls"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/walls.ld:30
+msgid "Floors don't connect through walls."
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/wohnungen.ld:25
+msgid "Build a nicer neighborhood"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/wohnungen.ld:26
+msgid "Housing"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/wuerfel.ld:27
+msgid "Cubes"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/wuerfel.ld:42
+msgid "Will they land in front of or behind the others?"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/xtradick.ld:59
+msgid "Extra fat toys"
+msgstr ""
+
+#. TRANSLATORS: level author
+#: data/xtradick.ld:60
+msgid "Berni/Jela"
+msgstr ""
+
+#. TRANSLATORS: level description
+#: data/xtradick.ld:61
+msgid "What do they do?"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/zahn.ld:22
+msgid "Teeth"
+msgstr ""
+
+#. TRANSLATORS: level name
+#: data/ziehlen.ld:21
+msgid "Target practice"
+msgstr ""

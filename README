@@ -1,0 +1,35 @@
+README for cuyo:
+
+
+For the impatient
+=================
+
+To install cuyo, follow the instructions in the INSTALL file. Or follow
+this ultra-short installation guide:
+1.   ./configure (in the same directory as this file)
+2.   make
+3.   make install
+
+To play cuyo without really installing it (perhaps because you are not root)
+(you can leave out steps 3 and 4 if you don't care about native language
+support):
+1.   ./configure --datadir=`pwd`/data --localedir=`pwd`/locale
+2.   ln -s . data/cuyo
+3.   Create the path <this-directory>/locale/<your-locale>/LC_MESSAGES
+4.   ln -s ../../../po/<your-locale>.gmo <this-directory>/locale/<your-locale>/LC_MESSAGES/cuyo.mo
+5.   make
+6.   src/cuyo
+If you do this, you should NOT do a make install later!
+
+
+If ./configure did not work or if you intend to modify cuyo, then read
+README.maintainer instead.
+
+
+
+FAQ
+===
+
+Q: What does the name 'cuyo' mean?
+A: Well, 'cuyo' is spanish for 'whose'.
+

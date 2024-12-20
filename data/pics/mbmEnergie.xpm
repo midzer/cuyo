@@ -1,0 +1,91 @@
+/* XPM */
+/*
+    Copyright 2011 by Mark Weyer
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+*/
+static char *noname[]={
+"96 64 7 1",
+"  c None",
+"a c #800000",
+"A c #ff4040",
+"b c #808000",
+"B c #ffff40",
+"c c #008000",
+"C c #40ff40",
+"  a                               b                               c                             ",
+" aAa                             bBb                             cCc                            ",
+" aAa                             bBb                             cCc                            ",
+" aAa                             bBb                             cCc                            ",
+" aAa                             bBb                             cCc                            ",
+" aAa                             bBb                             cCc                            ",
+" aAa                             bBb                             cCc                            ",
+" aAa                             bBb                             cCc                            ",
+" aAa                             bBb                             cCc                            ",
+" aAa                             bBb                             cCc                            ",
+" aAa                             bBb                             cCc                            ",
+" aAa                             bBb                             cCc                            ",
+" aAa                             bBb                             cCc                            ",
+" aAa                             bBb                             cCc                            ",
+" aAa                             bBb                             cCc                            ",
+"  a                               b                               c                             ",
+"  a   a                           b   b                           c   c                         ",
+" aAa aAa                         bBb bBb                         cCc cCc                        ",
+" aAa aAa                         bBb bBb                         cCc cCc                        ",
+" aAa aAa                         bBb bBb                         cCc cCc                        ",
+" aAa aAa                         bBb bBb                         cCc cCc                        ",
+" aAa aAa                         bBb bBb                         cCc cCc                        ",
+" aAa aAa                         bBb bBb                         cCc cCc                        ",
+" aAa aAa                         bBb bBb                         cCc cCc                        ",
+" aAa aAa                         bBb bBb                         cCc cCc                        ",
+" aAa aAa                         bBb bBb                         cCc cCc                        ",
+" aAa aAa                         bBb bBb                         cCc cCc                        ",
+" aAa aAa                         bBb bBb                         cCc cCc                        ",
+" aAa aAa                         bBb bBb                         cCc cCc                        ",
+" aAa aAa                         bBb bBb                         cCc cCc                        ",
+" aAa aAa                         bBb bBb                         cCc cCc                        ",
+"  a   a                           b   b                           c   c                         ",
+"  a   a   a                       b   b   b                       c   c   c                     ",
+" aAa aAa aAa                     bBb bBb bBb                     cCc cCc cCc                    ",
+" aAa aAa aAa                     bBb bBb bBb                     cCc cCc cCc                    ",
+" aAa aAa aAa                     bBb bBb bBb                     cCc cCc cCc                    ",
+" aAa aAa aAa                     bBb bBb bBb                     cCc cCc cCc                    ",
+" aAa aAa aAa                     bBb bBb bBb                     cCc cCc cCc                    ",
+" aAa aAa aAa                     bBb bBb bBb                     cCc cCc cCc                    ",
+" aAa aAa aAa                     bBb bBb bBb                     cCc cCc cCc                    ",
+" aAa aAa aAa                     bBb bBb bBb                     cCc cCc cCc                    ",
+" aAa aAa aAa                     bBb bBb bBb                     cCc cCc cCc                    ",
+" aAa aAa aAa                     bBb bBb bBb                     cCc cCc cCc                    ",
+" aAa aAa aAa                     bBb bBb bBb                     cCc cCc cCc                    ",
+" aAa aAa aAa                     bBb bBb bBb                     cCc cCc cCc                    ",
+" aAa aAa aAa                     bBb bBb bBb                     cCc cCc cCc                    ",
+" aAa aAa aAa                     bBb bBb bBb                     cCc cCc cCc                    ",
+"  a   a   a                       b   b   b                       c   c   c                     ",
+"  a   a   a   a                   b   b   b   b                   c   c   c   c                 ",
+" aAa aAa aAa aAa                 bBb bBb bBb bBb                 cCc cCc cCc cCc                ",
+" aAa aAa aAa aAa                 bBb bBb bBb bBb                 cCc cCc cCc cCc                ",
+" aAa aAa aAa aAa                 bBb bBb bBb bBb                 cCc cCc cCc cCc                ",
+" aAa aAa aAa aAa                 bBb bBb bBb bBb                 cCc cCc cCc cCc                ",
+" aAa aAa aAa aAa                 bBb bBb bBb bBb                 cCc cCc cCc cCc                ",
+" aAa aAa aAa aAa                 bBb bBb bBb bBb                 cCc cCc cCc cCc                ",
+" aAa aAa aAa aAa                 bBb bBb bBb bBb                 cCc cCc cCc cCc                ",
+" aAa aAa aAa aAa                 bBb bBb bBb bBb                 cCc cCc cCc cCc                ",
+" aAa aAa aAa aAa                 bBb bBb bBb bBb                 cCc cCc cCc cCc                ",
+" aAa aAa aAa aAa                 bBb bBb bBb bBb                 cCc cCc cCc cCc                ",
+" aAa aAa aAa aAa                 bBb bBb bBb bBb                 cCc cCc cCc cCc                ",
+" aAa aAa aAa aAa                 bBb bBb bBb bBb                 cCc cCc cCc cCc                ",
+" aAa aAa aAa aAa                 bBb bBb bBb bBb                 cCc cCc cCc cCc                ",
+" aAa aAa aAa aAa                 bBb bBb bBb bBb                 cCc cCc cCc cCc                ",
+"  a   a   a   a                   b   b   b   b                   c   c   c   c                 "};

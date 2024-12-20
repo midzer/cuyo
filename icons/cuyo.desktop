@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Cuyo
+Icon=cuyo
+Type=Application
+Terminal=false
+Categories=Game;BlocksGame;
+Encoding=UTF-8
+Comment=Play a tetris like game with many levels
+Comment[de]=Ein Tetris-artiges Spiel mit vielen Leveln spielen
+Exec=cuyo
+GenericName=Tetris like game

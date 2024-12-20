@@ -1,0 +1,1943 @@
+# Translation of cuyo's messages to European Portuguese
+# Message catalog for the game Cuyo.
+# This is a partly generated file. The copyright of the original messages is identical to the one of the source files they are generated from. The copyright of the translations is by the translators.
+# This file is distributed under the same license as the Cuyo package.
+#
+# Américo Monteiro <a_monteiro@gmx.com>, 2014.
+msgid ""
+msgstr ""
+"Project-Id-Version: cuyo 2.1.0\n"
+"Report-Msgid-Bugs-To: cuyo-devel@nongnu.org\n"
+"POT-Creation-Date: 2014-10-25\n"
+"PO-Revision-Date: 2014-09-22 19:12+0100\n"
+"Last-Translator: Américo Monteiro <a_monteiro@gmx.com>\n"
+"Language-Team: Portuguese <traduz@debianpt.org>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+"X-Generator: Lokalize 1.4\n"
+
+#: src/blatt.cpp:215
+msgid "Computer"
+msgstr "Computador"
+
+#: src/blatt.cpp:215
+#, c-format
+msgid "Player %d"
+msgstr "Jogador %d"
+
+#. TRANSLATORS: During game: short version of "%d blops explode"
+#: src/blatt.cpp:258
+#, c-format
+msgid "%d"
+msgstr "%d"
+
+#. TRANSLATORS: During game: short version of
+#. "between %d and %d blops explode"
+#: src/blatt.cpp:263
+#, c-format
+msgid "%d-%d"
+msgstr "%d-%d"
+
+#. TRANSLATORS: During game: short version of
+#. "%d or %d blops explode"
+#: src/blatt.cpp:268
+#, c-format
+msgid "%d/%d"
+msgstr "%d/%d"
+
+#: src/blatt.cpp:1109
+#, c-format
+msgid "%s  -  Debug mode; Press alt-h for help."
+msgstr "%s  -  Modo de depuração; Carregue em alt-h para ajuda."
+
+#. TRANSLATORS: Now follows the main menu. The characters preceded by a tilde
+#. are hotkeys. Please choose them disjoint within the menu. If this
+#. cannot be achieved in a sensible manner, feel free to leave some out.
+#: src/blatt.cpp:1120
+msgid "~New Game"
+msgstr "~Novo Jogo"
+
+#: src/blatt.cpp:1123
+msgid "~Restart last level"
+msgstr "~Reiniciar último nível"
+
+#: src/blatt.cpp:1128
+msgid "Start ~at level..."
+msgstr "Inici~ar no nível..."
+
+#: src/blatt.cpp:1131
+msgid "~1 Player"
+msgstr "~1 Jogador"
+
+#: src/blatt.cpp:1133
+msgid "~2 Players"
+msgstr "~2 Jogadores"
+
+#: src/blatt.cpp:1135
+msgid "Player vs. ~Computer"
+msgstr "Jogado vs. ~Computador"
+
+#: src/blatt.cpp:1140
+msgid "~Level track"
+msgstr "P~ista de níveis"
+
+#: src/blatt.cpp:1146
+msgid "~Difficulty"
+msgstr "~Dificuldade"
+
+#: src/blatt.cpp:1151
+msgid ""
+"Setting the difficulty affects some, but not all levels.\n"
+"On difficulty \"Easy\", the \"Standard\" level track\n"
+"consists of levels which are affected by that difficulty,\n"
+"and of levels which are easy in themselves.\n"
+"The same holds for \"Hard\"."
+msgstr ""
+"Definir a dificuldade afecta alguns, mas não todos os níveis.\n"
+"Na dificuldade \"Fácil\", a pista de níveis \"Standard\"\n"
+"consiste de níveis que são afectados por essa dificuldade,\n"
+"e de níveis que são eles próprios fáceis.\n"
+"O mesmo é verdadeiro para \"Difícil\"."
+
+#: src/blatt.cpp:1157
+msgid "~Preferences..."
+msgstr "~Preferências..."
+
+#. TRANSLATORS: This is the last entry of the main menu.
+#: src/blatt.cpp:1166
+msgid "~Quit"
+msgstr "~Terminar"
+
+#: src/blatt.cpp:1176
+#, c-format
+msgid "Keys Player %d:"
+msgstr "Teclas do Jogador %d:"
+
+#: src/blatt.cpp:1178
+msgid "Left"
+msgstr "Esquerda"
+
+#: src/blatt.cpp:1179
+msgid "Right"
+msgstr "Direita"
+
+#: src/blatt.cpp:1180
+msgid "Turn"
+msgstr "Virar"
+
+#: src/blatt.cpp:1181
+msgid "Down"
+msgstr "Descer"
+
+#: src/blatt.cpp:1185
+msgid "AI Speed"
+msgstr "Velocidade da IA"
+
+#: src/blatt.cpp:1187
+msgid "Sound"
+msgstr "Som"
+
+#: src/cuyo.cpp:274
+#, c-format
+msgid ""
+"Score: %d\n"
+"\n"
+"Loading Level %d...\n"
+"\n"
+msgstr ""
+"Pontuação: %d\n"
+"\n"
+"A Carregar Nível %d...\n"
+"\n"
+
+#: src/cuyo.cpp:315
+#, c-format
+msgid "1 blop explodes"
+msgid_plural "%d blops explode"
+msgstr[0] "1 blop explode"
+msgstr[1] "%d blops explodem"
+
+#: src/cuyo.cpp:321
+#, c-format
+msgid "between %d and %d blops explode"
+msgstr "entre %d e %d blops explodem"
+
+#: src/cuyo.cpp:324
+#, c-format
+msgid "%d or %d blops explode"
+msgstr "%d ou %d blops explodem"
+
+#. TRANSLATORS: The second %s (after "by ") is the level's author's name
+#: src/cuyo.cpp:327
+#, c-format
+msgid ""
+"Score: %d\n"
+"\n"
+"Level %d\n"
+"%s\n"
+"by %s\n"
+"\n"
+"%s\n"
+"%s\n"
+"%s\n"
+"\n"
+"Space = Start"
+msgstr ""
+"Pontuação: %d\n"
+"\n"
+"Nível %d\n"
+"%s\n"
+"por %s\n"
+"\n"
+"%s\n"
+"%s\n"
+"%s\n"
+"\n"
+"Espaço = Começar"
+
+#: src/cuyo.cpp:335
+msgid "Chain reaction necessary\n"
+msgstr "Reacção em cadeia necessária\n"
+
+#: src/cuyo.cpp:535
+#, c-format
+msgid ""
+"Game over\n"
+"\n"
+"Score: %d\n"
+"\n"
+msgstr ""
+"Fim do jogo\n"
+"\n"
+"Pontuação: %d\n"
+"\n"
+
+#: src/cuyo.cpp:554
+#, c-format
+msgid ""
+"Level %s complete!\n"
+"\n"
+"Time Bonus: %d\n"
+"Score: %d\n"
+"\n"
+"%s"
+msgstr ""
+"Nível %s completo!\n"
+"\n"
+"Bónus de Tempo: %d\n"
+"Pontuação: %d\n"
+"\n"
+"%s"
+
+#: src/cuyo.cpp:576
+msgid "Space = Continue"
+msgstr "Espaço = Continuar"
+
+#: src/cuyo.cpp:647
+#, c-format
+msgid ""
+"***\n"
+"You won even a bit more!!!\n"
+"\n"
+"Score: %d\n"
+"***\n"
+"\n"
+msgstr ""
+"***\n"
+"Ganhas-te um pouco mais!!!\n"
+"\n"
+"Pontuação: %d\n"
+"***\n"
+"\n"
+
+#: src/cuyo.cpp:648
+#, c-format
+msgid ""
+"***\n"
+"You won!!!\n"
+"\n"
+"Score: %d\n"
+"***\n"
+"\n"
+msgstr ""
+"***\n"
+"Ganhas-te!!!\n"
+"\n"
+"Pontuação: %d\n"
+"***\n"
+"\n"
+
+#. TRANSLATORS: This indicates an unknown value
+#: src/leveldaten.cpp:682
+msgid "???"
+msgstr "???"
+
+#. TRANSLATORS: "cuyo" is a program's name,
+#. "-f", "-g", and "-h" are options' names,
+#. "ld" is a file suffix. None of these should be translated.
+#: src/main.cpp:51
+msgid ""
+"usage: cuyo [-g <width>x<height>] [-h] [-f] [ld-file]\n"
+"  -g <width>x<height>  set window size\n"
+"  -f   fullscreen mode\n"
+"  -h   print this help message\n"
+"(More options are documented in the man page.)\n"
+msgstr ""
+"utilização: cuyo [-g <largura>x<altura>] [-h] [-f] [ld-file]\n"
+"  -g <largura>x<altura>  define  tamanho da janela\n"
+"  -f   modo de ecrã total\n"
+"  -h   escreve esta mensagem de ajuda\n"
+"(Mais opções estão documentadas no manual.)\n"
+
+#: src/main.cpp:90
+#, c-format
+msgid "Argument to -%c missing\n"
+msgstr "Argumento para -%c em falta\n"
+
+#: src/main.cpp:100
+#, c-format
+msgid "Unknown option '%c'\n"
+msgstr "Opção desconhecida '%c'\n"
+
+#: src/main.cpp:197
+msgid "Could not parse option -g\n"
+msgstr "incapaz de analisar a opção -g\n"
+
+#: src/main.cpp:223
+#, c-format
+msgid "%s: Too many arguments\n"
+msgstr "%s: Demasiados argumentos\n"
+
+#. TRANSLATORS: "Done" is a menu entry for quitting a submenu.
+#: src/menueintrag.cpp:449
+msgid "Done"
+msgstr "Feito"
+
+#: src/menueintrag.cpp:572
+msgid "Press `return' or click for a full list"
+msgstr "Pressione 'Enter' ou clique para uma lista completa"
+
+#: src/menueintrag.cpp:820
+msgid "Type a new key"
+msgstr "Pressione uma nova tecla"
+
+#: src/menueintrag.cpp:821
+msgid "To enter a new key, click or press `return' first"
+msgstr "Para inserir uma nova tecla, clique ou pressione 'Enter' primeiro"
+
+#: src/menueintrag.cpp:914
+msgid "On"
+msgstr "Ligado"
+
+#: src/menueintrag.cpp:914
+msgid "Off"
+msgstr "Desligado"
+
+#. TRANSLATORS: "cuyo" is the program's name
+#: src/sdltools.cpp:310
+msgid "Cuyo - debug mode"
+msgstr "Cuyo - modo de depuração"
+
+#. TRANSLATORS: This is a window title
+#: src/sdltools.cpp:315
+#, c-format
+msgid "Cuyo - level %s"
+msgstr "Cuyo - nível %s"
+
+#: src/spielfeld.cpp:211
+msgid ""
+"Game paused\n"
+"\n"
+"Space = Resume\n"
+"Esc = Abort Game\n"
+"\n"
+msgstr ""
+"Jogo em pausa\n"
+"\n"
+"Espaço = Resume\n"
+"Esc = Aborta Jogo\n"
+"\n"
+
+#. TRANSLATORS: Name of a level track
+#: src/version.cpp:33
+msgid "Standard"
+msgstr "Standard"
+
+#. TRANSLATORS: Name of a level track
+#: src/version.cpp:35
+msgid "All levels"
+msgstr "Todos os níveis"
+
+#. TRANSLATORS: Name of a level track
+#: src/version.cpp:37
+msgid "Games"
+msgstr "Jogos"
+
+#. TRANSLATORS: Name of a level track
+#: src/version.cpp:39
+msgid "Extremes"
+msgstr "Extremos"
+
+#. TRANSLATORS: Name of a level track
+#: src/version.cpp:41
+msgid "No FX"
+msgstr "Sem FX"
+
+#. TRANSLATORS: Name of a level track
+#: src/version.cpp:43
+msgid "Weird"
+msgstr "Esquisito"
+
+#. TRANSLATORS: Name of a level track
+#: src/version.cpp:45
+msgid "Contributions"
+msgstr "Contribuições"
+
+#: src/version.cpp:47
+msgid "A selection of levels for the common taste"
+msgstr "Uma selecção de níveis para o gosto comum"
+
+#: src/version.cpp:48
+msgid "All official levels"
+msgstr "Todos os níveis oficiais"
+
+#: src/version.cpp:49
+msgid "Levels simulating board games or other computer games"
+msgstr "Níveis que simulam jogos de tabuleiro ou outros jogos de computador"
+
+#: src/version.cpp:50
+msgid "Levels setting records such as `fastest dropping ceiling'"
+msgstr "Níveis que definem recordes do tipo 'o tecto mais rápido a descer'"
+
+#: src/version.cpp:51
+msgid "Plain levels without any disturbing tweaks to the rules"
+msgstr "Níveis simples sem nenhumas artimanhas a perturbar as regras"
+
+#: src/version.cpp:52
+msgid "Levels interpreting the general theme of cuyo more broadly"
+msgstr "Níveis que interpretam mais amplamente o tema geral do cuyo"
+
+#: src/version.cpp:53
+msgid "Levels donated and maintained by the community"
+msgstr "Níveis doados e mantidos pela comunidade"
+
+#. TRANSLATORS: Name of a difficulty setting
+#: src/version.cpp:63
+msgid "Easy"
+msgstr "Fácil"
+
+#. TRANSLATORS: Name of a difficulty setting
+#: src/version.cpp:65
+msgid "Normal"
+msgstr "Normal"
+
+#. TRANSLATORS: Name of a difficulty setting
+#: src/version.cpp:67
+msgid "Hard"
+msgstr "Difícil"
+
+#. TRANSLATORS: level name
+#: data/3d.ld:28
+msgid "3D"
+msgstr "3D"
+
+#. TRANSLATORS: level author
+#: data/3d.ld:29 data/ascii.ld:27 data/baelle.ld:28 data/doors.ld:29
+#: data/ebene.ld:28 data/hecken.ld:25 data/hexkugeln.ld:29 data/hormone.ld:28
+#: data/nasenkugeln.ld:33 data/pfeile.ld:31 data/schach.ld:33
+#: data/theater.ld:40 data/tiere.ld:29 data/viecher.ld:33 data/wachsen.ld:26
+#: data/walls.ld:29 data/wuerfel.ld:28
+msgid "Immi"
+msgstr "Immi"
+
+#. TRANSLATORS: level description
+#: data/3d.ld:30
+msgid "Well, just a little bit 3D."
+msgstr "Bem, apenas um pouco de 3D."
+
+#. TRANSLATORS: level name
+#: data/aehnlich.ld:21
+msgid "Similar balls"
+msgstr "Bolas semelhantes"
+
+#. TRANSLATORS: level description
+#: data/aehnlich.ld:22
+msgid "Numerically equal colours connect"
+msgstr "Cores numericamente iguais ligam"
+
+#. TRANSLATORS: level author
+#: data/aehnlich.ld:23 data/angst.ld:27 data/augen.ld:24 data/baender.ld:23
+#: data/bonimali.ld:23 data/bunt.ld:23 data/dungeon.ld:36 data/farming.ld:25
+#: data/fische.ld:22 data/flechtwerk.ld:21 data/go2.ld:29 data/gold.ld:23
+#: data/jump.ld:26 data/kacheln4.ld:24 data/kacheln5.ld:26 data/kacheln6.ld:24
+#: data/kachelnR.ld:30 data/kolben.ld:24 data/maennchen.ld:22 data/maze.ld:24
+#: data/novips.ld:23 data/octopi.ld:24 data/puzzle.ld:24 data/rechnen.ld:22
+#: data/rollenspiel.ld:22 data/schemen.ld:23 data/secret.ld:21
+#: data/silbergold.ld:22 data/slime.ld:25 data/tennis.ld:22 data/trees.ld:25
+#: data/unmoeglich.ld:22 data/zahn.ld:23 data/ziehlen.ld:22
+msgid "Mark Weyer"
+msgstr "Mark Weyer"
+
+#. TRANSLATORS: level name
+#: data/aliens.ld:36
+msgid "Aliens"
+msgstr "Aliens"
+
+#. TRANSLATORS: level author
+#: data/aliens.ld:37 data/antarctic.ld:55 data/bonus.ld:29
+#: data/colorshape.ld:35 data/disco.ld:35 data/letters.ld:36 data/memory.ld:50
+#: data/tetris.ld:42
+msgid "Berni"
+msgstr "Berni"
+
+#: data/aliens.ld:203
+msgid "Hurry up!!!"
+msgstr "Despacha-te!!!"
+
+#. TRANSLATORS: level name
+#: data/angst.ld:24
+msgid "Balls at ease"
+msgstr "Bolas à vontade "
+
+#. TRANSLATORS: level name
+#: data/angst.ld:25
+msgid "Frightened balls"
+msgstr "Bolas assustadas"
+
+#. TRANSLATORS: level name
+#: data/angst.ld:26
+msgid "Angry balls"
+msgstr "Bolas zangadas"
+
+#. TRANSLATORS: level description
+#: data/angst.ld:28
+msgid "These balls are oblivious to the rules of cuyo"
+msgstr "Estas bolas são abstraídas das regras do cuyo"
+
+#. TRANSLATORS: level description
+#: data/angst.ld:29
+msgid "These balls are learning the rules of cuyo"
+msgstr "Estas bolas estão a aprender as regras do cuyo"
+
+#. TRANSLATORS: level description
+#: data/angst.ld:30
+msgid "These balls have learned the rules of cuyo"
+msgstr "Estas bolas aprenderam as regras do cuyo"
+
+#: data/angst.ld:43
+msgid "Also try this level in normal and hard difficulty"
+msgstr "Tenta também este nível em dificuldade normal e difícil"
+
+#: data/angst.ld:44
+msgid "Also try this level in easy and hard difficulty"
+msgstr "Tenta também este nível em dificuldade fácil e difícil"
+
+#: data/angst.ld:45
+msgid "Also try this level in easy and normal difficulty"
+msgstr "Tenta também este nível em dificuldade fácil e normal"
+
+#: data/angst.ld:51
+msgid "Commercial break"
+msgstr "Pausa comercial"
+
+#. TRANSLATORS: level name
+#: data/antarctic.ld:53
+msgid "Antarctic"
+msgstr "Antárctica"
+
+#. TRANSLATORS: level description
+#: data/antarctic.ld:54
+msgid "Beware of freezing!"
+msgstr "Cuidado com o frio!"
+
+#. TRANSLATORS: level name
+#: data/ascii.ld:26
+msgid "ASCII"
+msgstr "ASCII"
+
+#. TRANSLATORS: "basic" is a pun on the programming language BASIC.
+#. TRANSLATORS: level description
+#: data/ascii.ld:40
+msgid "A very basic level"
+msgstr "Um nível muito basic"
+
+#. TRANSLATORS: level name
+#: data/augen.ld:23
+msgid "Eyes"
+msgstr "Olhos"
+
+#. TRANSLATORS: level description
+#: data/augen.ld:25
+msgid ""
+"They are watching you.\n"
+"Get rid of them."
+msgstr ""
+"Eles estão a observar-te.\n"
+"Livra-te deles."
+
+#. TRANSLATORS: level name
+#: data/baelle.ld:27
+msgid "Rotating Balls"
+msgstr "Bolas Rotativas"
+
+#. TRANSLATORS: level description
+#: data/baelle.ld:42
+msgid "Well, all balls look the same, don't they?"
+msgstr "Bem, as bolas parecem todas iguais, não achas?"
+
+#. TRANSLATORS: level name
+#: data/baender.ld:22
+msgid "Ribbons"
+msgstr "Faixas"
+
+#. TRANSLATORS: level description
+#: data/baender.ld:24
+msgid "Ribbons connect diagonally."
+msgstr "As faixas ligam na diagonal"
+
+#. TRANSLATORS: level name
+#: data/baggis.ld:32
+msgid "Baggis"
+msgstr "Baggis"
+
+#. TRANSLATORS: level author
+#: data/baggis.ld:33 data/pacman.ld:31
+msgid "Simon"
+msgstr "Simão"
+
+#. TRANSLATORS: level description
+#: data/baggis.ld:47
+msgid "Protect yourself from the flash!"
+msgstr "Protege-te do flash!"
+
+#. TRANSLATORS: level name
+#: data/bonimali.ld:22
+msgid "PowerUps and -Downs"
+msgstr "PowerUps e -Downs"
+
+#. TRANSLATORS: level description
+#: data/bonimali.ld:24
+msgid "Collect PowerUps but avoid the bad ones"
+msgstr "Recolhe os PowerUps mas evita os maus"
+
+#. TRANSLATORS: level description
+#: data/bonimali.ld:25
+msgid "Collect PowerUps and hand the bad ones to the other player"
+msgstr "Recolhe os PowerUps e oferece os maus ou outro jogador"
+
+#. TRANSLATORS: level description
+#: data/bonimali.ld:26
+msgid ""
+"Collect PowerUps and hand the bad ones to your "
+"opponent^H^H^H^H^H^H^H^Hpartner"
+msgstr ""
+"Recolhe os PowerUps e oferece os maus ao teu oponente^H^H^H^H^H^H^H^Hparceiro"
+
+#: data/bonimali.ld:122 data/bonimali.ld:232
+msgid "3 blops explode"
+msgstr "3 blops explode"
+
+#: data/bonimali.ld:230
+msgid "4 blops explode"
+msgstr "4 blops explode"
+
+#: data/bonimali.ld:231
+msgid "2 blops explode"
+msgstr "2 blops explode"
+
+#: data/bonimali.ld:269
+msgid "Chain reaction necessary"
+msgstr "Reacção em cadeia necessária"
+
+#: data/bonimali.ld:271
+msgid "Chain reaction not necessary"
+msgstr "Reacção em cadeia não necessária"
+
+#: data/bonimali.ld:831
+msgid "Extra points"
+msgstr "Pontos extra"
+
+#: data/bonimali.ld:834
+msgid "Power missiles"
+msgstr "Misseis de energia"
+
+#: data/bonimali.ld:835
+msgid "Extra ships"
+msgstr "Navios extra"
+
+#. TRANSLATORS: level name
+#: data/bonus.ld:28
+msgid "Bonus"
+msgstr "Bónus"
+
+#. TRANSLATORS: level description
+#: data/bonus.ld:40
+msgid "Hurry up, get bonus points!"
+msgstr "Despacha-te, tira pontos bónus!"
+
+#. TRANSLATORS: level name
+#: data/bunt.ld:22
+msgid "Gaudy balls"
+msgstr "Bolas berrantes"
+
+#. TRANSLATORS: level name
+#: data/colorshape.ld:34
+msgid "Shape and Color"
+msgstr "Forma e Cor"
+
+#. TRANSLATORS: level description
+#: data/colorshape.ld:36
+msgid "An explosion changes the way, they connect..."
+msgstr "uma explosão muda o caminho, eles ligam..."
+
+#. TRANSLATORS: level name
+#: data/darken.ld:26
+msgid "Darken"
+msgstr "Escurecido"
+
+#. TRANSLATORS: level author
+#: data/darken.ld:27 data/elemente.ld:26 data/explosive.ld:24
+#: data/paratroopers.ld:29 data/pressure.ld:27 data/reversi_brl.ld:23
+#: data/rohre.ld:29 data/wohnungen.ld:27
+msgid "brl"
+msgstr "brl"
+
+#. TRANSLATORS: level description
+#: data/darken.ld:28
+msgid "The less you know..."
+msgstr "Quanto menos souberes..."
+
+#. TRANSLATORS: level name
+#: data/disco.ld:34
+msgid "Disco"
+msgstr "Disco"
+
+#. TRANSLATORS: level description
+#: data/disco.ld:36
+msgid "Get rid of the strobos!"
+msgstr "Livra-te dos strobos!"
+
+#. TRANSLATORS: level name
+#: data/doors.ld:28
+msgid "Doors"
+msgstr "Portas"
+
+#. TRANSLATORS: level description
+#: data/doors.ld:30
+msgid "It was late and I was tired"
+msgstr "Era tarde e Eu estava cansado"
+
+#. TRANSLATORS: level name
+#: data/dungeon.ld:35
+msgid "Treasure hunt"
+msgstr "Caça ao tesouro"
+
+#. TRANSLATORS: level description
+#: data/dungeon.ld:37
+msgid "Collect gold for extra points"
+msgstr "Recolhe ouro para pontos extra"
+
+#. TRANSLATORS: level name
+#: data/ebene.ld:27
+msgid "Plane"
+msgstr "Liso"
+
+#. TRANSLATORS: level name
+#: data/elemente.ld:25
+msgid "Elements"
+msgstr "Elementos"
+
+#. TRANSLATORS: level name
+#: data/embroidery.ld:27
+msgid "Embroidery"
+msgstr "Bordado"
+
+#. TRANSLATORS: level author
+#: data/embroidery.ld:28 data/himmel.ld:32 data/jahreszeiten.ld:35
+msgid "Jela"
+msgstr "Jela"
+
+#. TRANSLATORS: level description
+#: data/embroidery.ld:43
+msgid "Do you like doing some Needlework?"
+msgstr "Gostas de fazer trabalhos de costura?"
+
+#. TRANSLATORS: level name
+#: data/explosive.ld:23
+msgid "Explosive"
+msgstr "Explosivo"
+
+#. TRANSLATORS: level name
+#: data/farming.ld:24
+msgid "Farming"
+msgstr "Agricultura"
+
+#. TRANSLATORS: level description
+#: data/farming.ld:26
+msgid ""
+"Almost each level has its very own graphics.\n"
+"At least this level has exactly the same rules as the previous one."
+msgstr ""
+"Quase todos os níveis têm os seus próprios gráficos.\n"
+"Pelo menos este nível tem exactamente as mesmas regras que o anterior."
+
+#. TRANSLATORS: level name
+#: data/fische.ld:21
+msgid "Fish"
+msgstr "Peixe"
+
+#. TRANSLATORS: level name
+#: data/flechtwerk.ld:20
+msgid "Wickerwork"
+msgstr "Vime"
+
+#. TRANSLATORS: level name
+#: data/fractals.ld:26
+msgid "Fractals"
+msgstr "Fractals"
+
+#. TRANSLATORS: level author
+#: data/fractals.ld:27
+msgid "Austin W."
+msgstr "Austin W."
+
+#. TRANSLATORS: level description
+#: data/fractals.ld:28
+msgid "Three explode if in each aspect they are all the same or all different."
+msgstr ""
+"Três explodem se em cada aspecto forem todos iguais ou todos diferentes."
+
+#. TRANSLATORS: level name
+#: data/go2.ld:28
+msgid "Go"
+msgstr "Go"
+
+#. TRANSLATORS: level description
+#: data/go2.ld:30
+msgid "Why to place your goban horizontally"
+msgstr "Porque colocar o seu goban na horizontal"
+
+#. TRANSLATORS: level name
+#: data/gold.ld:22
+msgid "Gold"
+msgstr "Ouro"
+
+#. TRANSLATORS: level description
+#: data/gold.ld:24
+msgid "Yes, it CAN be completed"
+msgstr "Sim, PODE ser completado"
+
+#. TRANSLATORS: level description
+#: data/gold.ld:25
+msgid ""
+"Yes, it CAN be completed\n"
+"...cooperatively"
+msgstr ""
+"Sim, PODE ser completado\n"
+"...em cooperação"
+
+#. TRANSLATORS: level name
+#: data/hecken.ld:24
+msgid "Gardens"
+msgstr "Jardins"
+
+#. TRANSLATORS: level description
+#: data/hecken.ld:37
+msgid ""
+"Gardens need hedges for separation. The hedges do not count for the size of "
+"a garden, though."
+msgstr ""
+"Os jardins precisam de cercas para os separar. No entanto, as cercas não "
+"contam para o tamanho do jardim."
+
+#. TRANSLATORS: level name
+#: data/hexkugeln.ld:28
+msgid "Balls & Rods"
+msgstr "Bolas & Varas"
+
+#. TRANSLATORS: level description
+#: data/hexkugeln.ld:48
+msgid "Most dense packing of spheres"
+msgstr "O pacote de esferas mais denso"
+
+#. TRANSLATORS: level name
+#: data/himmel.ld:31
+msgid "Sky"
+msgstr "Céu"
+
+#. TRANSLATORS: level description
+#: data/himmel.ld:50
+msgid "In which direction do balloons fall?"
+msgstr "Em que direcção os balões caiem?"
+
+#. TRANSLATORS: level name
+#: data/hormone.ld:27
+msgid "Hormones"
+msgstr "Hormonas"
+
+#. TRANSLATORS: level description
+#: data/hormone.ld:42
+msgid "When do the \"hormones\" connect?"
+msgstr "Quando é que as \"hormonas\" ligam?"
+
+#. TRANSLATORS: level name
+#: data/jahreszeiten.ld:34
+msgid "The four Seasons"
+msgstr "As quatro Estações"
+
+#. TRANSLATORS: level description
+#: data/jahreszeiten.ld:47
+msgid "Everything changes..."
+msgstr "Tudo muda..."
+
+#. TRANSLATORS: "Jump" is as in the computer game genre jump-and-run, only
+#. without the run
+#. TRANSLATORS: level name
+#: data/jump.ld:25
+msgid "Jump"
+msgstr "Saltar"
+
+#. TRANSLATORS: "8 bit" refers to an era of computer games
+#. TRANSLATORS: level description
+#: data/jump.ld:28
+msgid "8 bit nostalgia"
+msgstr "Nostalgia de 8 bits"
+
+#. TRANSLATORS: "tiling" is used synonymous to tesselation
+#. TRANSLATORS: level name
+#: data/kacheln4.ld:23
+msgid "Tiling II"
+msgstr "Mosaico II"
+
+#. TRANSLATORS: "tiling" is used synonymous to tesselation
+#. TRANSLATORS: level name
+#: data/kacheln5.ld:25
+msgid "Tiling III"
+msgstr "Mosaico III"
+
+#. TRANSLATORS: "tiling" is used synonymous to tesselation
+#. TRANSLATORS: level name
+#: data/kacheln6.ld:23
+msgid "Tiling I"
+msgstr "Mosaico I"
+
+#. TRANSLATORS: "tiling" is used synonymous to tesselation
+#. TRANSLATORS: level name
+#: data/kachelnR.ld:27
+msgid "Tiling IV"
+msgstr "Mosaico IV"
+
+#. TRANSLATORS: "tiling" is used synonymous to tesselation
+#. TRANSLATORS: level description
+#: data/kachelnR.ld:29
+msgid "Random aperiodic tiling"
+msgstr "Mosaico aperiódico aleatório"
+
+#. TRANSLATORS: level name
+#: data/kolben.ld:22
+msgid "Flasks"
+msgstr "Frascos"
+
+#. TRANSLATORS: level description
+#: data/kolben.ld:23
+msgid "It depends on the gas they are filled with..."
+msgstr "Depende do gás com que foram cheios..."
+
+#. TRANSLATORS: level name
+#: data/kunst.ld:34
+msgid "Modern Art"
+msgstr "Arte Moderna"
+
+#. TRANSLATORS: level author
+#: data/kunst.ld:35 data/unterwasser.ld:33
+msgid "Berni & Immi"
+msgstr "Berni & Immi"
+
+#. TRANSLATORS: level description
+#: data/kunst.ld:47
+msgid "Beware of ink!"
+msgstr "Cuidado com a tinta!"
+
+#. TRANSLATORS: level name
+#: data/labskaus.ld:66
+msgid "Potpourri"
+msgstr "Potpourri"
+
+#. TRANSLATORS: level author
+#: data/labskaus.ld:67
+msgid "Mark Weyer (editor)"
+msgstr "Mark Weyer (editor)"
+
+#. TRANSLATORS: level description
+#: data/labskaus.ld:68
+msgid "Made of 100% recycled graphics"
+msgstr "Feito 100% de gráficos reciclados"
+
+#. TRANSLATORS: level name
+#: data/letters.ld:35
+msgid "Letters"
+msgstr "Letras"
+
+#. TRANSLATORS: level description
+#: data/letters.ld:37
+msgid "Try to find out, which letters do connect!"
+msgstr "Tenta descobrir, quais as letras que ligam!"
+
+#: data/letters.ld:84 data/letters.ld:103
+msgid ""
+"You have found\n"
+"the name of the game:\n"
+"*** CUYO ***\n"
+"100 Bonus Points"
+msgstr ""
+"Descobriste\n"
+"o nome do jogo:\n"
+"*** CUYO ***\n"
+"100 Pontos de Bónus"
+
+#: data/letters.ld:132 data/letters.ld:151
+msgid ""
+"You have found\n"
+"the name of the\n"
+"programmer of Cuyo:\n"
+"*** IMMI ***\n"
+"200 Bonus Points"
+msgstr ""
+"Descobriste\n"
+"o nome do:\n"
+"programador do Cuyo:\n"
+"*** IMMI ***\n"
+"200 Pontos de Bónus"
+
+#: data/letters.ld:183 data/letters.ld:205
+msgid ""
+"You have found\n"
+"the name of the\n"
+"programmer of this Level:\n"
+"*** BERNI ***\n"
+"2000 Bonus Points"
+msgstr ""
+"Descobriste\n"
+"o nome do:\n"
+"programador deste Nível:\n"
+"*** BERNI ***\n"
+"2000 Pontos de Bónus"
+
+#. TRANSLATORS: level name
+#: data/maennchen.ld:21
+msgid "Characters"
+msgstr "Caracteres"
+
+#. TRANSLATORS: level name
+#: data/maze.ld:22
+msgid "Maze"
+msgstr "Labirinto"
+
+#. TRANSLATORS: level description
+#: data/maze.ld:23
+msgid "Collect all treasures. Finding the exit is optional."
+msgstr "Recolhe todos os tesouros. Encontrar a saída é opcional."
+
+#. TRANSLATORS: "Memory" is the name of a commercial brand of the Pairs game,
+#. at least in the German market.
+#. TRANSLATORS: level name
+#: data/memory.ld:49
+msgid "Memory"
+msgstr "Memória"
+
+#. TRANSLATORS: "Memory" is the name of a commercial brand of the Pairs game,
+#. at least in the German market.
+#. TRANSLATORS: level description
+#: data/memory.ld:64
+msgid "Well, memory."
+msgstr "Bem, Memória."
+
+#. TRANSLATORS: level name
+#: data/mfs.ld:27
+msgid "mfs"
+msgstr "mfs"
+
+#. TRANSLATORS: level author
+#: data/mfs.ld:28
+msgid "Konrad"
+msgstr "Konrad"
+
+#. TRANSLATORS: level description
+#: data/mfs.ld:44
+msgid "Who cleans the room?"
+msgstr "Quem limpa o quarto?"
+
+#. TRANSLATORS: level name
+#: data/nasenkugeln.ld:32
+msgid "Noseballs"
+msgstr "BolasNariz"
+
+#. TRANSLATORS: level description
+#: data/nasenkugeln.ld:44
+msgid ""
+"Put four balls together; then, they will explode. Try to make the grass "
+"explode, too."
+msgstr ""
+"Põe quatro bolas juntas; depois, elas explodem. Tenta fazer a relva explodir "
+"também."
+
+#. TRANSLATORS: level description
+#: data/nasenkugeln.ld:45
+msgid ""
+"Put six balls together; then, they will explode. Try to make the grass "
+"explode, too."
+msgstr ""
+"Põe seis bolas juntas; depois, elas explodem. Tenta fazer a relva explodir "
+"também."
+
+#. TRANSLATORS: "equal" here is in the egalitarian sense
+#. TRANSLATORS: level name
+#: data/novips.ld:21
+msgid "All colours are equal"
+msgstr "Todas as cores são iguais"
+
+#. TRANSLATORS: level description
+#: data/novips.ld:22
+msgid "Get rid of everything"
+msgstr "Livra-te de tudo"
+
+#. TRANSLATORS: level name
+#: data/octopi.ld:23
+msgid "Octopi"
+msgstr "Polvo"
+
+#. TRANSLATORS: level description
+#: data/octopi.ld:25
+msgid ""
+"Octopi connect in eight directions. They also remove the anemones that way."
+msgstr "Polvos ligam em oito direcções. Também removem as anémonas desse modo."
+
+#. TRANSLATORS: level name
+#: data/pacman.ld:30
+msgid "Pacman"
+msgstr "Pacman"
+
+#. TRANSLATORS: level description
+#: data/pacman.ld:45
+msgid "Wanna play Pacman?"
+msgstr "Queres jogar ao Pacman?"
+
+#. TRANSLATORS: Apparently, "Paratroopers" is the name of a computer game.
+#. TRANSLATORS: level name
+#: data/paratroopers.ld:27
+msgid "Paratroopers"
+msgstr "Paratroopers"
+
+#. TRANSLATORS: level description
+#: data/paratroopers.ld:28
+msgid "the other way around"
+msgstr "ao contrário"
+
+#. TRANSLATORS: level name
+#: data/pfeile.ld:30
+msgid "Arrows"
+msgstr "Flechas"
+
+#. TRANSLATORS: level description
+#: data/pfeile.ld:46
+msgid "Arrows can be turned"
+msgstr "As flechas podem ser giradas"
+
+#. TRANSLATORS: level name
+#: data/pressure.ld:26
+msgid "Excess Pressure"
+msgstr "Pressão Excessiva"
+
+#. TRANSLATORS: level name
+#: data/puzzle.ld:23
+msgid "Jigsaw"
+msgstr "Puzzle"
+
+#. TRANSLATORS: level description
+#: data/puzzle.ld:25
+msgid "Get rid of the border"
+msgstr "Livra-te do bordo"
+
+#. TRANSLATORS: level name
+#: data/rechnen.ld:21
+msgid "Calculations"
+msgstr "Cálculos"
+
+#. TRANSLATORS: level name
+#: data/reversi_brl.ld:22
+msgid "Reversi"
+msgstr "Reverso"
+
+#. TRANSLATORS: level name
+#: data/rohre.ld:28
+msgid "Heating"
+msgstr "Aquecimento"
+
+#. TRANSLATORS: level name
+#: data/rollenspiel.ld:21
+msgid "Fantasy role playing"
+msgstr "Jogando papel de fantasia"
+
+#. TRANSLATORS: level name
+#: data/schach.ld:32
+msgid "Chess"
+msgstr "Xadrez"
+
+#. TRANSLATORS: "King" and "Castling" are chess terms.
+#: data/schach.ld:226
+msgid ""
+"King confused.\n"
+"Castling both sides\n"
+"300 Bonus Points"
+msgstr ""
+"Rei confundido.\n"
+"Roque de ambos os lados\n"
+"300 Pontos de Bónus"
+
+#. TRANSLATORS: "Queen" and "Castling" are chess terms.
+#: data/schach.ld:232
+msgid ""
+"Castling queen's side\n"
+"150 Bonus Points"
+msgstr ""
+"Roque do lado da rainha\n"
+"150 Pontos de Bónus"
+
+#. TRANSLATORS: "King" and "Castling" are chess terms.
+#: data/schach.ld:238
+msgid ""
+"Castling king's side\n"
+"100 Bonus Points"
+msgstr ""
+"Roque do lado do rei\n"
+"100 Pontos de Bónus"
+
+#. TRANSLATORS: level name
+#: data/schemen.ld:22
+msgid "Silhouettes"
+msgstr "Silhuetas"
+
+#. TRANSLATORS: level name
+#: data/secret.ld:20
+msgid " "
+msgstr " "
+
+#. TRANSLATORS: level description
+#: data/secret.ld:22
+msgid "Congratulations, you found the secret level"
+msgstr "Parabéns, descobriste o nível secreto"
+
+#. TRANSLATORS: level name
+#: data/silbergold.ld:21
+msgid "Silver and Gold"
+msgstr "Prata e Ouro"
+
+#. TRANSLATORS: level name
+#: data/slime.ld:24
+msgid "Slime"
+msgstr "Visco"
+
+#. TRANSLATORS: level name
+#: data/springer.ld:31
+msgid "Knights"
+msgstr "Cavaleiros"
+
+#. TRANSLATORS: level author
+#: data/springer.ld:32
+msgid "brl & Immi"
+msgstr "brl & Immi"
+
+#. TRANSLATORS: "Knight" and "Pawn" refer to the chess pieces
+#. TRANSLATORS: level description
+#: data/springer.ld:34
+msgid "Knights connect via knight moves. Pawns don't connect at all."
+msgstr "Cavaleiros ligam por movimentos de cavalo. Os peões nunca ligam."
+
+#. TRANSLATORS: level name
+#: data/tennis.ld:21
+msgid "Tennis"
+msgstr "Ténis"
+
+#. TRANSLATORS: level description
+#: data/tennis.ld:23
+msgid "Don't be confused by extra balls."
+msgstr "Não te deixes confundir pelas bolas extra."
+
+#. TRANSLATORS: level name
+#: data/tetris.ld:41
+msgid "Tetris"
+msgstr "Tetris"
+
+#. TRANSLATORS: level description
+#: data/tetris.ld:43
+msgid "Complete lines will disappear."
+msgstr "As linhas completas irão desaparecer."
+
+#. TRANSLATORS: level name
+#: data/theater.ld:39
+msgid "Theater"
+msgstr "Teatro"
+
+#. TRANSLATORS: level description
+#: data/theater.ld:71
+msgid "Please keep quiet. Otherwise you will be blasted."
+msgstr "Por favor faça silêncio. Senão será rebentado."
+
+#. TRANSLATORS: level name
+#: data/tiere.ld:28
+msgid "Tiling Animals"
+msgstr "Animais em Mosaico"
+
+#. TRANSLATORS: level name
+#: data/trees.ld:21
+msgid "Holes"
+msgstr "Buracos"
+
+#. TRANSLATORS: "singly connected", or simply connected is a term from
+#. mathematics, more specifically topology
+#. TRANSLATORS: level name
+#: data/trees.ld:24
+msgid "Singly connected"
+msgstr "Meramente ligados"
+
+#. TRANSLATORS: level description
+#: data/trees.ld:26
+msgid "Groups with holes explode."
+msgstr "Grupos com buracos explodem."
+
+#. TRANSLATORS: "complex", "nonpositive" and "Euler characteristic" are terms
+#. from mathematics. "Complex" is here used in the sense of simplicial
+#. complexes or CW complexes.
+#. TRANSLATORS: level description
+#: data/trees.ld:30
+msgid "Complexes with nonpositive Euler characteristic explode."
+msgstr "Complexos com característica Euler não-positiva explodem."
+
+#: data/trees.ld:51
+msgid "Multiple holes"
+msgstr "Múltiplos buracos"
+
+#. TRANSLATORS: level name
+#: data/unmoeglich.ld:21
+msgid "impossible"
+msgstr "impossível"
+
+#. TRANSLATORS: level name
+#: data/unterwasser.ld:32
+msgid "Under Water"
+msgstr "Debaixo de Água"
+
+#. TRANSLATORS: level description
+#: data/unterwasser.ld:48
+msgid "Bubbles (Level still under construction.)"
+msgstr "Bolhas (Nível ainda em construção.)"
+
+#. TRANSLATORS: level name
+#: data/viecher.ld:32
+msgid "Beasts"
+msgstr "Bestas"
+
+#. TRANSLATORS: level description
+#: data/viecher.ld:46
+msgid "Warning! Fire hazard!"
+msgstr "Aviso! Perigo de Incêndio!"
+
+#. TRANSLATORS: level name
+#: data/wachsen.ld:25
+msgid "Growing"
+msgstr "Crescendo"
+
+#. TRANSLATORS: level name
+#: data/walls.ld:28
+msgid "Walls"
+msgstr "Paredes"
+
+#. TRANSLATORS: level description
+#: data/walls.ld:30
+msgid "Floors don't connect through walls."
+msgstr "O chão não liga através das paredes."
+
+#. TRANSLATORS: level description
+#: data/wohnungen.ld:25
+msgid "Build a nicer neighborhood"
+msgstr "Constrói uma vizinhança agradável"
+
+#. TRANSLATORS: level name
+#: data/wohnungen.ld:26
+msgid "Housing"
+msgstr "Alojamento"
+
+#. TRANSLATORS: level name
+#: data/wuerfel.ld:27
+msgid "Cubes"
+msgstr "Cubos"
+
+#. TRANSLATORS: level description
+#: data/wuerfel.ld:42
+msgid "Will they land in front of or behind the others?"
+msgstr "Irão eles aterrar na frente ou atrás dos outros?"
+
+#. TRANSLATORS: level name
+#: data/xtradick.ld:59
+msgid "Extra fat toys"
+msgstr "Brinquedos extra gordos"
+
+#. TRANSLATORS: level author
+#: data/xtradick.ld:60
+msgid "Berni/Jela"
+msgstr "Berni/Jela"
+
+#. TRANSLATORS: level description
+#: data/xtradick.ld:61
+msgid "What do they do?"
+msgstr "Que é que eles fazem?"
+
+#. TRANSLATORS: level name
+#: data/zahn.ld:22
+msgid "Teeth"
+msgstr "Dentes"
+
+#. TRANSLATORS: level name
+#: data/ziehlen.ld:21
+msgid "Target practice"
+msgstr "Tiro ao alvo"
+
+#~ msgid "Internal error during parsing of options"
+#~ msgstr "Erro interno durante a análise das opções"
+
+#~ msgid "Error: %s\n"
+#~ msgstr "Erro: %s\n"
+
+#~ msgid "Unknown error during file inclusion!\n"
+#~ msgstr "Erro desconhecido durante inclusão de ficheiro!\n"
+
+#~ msgid "%s not a number"
+#~ msgstr "%s não é um número"
+
+#~ msgid "Procedure names can't be single letters."
+#~ msgstr "Procedure names can't be single letters."
+
+#~ msgid "Variable names can't be single letters."
+#~ msgstr "Variable names can't be single letters."
+
+#~ msgid "Please specify \"else ->\" or \"else =>\""
+#~ msgstr "Please specify \"else ->\" or \"else =>\""
+
+#~ msgid "%s is a constant. (Variable expected.)"
+#~ msgstr "%s is a constant. (Variable expected.)"
+
+#~ msgid "There have been errors parsing the level description files."
+#~ msgstr "Existiram erros ao analisar os ficheiros de descrição do nível."
+
+#~ msgid "Unknown escape sequence"
+#~ msgstr "Sequência de escape desconhecida"
+
+#~ msgid "Wrong character '%s'"
+#~ msgstr "Caractere errado '%s'"
+
+#~ msgid "Stopped replay, because it requires level %s.\n"
+#~ msgstr "Repetição parada, porque requer nível %s.\n"
+
+#~ msgid "Stopped replay, because it requires %d players.\n"
+#~ msgstr "Repetição parada, porque requer %d jogadores.\n"
+
+#~ msgid "Stopped replay, because it seems to be broken.\n"
+#~ msgstr "Repetição parada, porque parece estar danificada.\n"
+
+#~ msgid "Stopped replay, because a key was pressed.\n"
+#~ msgstr "Repetição parada, porque foi pressionada uma tecla.\n"
+
+#~ msgid "End of replay.\n"
+#~ msgstr "Fim da repetição.\n"
+
+#~ msgid "Could not open log file \"%s\" for reading."
+#~ msgstr "Incapaz de abrir ficheiro de relatório \"%s\" para leitura."
+
+#~ msgid "Parse Error at the beginning of the log file \"%s\"."
+#~ msgstr "Erro de análise no início do ficheiro de relatório \"%s\"."
+
+#~ msgid "Warning: log file version is %s while cuyo version is %s\n"
+#~ msgstr ""
+#~ "Aviso: a versão do ficheiro de relatório é %s enquanto a versão do cuyo é "
+#~ "%s\n"
+
+#~ msgid "Could not open log file \"%s\" for writing."
+#~ msgstr "Incapaz de abrir ficheiro de relatório \"%s\" para escrita."
+
+#~ msgid "Image '%s' too small for Icon %d"
+#~ msgstr "Imagem '%s' é muito pequena para ícone %d"
+
+#~ msgid ""
+#~ "* Warning: Some part of '%s' is drawn with coordinates which are\n"
+#~ "* not divisible by 4. This may cause graphic glitches in downscaled "
+#~ "mode.\n"
+#~ msgstr ""
+#~ "* Warning: Some part of '%s' is drawn with coordinates which are\n"
+#~ "* not divisible by 4. This may cause graphic glitches in downscaled "
+#~ "mode.\n"
+
+#~ msgid "Internal error: Too many pictures drawn for one single blob"
+#~ msgstr "Erro interno: Demasiadas imagens desenhadas para um único borrão"
+
+#~ msgid "Position pos=%d out of range (allowed for file=%d: 0 - %d)"
+#~ msgstr "Posição pos=%d fora dos limites (permitido para file=%d: 0 - %d)"
+
+#~ msgid "Quarter qu=%d out of range (allowed: %d - %d)"
+#~ msgstr "Quarter qu=%d out of range (allowed: %d - %d)"
+
+#~ msgid ""
+#~ "In kind %s, file %d:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "In kind %s, file %d:\n"
+#~ "%s"
+
+#~ msgid "Internal error in const BlopBesitzer::getFeld()"
+#~ msgstr "Erro interno na constante BlopBesitzer::getFeld()"
+
+#~ msgid "Internal error in BlopBesitzer::getFeld()"
+#~ msgstr "Erro interno em BlopBesitzer::getFeld()"
+
+#~ msgid ""
+#~ "%s, during drawing:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "%s, durante o desenhar:\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "%s, during animation:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "%s, durante animação:\n"
+#~ "%s"
+
+#~ msgid ""
+#~ "%s, during %s event:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "%s, durante %s evento:\n"
+#~ "%s"
+
+#~ msgid "Empty Blops are not allowed to explode."
+#~ msgstr "Aos Blops vazios não é permitido explodirem."
+
+#~ msgid "Blop %s at %s"
+#~ msgstr "Blop %s em %s"
+
+#~ msgid "bonus() does not work in the global blob."
+#~ msgstr "bonus() does not work in the global blob."
+
+#~ msgid "message() does not work in the global blob."
+#~ msgstr "message() does not work in the global blob."
+
+#~ msgid "Internal error in Blop::getSpezConst(): Wrong AbsOrtArt %d"
+#~ msgstr "Internal error in Blop::getSpezConst(): Wrong AbsOrtArt %d"
+
+#~ msgid "The variable \"%s\" is read-only."
+#~ msgstr "A variável \"%s\" é read-only."
+
+#~ msgid "Internal error in Blop::setVariable() (op = %d)"
+#~ msgstr "Erro interno em Blop::setVariable() (op = %d)"
+
+#~ msgid "Value %d for kind out of range (allowed: %d - %d)"
+#~ msgstr "Value %d for kind out of range (allowed: %d - %d)"
+
+#~ msgid "Drawing is not allowed at the moment."
+#~ msgstr "Desenhar não é permitido neste momento."
+
+#~ msgid ""
+#~ "%s: Internal error in Code::getStapelHoehe(): Call illegal for CodeArt %d"
+#~ msgstr ""
+#~ "%s: Internal error in Code::getStapelHoehe(): Call illegal for CodeArt %d"
+
+#~ msgid "%s: Internal error in Code::getStapelHoehe(): Unknown CodeArt %d"
+#~ msgstr "%s: Internal error in Code::getStapelHoehe(): Unknown CodeArt %d"
+
+#~ msgid "Division by zero"
+#~ msgstr "Divisão por zero"
+
+#~ msgid "Modulo zero"
+#~ msgstr "Módulo zero"
+
+#~ msgid "Warning: Can't use 'explode' in falling blob.\n"
+#~ msgstr "Warning: Can't use 'explode' in falling blob.\n"
+
+#~ msgid "Probability x:0 in the animation program"
+#~ msgstr "Probability x:0 in the animation program"
+
+#~ msgid "rnd(<=0) in the animation program"
+#~ msgstr "rnd(<=0) in the animation program"
+
+#~ msgid "Internal error in Code::eval(): CodeArt undefined_code"
+#~ msgstr "Internal error in Code::eval(): CodeArt undefined_code"
+
+#~ msgid "Internal error in Code::eval(): Unknown CodeArt %d"
+#~ msgstr "Internal error in Code::eval(): Unknown CodeArt %d"
+
+#~ msgid "%s: %s"
+#~ msgstr "%s: %s"
+
+#~ msgid "Parse error in file %s: %s\n"
+#~ msgstr "Erro de analise no ficheiro %s: %s\n"
+
+#~ msgid "There are no (more?) (working?) levels."
+#~ msgstr "Não há (mais?) níveis a (funcionar?)."
+
+#~ msgid "Could not start level:\n"
+#~ msgstr "Incapaz de iniciar o nível:\n"
+
+#~ msgid "Error during the game:\n"
+#~ msgstr "Erro durante o jogo:\n"
+
+#~ msgid ""
+#~ "Warning: Env-Variable $HOME not found. Using the current directory for "
+#~ "cuyo.log"
+#~ msgstr ""
+#~ "Warning: Env-Variable $HOME not found. Using the current directory for "
+#~ "cuyo.log"
+
+#~ msgid "Debug: Receive greys\n"
+#~ msgstr "Debug: Receive greys\n"
+
+#~ msgid "Debug: Single step mode = %d\n"
+#~ msgstr "Debug: Single step mode = %d\n"
+
+#~ msgid "Debug: Replace fall\n"
+#~ msgstr "Debug: Replace fall\n"
+
+#~ msgid "Debug: Load log file\n"
+#~ msgstr "Debug: Load log file\n"
+
+#~ msgid ""
+#~ "Level %s (%d)\n"
+#~ "For replay start level.\n"
+#~ msgstr ""
+#~ "Level %s (%d)\n"
+#~ "For replay start level.\n"
+
+#~ msgid "Debug: Do *not* load log file during the game.\n"
+#~ msgstr "Debug: Do *not* load log file during the game.\n"
+
+#~ msgid "Debug: Replay log file = %d\n"
+#~ msgstr "Debug: Replay log file = %d\n"
+
+#~ msgid "Debug: Win instantly\n"
+#~ msgstr "Debug: Win instantly\n"
+
+#~ msgid ""
+#~ "Debug: Help (all keys to be combined with Alt)\n"
+#~ "  b: Receive greys\n"
+#~ "  e: Single step mode on/off\n"
+#~ "  f: Replace fall\n"
+#~ "  g: Win instantly\n"
+#~ "  h: Help (this one)\n"
+#~ "  L: Load log file\n"
+#~ "  l: Replay log file on/off\n"
+#~ "  r: Reload level\n"
+#~ "  S: Save log file\n"
+#~ "  t: Test of row-exchange on/off\n"
+#~ "  v: Fast forward on/off\n"
+#~ "  z: Slow motion on/off\n"
+#~ msgstr ""
+#~ "Debug: Help (all keys to be combined with Alt)\n"
+#~ "  b: Receive greys\n"
+#~ "  e: Single step mode on/off\n"
+#~ "  f: Replace fall\n"
+#~ "  g: Win instantly\n"
+#~ "  h: Help (this one)\n"
+#~ "  L: Load log file\n"
+#~ "  l: Replay log file on/off\n"
+#~ "  r: Reload level\n"
+#~ "  S: Save log file\n"
+#~ "  t: Test of row-exchange on/off\n"
+#~ "  v: Fast forward on/off\n"
+#~ "  z: Slow motion on/off\n"
+
+#~ msgid "Debug: Reload levelconf\n"
+#~ msgstr "Debug: Reload levelconf\n"
+
+#~ msgid ""
+#~ "Could not reload the level description file because of the following "
+#~ "error:\n"
+#~ msgstr ""
+#~ "Could not reload the level description file because of the following "
+#~ "error:\n"
+
+#~ msgid "Debug: Save log file\n"
+#~ msgstr "Debug: Save log file\n"
+
+#~ msgid "Debug: Test of row-exchange = %d\n"
+#~ msgstr "Debug: Test of row-exchange = %d\n"
+
+#~ msgid "Debug: Fast forward = %d\n"
+#~ msgstr "Debug: Fast forward = %d\n"
+
+#~ msgid "Debug: Slow motion = %d\n"
+#~ msgstr "Debug: Slow motion = %d\n"
+
+#~ msgid "Conflicting versions: %s"
+#~ msgstr "Conflicting versions: %s"
+
+#~ msgid "%s required but not defined"
+#~ msgstr "%s requerido mas não definido"
+
+#~ msgid "Wrong type on the righthand side of %s%s="
+#~ msgstr "Wrong type on the righthand side of %s%s="
+
+#~ msgid "0 or 1 expected, got %d."
+#~ msgstr "0 ou 1 esperado, obtido %d."
+
+#~ msgid "Color (r,g,b) expected"
+#~ msgstr "Cor (r,g,b) esperada"
+
+#~ msgid "List of atomic data expected"
+#~ msgstr "Lista de dados atómicos esperada"
+
+#~ msgid "Section %s does not exist."
+#~ msgstr "Secção %s não existe."
+
+#~ msgid "Please send the log-file \"cuyo.log\" to cuyo@karimmi.de"
+#~ msgstr ""
+#~ "Por favor envie o ficheiro relatório \"cuyo.log\" para cuyo@karimmi.de"
+
+#~ msgid "%s:%d: %s\n"
+#~ msgstr "%s:%d: %s\n"
+
+#~ msgid "Internal error: \"%s\" in %s:%d"
+#~ msgstr "Erro interno : \"%s\" em %s:%d"
+
+#~ msgid "SDL error: \"%s\" in %s:%d: %s"
+#~ msgstr "Erro de SDL: \"%s\" em %s:%d: %s"
+
+#~ msgid "\"%s\" already defined."
+#~ msgstr "\"%s\" já definido."
+
+#~ msgid ""
+#~ "Warning: There's global Cual code _after_ some level definitions. Be "
+#~ "sure\n"
+#~ "not to use that Cual code in the levels before it. (Due to a bug, this "
+#~ "will\n"
+#~ "sometimes not result in an error message but in strange behaviour.)\n"
+#~ msgstr ""
+#~ "Aviso: Existe código Cual global _após_ algumas descrições de níveis.\n"
+#~ "Certifique-se que não usar esse código Cual no níveis antes das "
+#~ "descrições.\n"
+#~ "(Devido a um bug, isto irá por vezes não resultar numa mensagem de erro\n"
+#~ "mas em comportamentos estranhos.)\n"
+
+#~ msgid "\"%s\" not defined inside << >>."
+#~ msgstr "\"%s\" não definido dentro de << >>."
+
+#~ msgid "\"%s\" not defined."
+#~ msgstr "\"%s\" não definido."
+
+#~ msgid "Value is a list and should not."
+#~ msgstr "Valor é uma lista e não deveria ser."
+
+#~ msgid "<unknown type, please report>"
+#~ msgstr "<tipo desconhecido, por favor reporte>"
+
+#~ msgid "%s is of wrong type. %s expected"
+#~ msgstr "%s é do tipo errado. %s esperado"
+
+#~ msgid "Number of pics exceeds limit %d"
+#~ msgstr "Número de 'pics' excede o limite %d"
+
+#~ msgid "Sorry, no working level description file available."
+#~ msgstr ""
+#~ "Desculpe, nenhum ficheiro de descrição de nível funcional disponível."
+
+#~ msgid "At position %s (or somewhere below): "
+#~ msgstr "Na posição %s (ou por vezes abaixo) "
+
+#~ msgid "toptime must be positive"
+#~ msgstr "toptime tem de ser positivo"
+
+#~ msgid "neighbours out of range"
+#~ msgstr "neighbours fora do limite"
+
+#~ msgid "nogreyprob must not be negative"
+#~ msgstr "nogreyprob não pode ser negativo"
+
+#~ msgid "At least one %s must be positive."
+#~ msgstr "Pelo menos um %s tem de ser positivo."
+
+#~ msgid "nogreyprob or at least one %s must be positive."
+#~ msgstr "nogreyprob ou pelo menos um %s tem de ser positivo."
+
+#~ msgid " (Level \"%s\")\n"
+#~ msgstr " (Nível \"%s\")\n"
+
+#~ msgid "distkey \"%s\" does not have length %d as others do."
+#~ msgstr "distkey \"%s\" não tem comprimento %d como as outras têm."
+
+#~ msgid "Illegal character \"%c\" in startdist or distkey %s"
+#~ msgstr "Caractere ilegal \"%c\" em startdist ou distkey %s"
+
+#~ msgid "All-spaces startdist entry or distkey is not allowed."
+#~ msgstr "All-spaces startdist entry or distkey is not allowed."
+
+#~ msgid "Invalid alignment"
+#~ msgstr "Alinhamento inválido"
+
+#~ msgid "Non-existent neighbours value."
+#~ msgstr "Valor neighbours não existente"
+
+#~ msgid "Data corruption."
+#~ msgstr "Corrupção de dados."
+
+#~ msgid "Internal error in ort_absolut::finde(): No ort_absolut::korrekt()"
+#~ msgstr "Internal error in ort_absolut::finde(): No ort_absolut::korrekt()"
+
+#~ msgid "illegal ort for ort_absolut::playSample"
+#~ msgstr "illegal ort for ort_absolut::playSample"
+
+#~ msgid "Internal error in Ort::berechne(): Unknown AbsOrtArt %d"
+#~ msgstr "Internal error in Ort::berechne(): Unknown AbsOrtArt %d"
+
+#~ msgid "Internal error in Ort::toString(): Unknown AbsOrtArt %d"
+#~ msgstr "Internal error in Ort::toString(): Unknown AbsOrtArt %d"
+
+#~ msgid ""
+#~ "Internal error: got confused with all those paths I have to deal with."
+#~ msgstr ""
+#~ "Internal error: got confused with all those paths I have to deal with."
+
+#~ msgid ""
+#~ "Could not find \"%s\".\n"
+#~ "Tried the following places:%s"
+#~ msgstr ""
+#~ "Incapaz de encontrar \"%s\".\n"
+#~ "Tentei nas seguintes localizações:%s"
+
+#~ msgid "Error reading preferences file '.cuyo':\n"
+#~ msgstr "Erro ao ler ficheiro de preferências '.cuyo':\n"
+
+#~ msgid ""
+#~ "Warning: Env-Variable $HOME not found. Using the current directory for ."
+#~ "cuyo"
+#~ msgstr ""
+#~ "Aviso: Variável Ambiente $HOME não encontrada. A usar o directório actual "
+#~ "para .cuyo"
+
+#~ msgid "Warning: Could not write preferences file \"%s\"."
+#~ msgstr "Aviso. Incapaz de escrever o ficheiro de preferências \"%s\"."
+
+#~ msgid ""
+#~ "Probably trying to fill rectangle of negative size; this causes an "
+#~ "overflow.\n"
+#~ msgstr ""
+#~ "Provavelmente a tentar encher rectângulo de tamanho negativo; isto causa "
+#~ "um overflow.\n"
+
+#~ msgid "Using %s for %s\n"
+#~ msgstr "A usar %s para %s\n"
+
+#~ msgid ""
+#~ "Warning: %s.%s contains drawing commands.\n"
+#~ "Drawing is not allowed during events.\n"
+#~ msgstr ""
+#~ "Aviso: %s.%s contém comandos de desenho.\n"
+#~ "Não é permitido desenhar durante eventos.\n"
+
+#~ msgid "Internal Error in Sorte::Sorte(): mBlopart = %d"
+#~ msgstr "Erro Interno em Sorte::Sorte(): mBlopart = %d"
+
+#~ msgid "illegal distkey %s for %s"
+#~ msgstr "distkey ilegal %s para %s"
+
+#~ msgid "illegal versions=%d for %s"
+#~ msgstr "illegal versions=%d for %s"
+
+#~ msgid "numexplode undefined for %s"
+#~ msgstr "numexplode undefined for %s"
+
+#~ msgid "%s must not be negative"
+#~ msgstr "%s must not be negative"
+
+#~ msgid "%s>0 not allowed for global or semiglobal"
+#~ msgstr "%s>0 not allowed for global or semiglobal"
+
+#~ msgid "%s>0 not allowed for nothing, global or semiglobal"
+#~ msgstr "%s>0 not allowed for nothing, global or semiglobal"
+
+#~ msgid "File number file=%d out of range (allowed: 0 - %ld)"
+#~ msgstr "File number file=%d out of range (allowed: 0 - %ld)"
+
+#~ msgid "Sound does not work: %s\n"
+#~ msgstr "Som não funciona: %s\n"
+
+#~ msgid "\"%s\" used in startdist, although all %s are 0."
+#~ msgstr "\"%s\" used in startdist, although all %s are 0."
+
+#~ msgid "\"%s\" used as a distkey but no such distkey specified."
+#~ msgstr "\"%s\" used as a distkey but no such distkey specified."
+
+#~ msgid ""
+#~ "All values for distkey have length %d, so lines in startdist must have "
+#~ "length %d or %d"
+#~ msgstr ""
+#~ "All values for distkey have length %d, so lines in startdist must have "
+#~ "length %d or %d"
+
+#~ msgid "<unknown>"
+#~ msgstr "<desconhecido>"
+
+#~ msgid "%s lacks version %s%s"
+#~ msgstr "%s falta a versão %s%s"
+
+#~ msgid "Uninitialized dimension"
+#~ msgstr "Dimensão não inicializada"
+
+#~ msgid "%s was already accessed, new version %s%s is not allowed"
+#~ msgstr "%s já foi acedido, nova versão %s%s não é permitida"
+
+#~ msgid "Previous problem with %s still persists"
+#~ msgstr "O problema anterior com %s ainda persiste"
+
+#~ msgid "Illegal version %s%s"
+#~ msgstr "Versão ilegal %s%s"
+
+#~ msgid "%s%s not uniquely defined"
+#~ msgstr "%s%s não definido singularmente"
+
+#~ msgid "%s%s eclipsed by more specialized versions"
+#~ msgstr "%s%s eclipsado por versões mais especializadas"
+
+#~ msgid "Read error"
+#~ msgstr "Erro de leitura"
+
+#~ msgid "Endless comment."
+#~ msgstr "Comentário sem final."
+
+#~ msgid "\"%s\" expected"
+#~ msgstr "\"%s\" esperado"
+
+#~ msgid "'%c' expected; found: '%c' (filepos: %d)"
+#~ msgstr "'%c' esperado; encontrado: '%c' (posição no ficheiro: %d)"
+
+#~ msgid "'%c' expected"
+#~ msgstr "'%c' esperado"
+
+#~ msgid "Number expected"
+#~ msgstr "Número esperado"
+
+#~ msgid "Hex number expected"
+#~ msgstr "Número hexadecimal esperado"
+
+#~ msgid "Undefined pixel name"
+#~ msgstr "Nome de pixel não definido"
+
+#~ msgid ""
+#~ "Fast xpm loading did not work for \"%s\":\n"
+#~ "%s\n"
+#~ msgstr ""
+#~ "Carregamento rápido de xpm não funcionou para \"%s\":\n"
+#~ "%s\n"
+
+#~ msgid "File \"%s.gz\": %s\n"
+#~ msgstr "Ficheiro \"%s.gz\": %s\n"

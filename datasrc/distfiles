@@ -1,0 +1,7 @@
+Makefile
+makefile.ml
+distfiles
+reversi_brl.m4
+Makefile.common
+make.ml
+make.mli

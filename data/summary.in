@@ -1,0 +1,277 @@
+#
+#   Copyright 2006 by Immanuel Halupczok
+#   Modified 2006,2008,2011 by Immanuel Halupczok
+#   Modified 2006,2008,2010,2011 by Mark Weyer
+#   Modified 2012,2014 by the cuyo developers
+#   Maintenance modifications 2006,2008,2010-2012 by the cuyo developers
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+# This file is read by genSummary.pl to generate summary.ld
+# Commands:
+# - file xxx.ld # reads information out of level file xxx.ld
+# - verbatim
+#     xxx
+#   end
+#   # puts a verbatim copy of xxx into summary.ld
+#   # even including blank lines and comments
+
+
+# Immi
+file nasenkugeln.ld
+file pfeile.ld
+file hexkugeln.ld
+file viecher.ld
+file unterwasser.ld
+file kunst.ld
+file baelle.ld
+file hormone.ld
+file hecken.ld
+file ebene.ld
+file schach.ld
+file wachsen.ld
+file ascii.ld
+file tiere.ld
+file 3d.ld
+file doors.ld
+file walls.ld
+file wuerfel.ld
+file theater.ld
+
+# Berni
+file antarctic.ld
+file bonus.ld
+file letters.ld
+file tetris.ld
+file memory.ld
+file colorshape.ld
+file disco.ld
+file aliens.ld
+
+# Berni und Jela
+file xtradick.ld
+
+# Mark
+file kolben.ld
+file unmoeglich.ld
+file maze.ld
+file tennis.ld
+file slime.ld
+file silbergold.ld
+file gold.ld
+file zahn.ld
+file bunt.ld
+file labskaus.ld
+file baender.ld
+file ziehlen.ld
+file maennchen.ld
+file rechnen.ld
+file go2.ld
+file kacheln6.ld
+file kacheln4.ld
+file kacheln5.ld
+file kachelnR.ld
+file puzzle.ld
+file dungeon.ld
+file secret.ld
+file rollenspiel.ld
+file jump.ld
+file octopi.ld
+file aehnlich.ld
+file augen.ld
+file trees.ld
+file schemen.ld
+file bonimali.ld
+file fische.ld
+file novips.ld
+file angst.ld
+file flechtwerk.ld
+file farming.ld
+
+# Jela
+file himmel.ld
+file jahreszeiten.ld
+file embroidery.ld
+
+# brl
+file elemente.ld
+file wohnungen.ld
+file darken.ld
+file rohre.ld
+file pressure.ld
+file explosive.ld
+file reversi_brl.ld
+file paratroopers.ld
+
+# brl und Immi
+file springer.ld
+
+# Simon
+file baggis.ld
+file pacman.ld
+
+# Konrad
+file mfs.ld
+
+# Austin
+file fractals.ld
+
+verbatim
+
+level[all]=
+  # easy
+  Nasenkugeln,	# First level at all
+  Farming,	# Introduces that levels are rather different
+  Embroidery,
+  Maennchen,	# First level with weight<>1
+  Octopi,	# Introduces neighbours_eight
+  Springer,	# Introduces neighbours_knight and (somehow) single player greys
+  Kacheln_Sechseck,	     # First level with hex mode and neighbours_hex6
+  # medium
+  Tiere,	# Introduces chaingrass=1
+  Baender,	# Introduces neighbours_diagonal
+  HexKugeln,	# First level with randomgreys
+  Schemen, Bonus,Pfeile,Fische,Theater,Rechnen,
+  Jahreszeiten,Disco,Wohnungen,Baggis,Tetris,
+  Kacheln_Viereck,
+  Rollenspiel,  # First level with different numexplodes
+  Himmel,	# Introduces mirror=1
+  Kolben,Baelle,Aliens,
+  Labyrinth,Unmoeglich,Elemente,Slime,Hormone,Flechtwerk,
+  # hard
+  Explosive,Puzzle,Letters,SilberGold,Gold,DreiD,Zahn,Kunst,Augen,Doors,Bunt,
+  Antarctic,Rohre,BoniMali2,Darken,Kacheln_Fuenfeck,Ebene,Dungeon,
+  ColorShape,Jump,Viecher,Memory,Fractals,Schach,Aehnlich,ReversiBRL,
+  Go,Tennis,
+  # very hard
+  Angst,Labskaus2,Walls,Kacheln_azyklisch,Trees2,Wuerfel,NoVIPs,Wachsen,GoII
+
+level[main]=
+  Nasenkugeln,Farming,Embroidery,Maennchen,Octopi,Springer,Kacheln_Sechseck,
+  Tiere,Baender,HexKugeln,Bonus,Pfeile,Fische,Theater,
+  Jahreszeiten,Disco,Wohnungen,Baggis,
+  Kacheln_Viereck,Rollenspiel,Himmel,Baelle,
+  Labyrinth,Elemente,Hormone,
+  Explosive,Puzzle,Letters,SilberGold,Zahn,Doors,Bunt,
+  BoniMali2,Darken,Kacheln_Fuenfeck,Ebene,Dungeon,
+  ColorShape,Viecher,Memory,Schach,Aehnlich,
+  Tennis,
+  Angst,Labskaus2,Walls,Wuerfel,Wachsen
+
+level[main,easy]=
+  Nasenkugeln,Farming,Embroidery,Maennchen,Kacheln_Sechseck,
+  Bonus,Pfeile,Fische,Theater,
+  Kacheln_Viereck,Kolben,
+  Labyrinth,Unmoeglich,
+  Puzzle,SilberGold,DreiD,Bunt,
+  BoniMali2,Kacheln_Fuenfeck,Dungeon,
+  Aehnlich,
+  Tennis,
+  Angst,Kacheln_azyklisch,Trees2,Wuerfel
+
+level[main,hard]=
+  Maennchen,Springer,
+  Fische,Theater,Rechnen,
+  Aliens,
+  Slime,
+  Explosive,Puzzle,Gold,
+  BoniMali2,Darken,Dungeon,
+  Memory,Fractals,Aehnlich,
+  Tennis,
+  Angst,Labskaus2,Walls,Kacheln_azyklisch,Trees2,NoVIPs,Wachsen,GoII
+
+level[game]=
+  Springer,
+  Tetris,
+  Rollenspiel,Aliens,
+  Puzzle,Letters,
+  BoniMali2,Dungeon,
+  Jump,Memory,Schach,ReversiBRL,
+  Tennis,
+  GoII
+
+level[extreme]=
+  Bonus,		# 1+2 Sorten, numexplode=1, toptime=4
+  Theater,		# 84 Stueck Gras
+  Slime,		# 1+1 Sorten
+  Explosive,		# 1+2 Sorten
+  Puzzle,		# 1+0 Sorten
+  Gold,			# 1+0 Sorten
+  Zahn,			# 1+0/1 Sorten (1+0 oder 1+1, wie man's nimmt)
+  Bunt,			# 136 Sorten, numexplode=2
+  Rohre,		# 2+2 Sorten, numexplode=20/18
+  BoniMali2,		# 14 Sorten
+  Memory,		# 13 Sorten, numexplode=2
+  Aehnlich,		# 2^omega Sorten
+  Trees2,		# numexplode=0
+  GoII			# numexplode=0
+
+level[nofx]=
+  Nasenkugeln,Farming,Embroidery,Octopi,Springer,Kacheln_Sechseck,
+  Tiere,Baender,HexKugeln,Bonus,
+  Jahreszeiten,Wohnungen,
+  Kacheln_Viereck,Himmel,
+  Labyrinth,Unmoeglich,Elemente,Hormone,
+  Ebene
+
+level[nofx,easy]=
+  Nasenkugeln,Farming,Embroidery,Octopi,Springer,Kacheln_Sechseck,
+  Tiere,Baender,HexKugeln,Bonus,
+  Jahreszeiten,Wohnungen,
+  Kacheln_Viereck,Himmel,
+  Labyrinth,Unmoeglich,Elemente,Hormone,
+  Ebene,Angst
+
+level[weird]=
+  Schemen,Bonus,Fische,Rechnen,
+  Disco,Baggis,Tetris,
+  Rollenspiel,Kolben,Baelle,Aliens,
+  Slime,Flechtwerk,
+  Explosive,Gold,Zahn,Doors,Bunt,
+  Rohre,BoniMali2,Darken,Dungeon,
+  ColorShape,Jump,Memory,Fractals,Schach,Aehnlich,ReversiBRL,
+  Go,Tennis,
+  Angst,Walls,Kacheln_azyklisch,Trees2,NoVIPs,Wachsen,GoII
+
+level[weird,hard]=
+  Schemen,Bonus,Fische,Rechnen,
+  Disco,Baggis,Tetris,
+  Rollenspiel,Kolben,Baelle,Aliens,
+  Slime,Flechtwerk,
+  Explosive,Gold,Zahn,Doors,Bunt,
+  Rohre,BoniMali2,Darken,Dungeon,
+  ColorShape,Jump,Memory,Fractals,Schach,Aehnlich,ReversiBRL,
+  Go,Tennis,
+  Angst,Walls,Kacheln_azyklisch,Trees2,NoVIPs,Wachsen,GoII,Secret
+
+level[weird,easy]=
+  Schemen,Bonus,Fische,Rechnen,
+  Disco,Baggis,Tetris,
+  Rollenspiel,Kolben,Baelle,Aliens,
+  Slime,Flechtwerk,
+  Explosive,Gold,Zahn,Doors,Bunt,
+  Rohre,BoniMali2,Darken,Dungeon,
+  ColorShape,Jump,Memory,Fractals,Schach,Aehnlich,ReversiBRL,
+  Go,Tennis,
+  Walls,Kacheln_azyklisch,Trees2,NoVIPs,Wachsen,GoII
+
+level[contrib]=ASCII,Xtradick,Pressure,mfs,ParatroopersInvers,Ziehlen,Pacman
+ordered[contrib]=0
+
+globals=globals.ld
+
+end   # verbatim
+

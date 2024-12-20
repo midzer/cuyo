@@ -1,0 +1,12 @@
+<!--
+Save this file as
+    ~/.magick/colors.mgk
+to be able to view the cuyo-xpms containing the color "background" using
+display.
+(Warning: Maybe, when you do that, convert will try to use the colorname
+"background" when saving images.)
+ -->
+<?xml version="1.0"?>
+<colormap>
+  <color name="Background" red="0" green="0" blue="0" compliance="XPM" />
+</colormap>

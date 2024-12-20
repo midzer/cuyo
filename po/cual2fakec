@@ -1,0 +1,219 @@
+#!/usr/bin/perl
+
+#
+#   Copyright 2008,2011 by Immanuel Halupczok
+#   Maintenance modifications 2011 by the cuyo developers
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+
+use strict;
+
+
+
+my $copy_everything = 1;  # change to 0 if the output
+         # should only be the relevant stuff
+	 # However, stuff inside <<>> is still written to output,
+	 # because otherwise we would have problems with message...
+
+my $state = "start";
+my $key;
+my $processed;
+my $depth = 0;
+my $extra_comment;
+
+
+sub doError($) {
+  my $e = shift;
+  print STDERR "Line $.: $e\n";
+  exit(1);
+}
+
+# Adds $1 or the first argument to $processed
+sub copy(;$) {
+  if ($copy_everything) {
+    my $new = shift;
+    if (!defined($new)) { $new = $1; }
+    $processed .= $new;
+  }
+}
+
+
+sub checkTranslate() {
+  $depth == 1 or return 0;
+  if ($key eq "name") { $extra_comment = "/* TRANSLATORS: level name */"; return 1; }
+  if ($key eq "description") { $extra_comment = "/* TRANSLATORS: level description */"; return 1; }
+  if ($key eq "author") { $extra_comment = "/* TRANSLATORS: level author */"; return 1; }
+  return 0;
+}
+
+sub maybeTranslate($) {
+  my $value = shift;
+  if (checkTranslate()) {
+    $processed .= "_($value)";
+  } else {
+    copy($value);
+  }
+}
+
+
+
+my %finiteStateMachine = (
+  "start" => sub {
+      if (s/^(<<)//) {
+        copy();
+        $state = "in <<>>";
+      } elsif (s/^([A-Za-z0-9_]+)//) {
+        $key = $1;
+        $processed .= $extra_comment if checkTranslate();
+        copy();
+	$state = "[version]";
+      } elsif (s/^(\})//) {
+        copy();
+	$depth--;
+	$state = "start";
+      } else {
+        doError("syntax error");
+      }
+    },
+  "[version]" => sub {
+      if (s/^(\[[A-Za-z0-9,_]*\])//) {
+        copy();
+      }
+      $state = "=";
+    },
+  "=" => sub {
+      if (s/^(=)//) {
+        copy();
+        $state = "value";
+      } else {
+        doError("'=' expected");
+      }
+    },
+  "value" => sub {
+      if (s/^([A-Za-z0-9_.-]+)//) {
+	maybeTranslate('"'.$1.'"');
+	$state = "after-value";
+      } elsif (s/^("([^\\"]|\\.)*")//) {
+	maybeTranslate($1);
+	$state = "after-value";
+      } elsif (s/^(\{)//) {
+        copy();
+	$depth++;
+	$state = "after-value";
+      } elsif (s/^(<)//) {
+        copy();
+	$state = "<>-value";
+      } else {
+        doError("syntax error");
+      }
+    },
+  "<>-value" => sub {
+      if (s/^([^>]+)//) {
+        copy();
+      } elsif (s/^(>)//) {
+        copy();
+	$state = "after-value";
+      } else {
+        doError("syntax error");
+      }
+    },
+  "after-value" => sub {
+      if (s/^(,|\*)//) {
+        copy();
+        $state = "value";
+      } else {
+        $state = "start";
+      }
+    },
+  "in <<>>" => sub {
+       if (s/^([^>"]+)//) {
+        # no string, no >
+        # s/(message\s*\(\s*)(".*")(\s*\))/$1_($2)$3/g;
+	my $new = $1;
+	$new =~ s/\bmessage\b/_/g;
+        $processed .= $new;
+      } elsif (s/^(>>)//) {
+        copy();
+	$state = "start";
+      } elsif (s/^(>)//) {
+        $processed .= $1;
+      } elsif (s/^("([^\\"]|\\.)*")//) {
+        $processed .= $1;
+      } else {
+        doError("syntax error (probably concerning string)");
+      }
+    },
+);
+
+
+
+my $prev_line;
+
+my $comment_open = 0;
+
+
+
+while (<>) {
+  # $_ contains one line of the input file
+
+  chomp;
+  
+  s/^\s*//;  #remove spaces at beginning of line
+  s/\s*$//;  #remove spaces at end of line
+  
+  my $comm = "";
+  
+  if ($comment_open && s/^#//) {  # continue comment
+    $comm = $_;
+    $_ = "";
+  } elsif ($comment_open) {
+    $prev_line .= "*/";
+    $comment_open = 0;
+  }
+  
+  if (s/(^[^#]*)#(.*)$/$1/) {  # Beginning of comment
+    $comm = "/*$2";
+    $comment_open = 1;
+    s/\s*$//;
+  }
+  
+  # $_ does not contain comments anymore; if there is a comment,
+  # it is temporarily stored in $comm
+  
+  $processed = "";
+  while ($_ ne "") {
+    &{$finiteStateMachine{$state}}();
+    s/^(\s*)//; copy();
+  }
+    
+  if (defined($prev_line)) {
+    print $prev_line, "\n";
+  }
+  $prev_line = $processed.$comm;
+  
+}
+
+if ($comment_open) { $prev_line .= "*/";}
+
+print $prev_line, "\n";
+
+$state == "start" or doError("Syntax error");
+$depth == 0 or doError("Number of '{' != number of '}'");
+
+exit;
+
+

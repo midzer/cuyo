@@ -1,0 +1,149 @@
+.TH CUYO 6 "2014-10-25"
+.\"
+.\"   Copyright <=2001 by Immanuel Halupczok
+.\"   Modified 2002,2006,2012 by the cuyo developers
+.\"   Maintenance modifications 2007,2008,2010-2012,2014 by the cuyo developers
+.\"
+.\"   This program is free software; you can redistribute it and/or modify
+.\"   it under the terms of the GNU General Public License as published by
+.\"   the Free Software Foundation; either version 2 of the License, or
+.\"   (at your option) any later version.
+.\"
+.\"   This program is distributed in the hope that it will be useful,
+.\"   but WITHOUT ANY WARRANTY; without even the implied warranty of
+.\"   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\"   GNU General Public License for more details.
+.\"
+.\"   You should have received a copy of the GNU General Public License
+.\"   along with this program; if not, write to the Free Software
+.\"   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+.\"
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+cuyo - Tetris-like game with many suprises
+.SH SYNOPSIS
+\fBcuyo\fR [\fB\-d\fR] [\fB\-f\fR] [\fB\-g \fIwidth\fBx\fIheight\fR] [\fB\-h\fR] [\fB\-?\fR] [\fB\-\-version \fIversions\fR] [\fIld-file\fR]
+.P
+\fBcuyo \-?\fR
+.\".br
+.\".B cuyo
+.\".RI \-\-help
+.SH DESCRIPTION
+Use A, D, W and S or the arrow keys to move left, move right, turn and
+drop the falling piece. 
+Try to put blobs of the same color together. 
+(You don't need to form rows or columns. 
+Any shape will do.)
+When enough blobs of the same color are connected, they explode. 
+(What "enough" means depends on the level.)  
+Try to make
+explosions next to the the grass (or whatever there is in the level
+instead of the grass). 
+Then, it will explode, too. 
+The level is finished when no grass is left.
+.br
+In some levels, you will need a chain reaction to get rid of the
+grass-equivalent. 
+And many other things may happen in other levels.
+.br
+In two-player-mode, each time one player causes an explosion, the other
+one gets grey things (which explode when something else explodes
+next to them). 
+If one player builds a too big tower, the other player may get one of his rows.
+.SH OPTIONS
+.TP
+.B \-d
+Debug mode.
+.TP
+.B \-f
+Fullscreen mode.
+.TP
+.B \-g \fIwidth\fBx\fIheight
+Set the window size.
+.TP
+.B \-h
+Print a short help message and exit with status 0.
+.TP
+.B \-?
+Print a short help message and exit with status 1.
+.TP
+.B \-\-version \fIversions\fR, \fB\-\-version=\fIversions\fB
+Activate special versions of levels and level tracks.
+\fIversions\fR is a comma-separated list of version specifiers.
+Version specifiers pertaining to difficulty setting, numbers of players,
+and level tracks can also be set from the main menu.
+See the \fBcual\fP(6)\fR manpage for the relevant values.
+The other version specifiers which are actually used in levels
+are \fBeco\fR and \fBgeek\fR.
+
+\fBeco\fR makes a very few levels less resource-hungry. 
+In the consequence, they also become less beautiful.
+.P
+If you're trying to design own levels,
+you can pass the name of your .ld file (level description file) to test
+the level. 
+If you do that, this will be the only available level.
+.\".SH FILES
+.\"Cuyo needs a file called
+.\".I main.ld
+.\"- the main description file for the levels. 
+.\"It includes a lot of other \fI.ld\fR files. 
+.\"Also, a directory called
+.\".I pics
+.\"is needed, with all these small icons in it. 
+.\"Cuyo will look for both in different paths. 
+.\"If it has been installed correctly, you should have
+.\"no problems.
+.SH CREATING NEW LEVELS
+The main work is to draw all those little icons.
+Then you have to create a level description file
+which tells cuyo how to put everything together.
+There is an example level with many comments.
+Its description file is \fBexample.ld\fR.
+(It should be part of the cuyo distribution and probably lies
+in the same directory as the other cuyo level description files.)
+It is rather outdated but may still be a good starting point.
+.P
+Other Sources of information are:
+.TP 2
+-
+Try \fIman cual\fR. 
+Cual - the Cuyo Animation Language - is the format of level description files.
+.TP
+-
+And of course, there are the level description files of the existing levels
+(files ending in \fI.ld\fR, probably located somewhere like
+\fI/usr/share/games/cuyo/\fR).
+.SH SEE ALSO
+\fBcual\fP(6)
+.SH BUGS
+The level description language is still under development.
+.br
+In the preferences dialog, some keys are not displayed correctly.
+.br
+The AI Player is not very intelligent. 
+In particular, it doesn't understand
+most of the special features of the levels, and so, it sometimes
+behaves very silly.
+.br
+See the 
+.I TODO
+file for other bugs.
+.SH AUTHORS
+Mainly Immanuel Halupczok <cuyo@karimmi.de>.
+.br
+Other contributors to the source code:
+Bernhard R. Link, Mark Weyer, Bernhard Seckinger.
+.br
+Other contributors of levels:
+Daniela Lipps, Simon Huggenberger.

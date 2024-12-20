@@ -1,0 +1,119 @@
+#
+#   Copyright 2005-2007 by Mark Weyer
+#   Maintenance modifications 2011 by the cuyo developers
+#
+#   This program is free software; you can redistribute it and/or modify
+#   it under the terms of the GNU General Public License as published by
+#   the Free Software Foundation; either version 2 of the License, or
+#   (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#   GNU General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program; if not, write to the Free Software
+#   Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+
+
+
+NOOP = @echo -n "" > /dev/null
+
+
+
+clean: cleanfiles
+	rm -f `cat cleanfiles`
+
+tidy: tidyfiles
+	rm -f `cat tidyfiles` *~
+
+install: installfiles
+	cp `cat installfiles` $(INSTALL_DIR)
+
+cvscheck: cvsfiles .cvsignore
+	@cvs status -l > cvsstatus
+	@sort -u cvsfiles > cvsfiles1
+	@echo
+	@echo "Comparing cvs status with recommendation."
+	@sed -n -e "s/File: //g" -e "s/Status:.*//gp" cvsstatus | sort -u > cvsfiles2
+	@echo "(Files recommended for cvs but not known there" >> cvsfiles1
+	@echo "Use cvs add or alter Makefile/makefile.ml)" >> cvsfiles1
+	@echo "(Files not recommended for cvs but handled anyway" >> cvsfiles2
+	@echo "Use cvs remove or alter Makefile/makefile.ml)" >> cvsfiles2
+	@-diff -b -B cvsfiles1 cvsfiles2
+	@echo
+	@echo "Files missing in .cvsignore (Change makefile.ml):"
+	@sed -n -e "s/? //gp" cvsstatus | sort -u
+	@rm cvsfiles1 cvsfiles2
+
+
+
+make.cmx: make.ml make.cmi
+	ocamlopt.opt -c make.ml
+
+make.cmi: make.mli
+	ocamlopt.opt make.mli
+
+makefile.opt: makefile.ml make.cmx make.cmi
+	ocamlopt -o makefile.opt unix.cmxa make.cmx makefile.ml
+
+
+
+cvsfiles: makefile.opt
+	./makefile.opt sources > cvsfiles
+	echo "Makefile" >> cvsfiles
+	echo "makefile.ml" >> cvsfiles
+	echo ".cvsignore" >> cvsfiles
+	echo "distfiles" >> cvsfiles
+	$(MAKE) cvsfiles_local
+
+distfiles: makefile.opt
+	echo "Makefile" > distfiles
+	echo "makefile.ml" >> distfiles
+	echo "distfiles" >> distfiles
+	$(MAKE) distfiles_local
+
+installfiles: makefile.opt
+	./makefile.opt expand all > installfiles
+
+tidyfiles: makefile.opt
+	./makefile.opt intermediate all >> tidyfiles
+	echo "make.cmi" >> tidyfiles
+	echo "make.cmx" >> tidyfiles
+	echo "make.o" >> tidyfiles
+	echo "makefile.cmi" >> tidyfiles
+	echo "makefile.cmx" >> tidyfiles
+	echo "makefile.o" >> tidyfiles
+	echo "installfiles" >> tidyfiles
+	echo "tidyfiles" >> tidyfiles
+	echo "cleanfiles" >> tidyfiles
+	echo "cvsfiles" >> tidyfiles
+
+cleanfiles: tidyfiles installfiles
+	cat tidyfiles installfiles > cleanfiles
+	echo "makefile.opt" >> cleanfiles
+	echo "cvsstatus" >> cleanfiles
+	$(MAKE) cleanfiles_local
+
+.cvsignore: cleanfiles
+	cp cleanfiles .cvsignore
+
+
+
+
+
+# Just a convenience hack. Will only behave well on normal targets.
+
+%: makefile.opt
+	./makefile.opt $*
+
+
+# The following targets are listed here to prevent them being handed to
+# makefile.opt although we do not have real rules for them:
+
+Makefile:
+	$(NOOP)
+

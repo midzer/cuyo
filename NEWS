@@ -1,0 +1,99 @@
+NEWS for cuyo
+-------------
+
+Version 2.1.0:
+- Added Portuguese translation
+- Updated German translation
+- Added information next to the game area:
+  * preview of the next fall
+  * shape and number of greys to come
+  * shape and number of remaining grass
+  * directions of connections
+- New levels farming, fractals
+- Improvements to several levels
+- Bugfixes
+- Povray-generated graphics now work with the AGPL-ed version 3.7
+
+Version 2.0.0:
+- New level track "Contributions" for unofficial, community-made levels
+- New levels: aliens, angst, augen, bonimali, flechtwerk, novips, pacman, schemen, springer, trees
+- Finished levels: dungeon, fische, kachelnR
+- Moved remaining unfinished levels and some finished levels to "contributions"
+- Retired level: breakout
+- Oh, yeah, and bugs ... I mean fixes.
+
+Version 2.-1.2:
+- Arbitrarily resizable game window
+- Natural language support, German translation
+- Bugfixes and fresh new bugs
+- New levels: octopi, jump, theater, pressure, mfs
+- Retired levels: reversi, rohrpost
+
+Version 2.-1.1:
+- Some bugfixes.
+
+Version 2.-1.0:
+- Completely new user interface; uses SDL instead of QT
+- Different levelpacks
+- Easy and hard mode
+- Sound (rudimentary)
+- Several new levels
+- Lots of new bugs
+
+
+Version 1.8.6:
+- Several new levels; hopefully not too much new bugs
+
+Version 1.8.5:
+- Bugfixes
+
+Version 1.8.4:
+- Bugfixes, a few new levels.
+
+Version 1.8.3:
+- Bugfixes.
+
+Version 1.8.2:
+- Minor Improvements in the Makefile.am files.
+
+Version 1.8.1:
+- Removed bugs.
+
+Version 1.8.0:
+
+- At least one new level
+- Speed of the Computer player can be choosen in the preferences
+
+Version 1.7.0:
+
+New Level (Slime)
+
+Version 1.6.0:
+
+- *** A lot of new levels. ***
+- In the preferences dialog, you may now choose if you want to turn
+  on levels that are still under construction.
+- For those who wish to create their own levels:
+  A completely new language in which the levels are "programmed".
+  (However, this language is still under development.)
+- A bit of documentation on how to create own levels.
+- A lot of other small changes.
+
+
+Version 1.03:
+
+New Level (The Four Seasons)
+
+Version 1.02:
+
+Nicer Labyrinth-Level
+
+Version 1.01:
+
+Nicer bonus-Level
+
+Version 1.00:
+
+This is the first public release, so no news since the last one. And I won't
+put all the news since the last semi-public release here, because there are
+too many and I don't even remember them all.

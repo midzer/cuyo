@@ -1,0 +1,50 @@
+
+data/pics/pause.xpm[.gz]:
+  Copyright <=2001 by Immanuel Halupczok
+data/pics/explosion.xpm[.gz]:
+  Copyright <=2001,2002 by Immanuel Halupczok
+data/pics/dbgZiffern.xpm[.gz]:
+  Copyright 2002 by Immanuel Halupczok
+data/pics/pktZiffern.xpm[.gz], data/pics/pktZiffern2.xpm[.gz]:
+  Copyright 2002,2008 by Immanuel Halupczok
+data/pics/menupics.xpm[.gz], data/pics/scroll.xpm[.gz],
+data/pics/titel.xpm[.gz], data/sounds/cuyo.it, datasrc/pics/titel-orig.png:
+  Copyright 2006 by Immanuel Halupczok
+datasrc/pics/font-orig.png:
+  Copyright 2006,2010 by Immanuel Halupczok
+icons/cuyo.desktop:
+  Copyright 2007 by Immanuel Halupczok
+  Maintenance modifications 2008,2011 by the cuyo developers
+icons/32x32/apps/cuyo.png, icons/64x64/apps/cuyo.png:
+  Copyright 2007 by Immanuel Halupczok
+  based on pause.xpm which, at that time, was:
+    Copyright <=2001 by Immanuel Halupczok
+data/pics/border.xpm[.gz], data/pics/borderh.xpm[.gz],
+data/pics/borderv.xpm[.gz]:
+  Copyright 2008 by Immanuel Halupczok
+data/pics/infoicons.xpm[.gz]:
+  Copyright 2008 by Immanuel Halupczok
+  Modified 2014 by Mark Weyer
+
+for all of the above:
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program; if not, write to the Free Software
+  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+Some .xpm[.gz] files in data/pics carry copyright notices and licence grants
+in C comments.
+
+
+cuyo was created by Immanuel Halupczok.
+Other cuyo developers are Bernhard Seckinger and Mark Weyer.
+

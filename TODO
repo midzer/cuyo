@@ -1,0 +1,228 @@
+
+
+Mark:
+Gleich nach dem Release-Freeze:
+- Sound-Ausgabe im Fall feiner lokalisieren.
+- players in global.ld definieren statt als spezconst zu behandeln
+  (dann schneller).
+  (und vorher drüber diskutieren)
+
+
+
+Bugs, die behoben werden sollten
+--------------------------------
+Mark:
+- In data/pics liegt semiglobal rum.
+  Das ist wohl ein dummy, dessen Notwendigkeit wir abschaffen sollten.
+  Danach auch data/Makefile.am entsprechend ändern.
+- Eine Levelbeschreibung darf ein Feld "music" haben. Das ist noch nicht
+  dokumentiert, sollte es aber werden.
+
+
+
+
+Wuensche + Todos fuer Cuyo 2.0
+------------------------------
+Immis Wuensche:
+- Eigene Schrift schoener machen?
+- Fehlermeldungs-Ausgabe wieder funktionsfaehig machen
+- Menu benutzerfreundlich
+- Hintergrundbild fuer Menus
+Vielleicht BRLs Wunsch:
+- Kleinskalierung mit Menupunkt waehlbar
+Bernis Wunsch:
+- Alle Level ueberarbeiten
+Marks Wuensche:
+- cual.6 auf Stand von cuyo bringen.
+  Bei der Gelegenheit gleich noch auf saubere Formatierung überprüfen.
+
+
+Bugs, die sich bemerkbar machen koennen, wenn man in Cual programmiert
+----------------------------------------------------------------------
+Immi:
+- Busy-Zeugs bei switch (und if) richtig machen:
+  "if bla -> blub;" soll busy sein, wenn blub busy ist (falls bla true ist)
+  (Wenn man das im Moment einbauen würde, würde das switch nicht mehr
+  richtig tun.)
+- Bug, der in folgendem Code auftritt, beheben:
+    bla = {A, B, C, D, E; *;};
+    blub = { &bla; &bla;};
+
+
+
+Aufraeumen der Sprache Cual
+---------------------------
+Immi:
+- Hex-Modus:
+  - Prüfen, ob 6-Nachbar-01???01 nur bei hex-Level kommt.
+  - Prüfen, ob @(1,.5) nur im Hex-Level kommt.
+
+
+
+Aufraeumen des Cual-Codes der Level
+-----------------------------------
+Immi:
+- explode-cual-Befehl in den Leveln verwenden, wo's sinnvoll ist. 
+
+
+Aufraeumen des Quellcodes
+-------------------------
+Immi:
+- Befehl "bonus()" entpfuschen
+- Wenn ein Fehler gecatcht und dann wieder gethrowt wird, sollte das
+  von einer Fehler-Routine gemacht werden, damit das Intern-Flag, etc
+  noch stimmt.
+- In xpmladen.cpp gibt's eine Warnung, wenn man ohne libz compiliert...
+- Das interpretieren der nicht-cual-Eintraege in den ld-Dateien findet im
+  Moment erst zu Level-Lade-Zeit statt (und nicht zu parse-Zeit).
+  Das sollte auf jeden Fall mal auch auf parse-Zeit verschoben werden.
+  Danach kann man:
+  - Warnung bei unverwendeten level-descr-Einträgen:
+    Sowohl in als auch außerhalb von << >>
+  - Wenn eine Code-Definition von einem Level benutzt wird (und zwar
+    direkt benutzt, z. B. als Blopsorte, und nicht indirekt über einen
+    Aufruf), wird das zu Levelstart-Zeit evaluiert. Es findet also beliebige
+    globale Definitionen. Auch solche, die erst *nach* der Level-Definition
+    stehen. Dafür wurden aber in dem Level keine Variablen reserviert; das
+    führt also zu merkwürdigen Fehlern.
+- xpmLaden aufraeumen
+- Titelbild-Funktionen weg
+- Bilddatei "semiglobal" unnoetig machen
+Mark:
+- In der Fehlerbehandlung stehen indirekt selbst ein paar CASSERTs und so.
+  Im bösen Fall wird das vielleicht rekursiv, bis der call-Stack überläuft.
+  Wenn man eine gute Alternativ-Idee hat, könnte man es ja mal verbessern...
+
+
+Ideen/Wuensche fuer das eigentliche Cuyo-Programm
+-------------------------------------------------
+Immi:
+- Levelvorschau im start-at-menu
+- Computerspieler kommt mit vielen tollen Level-Features nicht zurecht.
+  Was soll daraus werden?
+- Bild/sonstige Belohnung bei alle-Level gewonnen
+- Message-System (Fehlermeldungen sollen irgendwann wieder verschwinden,
+  vor allem, wenn man was neues tut.)
+- Bei Parse-Fehler sollen nicht falsche Folgefehler angezeigt werden
+- Besseres Skript zum entscheiden, welche xpms mitinstalliert werden.
+- Doku von keys in ld-Dateien fertig machen
+  Mark: Ist jetzt Teil von cual.6; Änderungen sollten dort stattfinden.
+Immi:
+- Feintuning der SDL-Graphik: Rausfinden, wie's am schnellsten
+  laeuft: HWSURFACE/SWSURFACE?
+- Gezipte bilder auch mit der SDL-Funktion laden
+
+
+
+
+Ideen/Wuensche fuer Cual-Features
+---------------------------------
+Immi:
+- Levelanfangs-Zufalls-Features:
+  - Keine Nachbarn gleich ausschaltbar
+  - Auch Grau und Gras zufällig reinmischen
+- "." um pos auf "nix malen" zu setzen.
+- Variablen nach Sorten getrennt.
+- Ermöglichen, dass auch nach einer Level-Definition noch globaler cual-Code
+  kommt.
+- Fehler ausgeben, wenn manche Blops Hex-Modus-Nachbarschaft haben und
+  andere nicht.
+- Fehlermeldungs-Positionsangaben zu einzelnen Feldern in der ld verbessern
+  (z. B. pics, die nicht geladen werden können)
+- Feature: Fall mit drei Blops
+- Explodier-Event (oder gibt's den schon?)
+Mark:
+- Befehl zum Verschieben/Vertauschen von Blobs.
+  Noch unklar: Semantik bei Konflikten.
+- Cual-Definitionen parametrisiert
+- Grau-bekomm-Parameter variabel (Anzahl der Graue in Abh. von
+  Reaktionsgröße)
+- Es folgt eine uralte Liste von Ideen fuer behaviour-bits.
+  - Eigenschaften, die dann alle haben können sollen:
+    - fällt runter, wenn dort frei ist
+- Mehrere unabhängige Verbindungsebenen (etwa für mini-cuyo)
+
+
+
+Level-Ideen
+-----------
+Immi:
+- Magie-Level
+
+
+
+
+=======================================================================
+
+Kein ToDo mehr, sondern Anleitungen:
+------------------------------------
+
+
+Erstellen einer neuen Distribution:
+Mark:
+- Datum in cuyo.6 und cual.6 (erste Zeile) aktualisieren
+Immi:
+- Versions-Nummer in configure.ac richtig einstellen.
+- make
+- Schauen, ob beim starten die richtige Version angezeigt wird
+- NEWS aktualisieren
+- Einchecken
+- make dist
+- Distribution ausprobieren
+Mark:
+- In anderes Verzeichnis anonym cvs auschecken, dort make dist, vergleichen:
+  (Verzeichniswechsel)
+  cvs -z3 -d:pserver:anonymous@cvs.savannah.nongnu.org:/sources/cuyo co cuyo
+  cd cuyo
+  ./autogen.sh
+  ./configure --enable-maintainer-mode --enable-datasrc-maintainer-mode
+  make
+  make dist
+  (Vergleichen)
+Immi:
+- Taggen (cvs tag cuyo-1-8-4)
+- signieren (gpg -b cuyo-1.8.4.tar.gz)
+- uploaden:
+  - sftp immi@dl.sv.gnu.org:/releases/cuyo/
+  - put cuyo-1.8.4.tar.gz
+  - put cuyo-1.8.4.tar.gz.sig
+
+Mark:
+Erstellen einer Distribution (Alternative):
+- NEWS aktualisieren, etwa mithilfe von "cvs2cl --stdout | less".
+- Datum in docs/cuyo.6 und docs/cual.6 (erste Zeile) aktualisieren.
+- Datum in po/pot.sed (momentan Zeile 20) aktualisieren.
+- Versions-Nummer in configure.ac (momentan Zeile 21) richtig einstellen.
+- In datasrc und datasrc/pics jeweils "make all" und "make install".
+- commiten.
+- Temporäres Verzeichnis erstellen, reinwechseln.
+- cvs -z3 -d:pserver:anonymous@cvs.savannah.nongnu.org:/sources/cuyo co cuyo
+- An Ort mit aktuellen autotools kopieren. Ab jetzt dort.
+- ./autogen.sh
+- ./configure --enable-maintainer-mode --enable-datasrc-maintainer-mode
+- make
+- make dist
+- Weiteres temporäres Verzeichnis erstellen, cuyo-....tar.gz reinkopieren,
+  reinwechseln, entpacken.
+- ./configure
+- make
+- make install
+- testen
+- make uninstall (und das Zeug manuell löschen, das übrig bleibt)
+- in erstes temporäres Verzeichnis zurück
+- gpg -b cuyo-....tar.gz
+- uploaden:
+  - sftp ...@dl.sv.gnu.org:/releases/cuyo/
+  - put cuyo-1.8.4.tar.gz
+  - put cuyo-1.8.4.tar.gz.sig
+- Dann erst: cvs tag cuyo-1-8-4
+
+
+
+CVS-Bedienung...:
+- Alte Version auschecken: 
+  cvs update -r cuyo-1-6-0beta2
+- Wieder zurück zur aktuellen Version:
+  cvs update -A
+
+
