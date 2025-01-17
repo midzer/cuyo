@@ -20,8 +20,8 @@
 # Die Daten sollen jetzt nicht mehr nach /usr/share/cuyo, sondern
 # nach /usr/share/games/cuyo
 # Erst mal noch auskommentiert, weil man das in jede einzelne Makefile.am
-# schreiben müsste, was irgendwie doof ist.
-# pkgdatadir = $(datadir)/games/@PACKAGE@
+# schreiben mï¿½sste, was irgendwie doof ist.
+pkgdatadir = $(datadir)
 
 SUBDIRS = src data docs icons po
 
@@ -33,7 +33,7 @@ EXTRA_DIST = autogen.sh sdl.m4
 
 # aclocal soll mit -I . aufgerufen werden. Auch, wenn es automatisch von
 # make aufgerufen wird. Automake macht das aber ohne "-I ."; deshalb manuell
-# setzen. (Dadurch, dass hier ACLOCAL gesetzt wird, lässt automake die sonst
+# setzen. (Dadurch, dass hier ACLOCAL gesetzt wird, lï¿½sst automake die sonst
 # automatisch generierte Zeile "ACLOCAL = @ACLOCAL@" weg.
 
 ACLOCAL_AMFLAGS = -I .
