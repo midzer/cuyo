@@ -19,6 +19,7 @@
 
 # Verzeichnis src
 
+pkgdatadir = $(datadir)
 
 ## Programm cuyo erzeugen, das nach games installiert werden soll
 bin_PROGRAMS = cuyo
