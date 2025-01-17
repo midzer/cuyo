@@ -22,7 +22,7 @@ Modified 2006-2008,2010,2011 by the cuyo developers
 #define MENUEINTRAG_H
 
 #include <vector>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "stringzeug.h"
 #include "inkompatibel.h"
@@ -36,8 +36,8 @@ Modified 2006-2008,2010,2011 by the cuyo developers
 
 
 
-/* Malt in der Zukunft einen Teil eines Menüeintrags.
-   Das Bezugssystem für Koordinaten ist AlignTop im Menüeintrag. */
+/* Malt in der Zukunft einen Teil eines Menï¿½eintrags.
+   Das Bezugssystem fï¿½r Koordinaten ist AlignTop im Menï¿½eintrag. */
 
 struct DrawDing {
 private:
@@ -60,7 +60,7 @@ private:
 
 public:
   int mBinSubBereich;
-  int mX0,mX1; // mX1 ist wie immer um 1 zu groß
+  int mX0,mX1; // mX1 ist wie immer um 1 zu groï¿½
   int mY0,mY1;
   int mXPos;
   bool mAbschneiden;
@@ -72,11 +72,11 @@ public:
 	   int hotkey, /* Die Position des Hotkeys in text.
                          Negative Spezialwerte siehe
                          oben in menueintrag.cpp */
-	   int binSubBereich, /* Subbereich, zu dem dieses Drawding gehört */
+	   int binSubBereich, /* Subbereich, zu dem dieses Drawding gehï¿½rt */
 	   int x, int y,
 	   int align = AlignHCenter,   /* Akzeptiert nur waagerechtes Zeug,
 					  senkrecht ist immer zentriert. */
-           Font * font = NULL,  /* Default hängt von aktSubBereich ab */
+           Font * font = NULL,  /* Default hï¿½ngt von aktSubBereich ab */
 	   int * xmin = NULL, int * xmax = NULL
 	     /* Wenn die !=0 sind, wird dort schon mal unsere Ausdehung
 		reingeschrieben. */);
@@ -105,9 +105,9 @@ class MenuEintrag {
     Art_deko
   };
   const int mHoehe;  /* Ganz viel wird einfacher, wenn das hier const ist,
-			also verlässt sich auch ganz viel drauf.
+			also verlï¿½sst sich auch ganz viel drauf.
 			Im Moment scheinen wir auch nicht mehr zu brauchen.
-			Wenn sich das mal ändert, kann man sich immer noch
+			Wenn sich das mal ï¿½ndert, kann man sich immer noch
 			die Arbeit machen, BlattMenu::anzeigen() und so
 			anzupassen. */
   
@@ -117,8 +117,8 @@ class MenuEintrag {
   int mAccel;   /* Der Keycode des Hotkeys */
   int mAccIndex;
   void (*mDoReturn)();
-  bool (*mGetStrom)(); /* Ein Menüpunkt, der grad keinen Strom kriegt,
-                          kann auch nicht ausgewählt werden */
+  bool (*mGetStrom)(); /* Ein Menï¿½punkt, der grad keinen Strom kriegt,
+                          kann auch nicht ausgewï¿½hlt werden */
   Art mArt;
   int mX0, mX1;
   
@@ -139,7 +139,7 @@ class MenuEintrag {
   MenuEintrag * setGetStrom(bool(*getstrom)()) {mGetStrom = getstrom; return this;}
   void setNieStrom();
   void setSubBereich(int subBereich);
-  /* Aufrufen, wenn sich möglicherweise der Stromstatus geändert hat */
+  /* Aufrufen, wenn sich mï¿½glicherweise der Stromstatus geï¿½ndert hat */
   void updateStrom();
   void updateDrawDinge();
   void setUpdateFlag() { mUpdaten = true; }
@@ -150,11 +150,11 @@ class MenuEintrag {
   virtual void anzeigen(int x, int y, bool graue);
   virtual void zeitSchritt() {}
   virtual Str getInfo() {return "";}
-  /* y muss nicht überprüft werden; liegt auf jeden Fall zwischen 0 und hoehe */
+  /* y muss nicht ï¿½berprï¿½ft werden; liegt auf jeden Fall zwischen 0 und hoehe */
   virtual int getMausPos(int x, int y);
 
   virtual void doReturn(bool durchMaus);
-  virtual void doHyperaktiv(const SDL_keysym &, int) {}
+  virtual void doHyperaktiv(const SDL_Keysym &, int) {}
   virtual bool getStrom() const;
   
   bool getWaehlbar() const;
@@ -167,11 +167,11 @@ class MenuEintrag {
   }
 
  protected:
-  void doPapiEscape();  /* Damit auch die Erben das dürfen. */
+  void doPapiEscape();  /* Damit auch die Erben das dï¿½rfen. */
   void doPapiNavigiere(int);     /* ebenso */
 
-  /* Das füllt DrawDinge auf, malt aber nicht selbst.
-     Wird auch aufgerufen, um die Breite des Menüpunkts zu bestimmen */
+  /* Das fï¿½llt DrawDinge auf, malt aber nicht selbst.
+     Wird auch aufgerufen, um die Breite des Menï¿½punkts zu bestimmen */
   virtual void updateDDIntern();
 
   inline DrawDing & neuDraw() {
@@ -214,7 +214,7 @@ public:
 
 
 
-/* Könnte man Schönfinkeln, wäre diese Klasse fast unnötig... */
+/* Kï¿½nnte man Schï¿½nfinkeln, wï¿½re diese Klasse fast unnï¿½tig... */
 class MenuEintragAuswahl: public MenuEintrag {
 protected:
   int mArg;
@@ -233,7 +233,7 @@ class MenuEintragAuswahlmenu: public MenuEintragSubmenu {
   const std::vector<Str> *const mAuswahlen;
   int (*mGetAktuell) ();
   void (*mEintragDoReturn) (int);
-  int mVorlauf;  // Wie viele Einträge hat das Menü vor dem "ersten"?
+  int mVorlauf;  // Wie viele Eintrï¿½ge hat das Menï¿½ vor dem "ersten"?
   int mPfeil1X0, mPfeil1X1, mPfeil2X0, mPfeil2X1;
   int mAnimation;
   int mAnimationDX;
@@ -248,7 +248,7 @@ public:
 			 int accel=0);
 
   virtual Str getInfo();
-  virtual void doHyperaktiv(const SDL_keysym &, int);
+  virtual void doHyperaktiv(const SDL_Keysym &, int);
   virtual int getMausPos(int x, int y);
   virtual void zeitSchritt();
   virtual void doReturn(bool durchMaus);
@@ -288,7 +288,7 @@ class MenuEintragTaste: public MenuEintrag {
       MenuEintrag(papi, na, Art_hyper), mSpieler(sp), mTaste(ta) {}
 
   virtual Str getInfo();
-  virtual void doHyperaktiv(const SDL_keysym & taste, int);
+  virtual void doHyperaktiv(const SDL_Keysym & taste, int);
   virtual ZentrierLinie getZentrierLinie() const { return zl_daten; }
  protected:
   virtual void updateDDIntern();
@@ -305,7 +305,7 @@ class MenuEintragAI: public MenuEintrag {
       MenuEintrag(papi, na, Art_aktiv) {}
 
   virtual int getMausPos(int x, int y);
-  virtual void doHyperaktiv(const SDL_keysym & taste, int);
+  virtual void doHyperaktiv(const SDL_Keysym & taste, int);
   virtual void doReturn(bool durchMaus);
   virtual void doPfeil(int d);
   virtual ZentrierLinie getZentrierLinie() const { return zl_daten; }
@@ -325,7 +325,7 @@ class MenuEintragSound: public MenuEintrag {
       MenuEintrag(papi, na, Art_aktiv), mBitteWarten(false) {}
 
   virtual void doReturn(bool durchMaus);
-  virtual void doHyperaktiv(const SDL_keysym & taste, int);
+  virtual void doHyperaktiv(const SDL_Keysym & taste, int);
   virtual ZentrierLinie getZentrierLinie() const { return zl_daten; }
  protected:
   virtual void updateDDIntern();

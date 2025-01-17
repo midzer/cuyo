@@ -23,7 +23,7 @@ Modified 2002,2006,2008,2011 by the cuyo developers
 #define XPMLADEN_H
 
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "maske.h"
 
@@ -31,7 +31,7 @@ class Str;
 
 
 /* Versucht die Datei na zu laden.
-   Versucht außerdem, die Datei na.gz zu laden.
+   Versucht auï¿½erdem, die Datei na.gz zu laden.
    Liefert 0, wenn keine der Dateien existiert.
    Throwt, wenn's beim Laden einen Fehler gibt.
    (Falls die SDL-Lad-Routine verwendet wird, kann nicht versucht werden,

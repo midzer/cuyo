@@ -33,7 +33,7 @@ Maintenance modifications 2012 by the cuyo developers
 #include <csignal>
 #endif
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "cuyointl.h"
 #include "sound.h"
@@ -62,7 +62,7 @@ namespace Cuyo {
 /* (stehen nicht in der .h-Datei) */
 
 /***** Debug-Variablen *****/
-/* Es gibt außerdem noch die globale Variable gDebug; */
+/* Es gibt auï¿½erdem noch die globale Variable gDebug; */
 bool mEinzelschritt;
 bool mZeitlupe;
 int mZaehlerZeitlupe;
@@ -72,7 +72,7 @@ bool mSchnellvorlauf;
 
 
 
-/** Das Bild, das angezeigt wird, während das Spiel auf Pause steht. */
+/** Das Bild, das angezeigt wird, wï¿½hrend das Spiel auf Pause steht. */
 Bilddatei * mPauseBild;
 
 
@@ -86,10 +86,10 @@ KIPlayer * mKI;
 
 /***** Zustandsvariablen *****/
 
-/** global-Modus (Spielerübergreifend). */
+/** global-Modus (Spielerï¿½bergreifend). */
 enum global_modus {
   gmodus_kein_spiel,
-  gmodus_spiel_start, // wie gmodus_spiel, aber Text muss noch gelöscht werden
+  gmodus_spiel_start, // wie gmodus_spiel, aber Text muss noch gelï¿½scht werden
   gmodus_spiel,
   /* die folgenden beiden Modi bedeuten beide, dass das 
      Spiel (der Level) zu Ende geht, aber dass wir noch warten, bis
@@ -111,16 +111,16 @@ bool mPause;
 /** true, wenn das Spiel grad nicht weitergehen soll, sondern auf einen
     Tastendruck gewartet wird. */
 bool mWarteAufTaste;
-/* Wenn > 0, wird höchstens so lange auf Taste gewartet */
+/* Wenn > 0, wird hï¿½chstens so lange auf Taste gewartet */
 int mWarteTimeout;
 
 /** Hier wird reingespeichert,
     welche Version (zuletzt) auf der Kommandozeile stand.
     Achtung! Das passiert schon vor Cuyo::init(), also vor der
-    Lebenszeit von Cuyo, wenn Cuyo eine hätte. */
+    Lebenszeit von Cuyo, wenn Cuyo eine hï¿½tte. */
 Version mKommandoZeilenVersion;
 
-/** Die Versionen, die über die Kommandozeile übergeben wurden,
+/** Die Versionen, die ï¿½ber die Kommandozeile ï¿½bergeben wurden,
     und die wir nicht anders verwalten. */
 Version mZusatzVersionen;
 int mSchwierig;
@@ -131,14 +131,14 @@ int mSpielerZahl;
 /** Falls zwei Spieler: Gegen Computer? */
 bool mGegenKI;
 
-/** Aktuelle Level-Nummer, wenn ein Spiel läuft. Sonst undefiniert. */
+/** Aktuelle Level-Nummer, wenn ein Spiel lï¿½uft. Sonst undefiniert. */
 int mLevelNr;
-/** (Interner) Name des aktuellen Levels. Enthält, wenn grade kein Spiel
-    läuft, den Namen vom Level zum weiterspielen. Ist (wenn kein Spiel
-    läuft) "", wenn es keinen gibt. */
+/** (Interner) Name des aktuellen Levels. Enthï¿½lt, wenn grade kein Spiel
+    lï¿½uft, den Namen vom Level zum weiterspielen. Ist (wenn kein Spiel
+    lï¿½uft) "", wenn es keinen gibt. */
 Str mIntLevelName;
 int mPunkte[max_spielerzahl];
-/** Wird nur während der Zeitbonus-Animation gebraucht... */
+/** Wird nur wï¿½hrend der Zeitbonus-Animation gebraucht... */
 int mZeitBonus;
 
 
@@ -156,7 +156,7 @@ bool startLevel();
     getan werden muss (ohne Animation, d. h. entweder
     ist die Animation schon vorbei oder es gibt halt keine). */
 void stopLevel();
-/** Setzt die Punktzahl für Spieler sp */
+/** Setzt die Punktzahl fï¿½r Spieler sp */
 void setPunkte(int sp, int pu);
 /** Gibt die Fehlermeldung bestehend aus t und fe aus:
     Sowohl als Text im Cuyo-Fenster
@@ -173,28 +173,28 @@ void bonusAnimationSchritt();
     Hier passiert die eigentliche Arbeit. */
 void zeitSchrittIntern();
 
-/** stoppt das Spiel sofort (egal, ob grad ein Level läuft oder nicht) */
+/** stoppt das Spiel sofort (egal, ob grad ein Level lï¿½uft oder nicht) */
 void stopSpiel(bool noch_anzeigen = false);
-/** Die Haupt-Spielschritt-Routine, während das Spiel läuft.
+/** Die Haupt-Spielschritt-Routine, wï¿½hrend das Spiel lï¿½uft.
     Ruft alle anderen spielschritt()-Routinen auf. */
 void spielSchritt();
-/** Wird von startLevel() und von spielSchritt() aufgerufen. Lässt
-    sämtliche Blops animieren. */
+/** Wird von startLevel() und von spielSchritt() aufgerufen. Lï¿½sst
+    sï¿½mtliche Blops animieren. */
 void animiere();
 
 Version berechneVersion();
 
-/* Übernimmt die Dinge, die durch version spezifiziert werden.
+/* ï¿½bernimmt die Dinge, die durch version spezifiziert werden.
    Alles andere bleibt beim alten,
-   bis auf daß der alte Wert von mZusatzVersionen verlorengeht.  */
+   bis auf daï¿½ der alte Wert von mZusatzVersionen verlorengeht.  */
 void setzeVersion(const Version & version);
 
 
 
-/** Liefert den Namen und Pfad der Prefs-Datei zurück
+/** Liefert den Namen und Pfad der Prefs-Datei zurï¿½ck
     ($HOME/.cuyo) */
 Str getPrefsName();
-/** Liefert den Namen und Pfad der Log-Datei zurück
+/** Liefert den Namen und Pfad der Log-Datei zurï¿½ck
     ($HOME/cuyo.log) */
 Str getLogName();
 
@@ -204,7 +204,7 @@ void signaleAus();
 
 
 
-/** Startet das Spiel für die eingestellte Spielerzahl und mit dem
+/** Startet das Spiel fï¿½r die eingestellte Spielerzahl und mit dem
     angegebenen Level */
 void startSpiel(int level) {
   CASSERT(mGModus == gmodus_kein_spiel);
@@ -217,7 +217,7 @@ void startSpiel(int level) {
   PrefsDaten::setLastLevel(mIntLevelName);
 
   /* Damit der Level nicht schon beim Start angehalten ist oder schnell
-     läuft */
+     lï¿½uft */
   mEinzelschritt = false;
   mSchnellvorlauf = false;
 
@@ -260,12 +260,12 @@ bool startLevel() {
      im Speicher? */
   if (!ld->mLevelGeladen || ld->mLevelNummer != mLevelNr) {
   
-    /* Ok, neu laden. Erst mal alten Level entladen, damit während
+    /* Ok, neu laden. Erst mal alten Level entladen, damit wï¿½hrend
        der "loading level"-Anzeige nicht noch falsche Informationen
-       über den alten Level angezeigt werden. */
+       ï¿½ber den alten Level angezeigt werden. */
     ld->entladLevel();
 
-    /* Für "Loading level" */
+    /* Fï¿½r "Loading level" */
     ld->setSchriftFarbe(Color(80, 80, 80));
 
     /* Level-Daten laden */
@@ -274,9 +274,9 @@ bool startLevel() {
       mSpielfeld[i]->setText(_sprintf(_("Score: %d\n\nLoading Level %d...\n\n"),
 	        mPunkte[i], mLevelNr));
     }
-    /* "Loading Level" gleich anzeigen. Außerdem den Rand neu malen, da
-       wir die Schriftfarbe geändert haben und das Numexplode vom alten
-       level ungültig ist und so. */
+    /* "Loading Level" gleich anzeigen. Auï¿½erdem den Rand neu malen, da
+       wir die Schriftfarbe geï¿½ndert haben und das Numexplode vom alten
+       level ungï¿½ltig ist und so. */
     UI::randNeuMalen();
     UI::sofortAllesAnzeigen();
 
@@ -291,30 +291,30 @@ bool startLevel() {
   //     (Etwas gepfuscht) */
   //  setPunkte(i, mPunkte[i]);
   //}
-  /* Einige Farben haben sich durch das level-laden geändert. Also
+  /* Einige Farben haben sich durch das level-laden geï¿½ndert. Also
      nach dem Level alles neu malen. Und da die mal-Routine nicht auf
-     die Idee kommt, dass die Ränder um den Level neu an den X-Server
-     geschickt werden müssen, selbst Area::updateAll() aufrufen. */
+     die Idee kommt, dass die Rï¿½nder um den Level neu an den X-Server
+     geschickt werden mï¿½ssen, selbst Area::updateAll() aufrufen. */
   UI::randNeuMalen();
 	
   /* Aufnehmen / Abspielen starten */
   Aufnahme::init(mAbspielen, getSpielerModus());
 
-  /***** Allen Leuten erzählen, dass jetzt ein Level anfängt. *****/
+  /***** Allen Leuten erzï¿½hlen, dass jetzt ein Level anfï¿½ngt. *****/
   
-  /* Für den Global-Blop... */
+  /* Fï¿½r den Global-Blop... */
   ld->startLevel();
 
   /* Hier ist die Stelle, wo wir darauf gucken, wie viele Spieler mitspielen;
-     nur für so viele Spieler wird das Spiel wirklich gestartet */
+     nur fï¿½r so viele Spieler wird das Spiel wirklich gestartet */
   for (int i = 0; i < mSpielerZahl; i++) {
 
     mSpielfeld[i]->startLevel();
     Str PlatzAnzahlFormat;
     if (ld->mPlatzAnzahlMin == ld->mPlatzAnzahlMax)
-      PlatzAnzahlFormat=_sprintf(ngettext("1 blop explodes",
+      PlatzAnzahlFormat=_sprintf("1 blop explodes",
 					  "%d blops explode",
-					  ld->mPlatzAnzahlMin),
+					  ld->mPlatzAnzahlMin,
 				 ld->mPlatzAnzahlMin);
     else
       if (ld->mPlatzAnzahlAndere)
@@ -343,12 +343,17 @@ bool startLevel() {
      Dabei werden auch die ganzen Init-Events verschickt. */
   animiere();
 
-  /* Auch die KI möchte wissen, wenn ein neuer Level anfängt. */
+  /* Auch die KI mï¿½chte wissen, wenn ein neuer Level anfï¿½ngt. */
   if (mGegenKI)
     mKI->startLevel();
 
 
-  Sound::setMusic(ld->mMusik);
+  if (ld->mMusik != "") {
+    Sound::setMusic(ld->mMusik);
+  }
+  else {
+    Sound::setMusic("cuyo.it");
+  }
 	
   mGModus = gmodus_spiel_start;
   mPause = false;
@@ -372,7 +377,7 @@ void stopLevel() {
 
 
 
-/** Setzt die Punktzahl für Spieler sp */
+/** Setzt die Punktzahl fï¿½r Spieler sp */
 void setPunkte(int sp, int pu){
   mPunkte[sp] = pu;
   UI::setPunkte(sp, pu);
@@ -389,7 +394,7 @@ void setPunkte(int sp, int pu){
 
 
 
-/** stoppt das Spiel sofort (egal, ob grad ein Level läuft oder nicht) */
+/** stoppt das Spiel sofort (egal, ob grad ein Level lï¿½uft oder nicht) */
 void stopSpiel(bool noch_anzeigen/* = false*/) {
   /* Evtl. wird stopSpiel() aufgerufen, wenn das Spiel noch gar nicht
      richtig fertig gestartet wurde; dann wurde mGModus vielleicht noch
@@ -417,20 +422,20 @@ void stopSpiel(bool noch_anzeigen/* = false*/) {
 
 
 
-/** Die Haupt-Spielschritt-Routine, während das Spiel läuft.
+/** Die Haupt-Spielschritt-Routine, wï¿½hrend das Spiel lï¿½uft.
     Ruft alle anderen spielschritt()-Routinen auf. */
 void spielSchritt() {
 
   /* Den Schritt aufnehmen bzw. abspielen. Beim Abspielen werden
-     hier auch ggf. Tastendrücke abgespielt. */
+     hier auch ggf. Tastendrï¿½cke abgespielt. */
   Aufnahme::recSchritt(mSpielfeld);
 
-  /* Ggf. einen Spielschritt für die KI */
+  /* Ggf. einen Spielschritt fï¿½r die KI */
   if (mGegenKI)
     mKI->spielSchritt();
 
   
-  /*** Die einzelnen Teile eines Spielschritts ausführen: ***/
+  /*** Die einzelnen Teile eines Spielschritts ausfï¿½hren: ***/
 
   /* Who will be the one killing me for this #define? */
   /* Answer: The first one to try
@@ -445,7 +450,7 @@ void spielSchritt() {
   /* Hetzrand runterbewegen; evtl. sterben */
   ALLE_SPIELER->bewegeHetzrand();
 
-  /* Evtl. zufällige Graue an die Spieler senden. (Blops werden nicht
+  /* Evtl. zufï¿½llige Graue an die Spieler senden. (Blops werden nicht
      erzeugt; es wird nur gespeichert, dass das noch Graue auf das
      ankommen warten. */
   ALLE_SPIELER->zufallsGraue();
@@ -457,8 +462,8 @@ void spielSchritt() {
   ALLE_SPIELER->rueberReihenSchritt();
   Blop::sendeGeschedulteEvents();
 
-  /* Neue Explosionen testen. Da dabei keine Blops manipuliert werden, können
-     wir um alles eine große gleichzeit machen. */
+  /* Neue Explosionen testen. Da dabei keine Blops manipuliert werden, kï¿½nnen
+     wir um alles eine groï¿½e gleichzeit machen. */
   Blop::beginGleichzeitig();
   ALLE_SPIELER->testeFlopp();
   Blop::endGleichzeitig();
@@ -476,8 +481,8 @@ void spielSchritt() {
 
 
   if (mGModus == gmodus_spiel) {
-    /* Nur wenn das Spiel wirklich noch läuft (und nicht nur darauf gewartet
-       wird, das wir beenden können: Testen, ob wir gewonnen haben */
+    /* Nur wenn das Spiel wirklich noch lï¿½uft (und nicht nur darauf gewartet
+       wird, das wir beenden kï¿½nnen: Testen, ob wir gewonnen haben */
 
     /* Wurde grade das restliche Gras vernichtet? */
     for (int i = 0; i < mSpielerZahl; i++)
@@ -536,7 +541,7 @@ noch_gras_da:;
       }
 					
     }	// Ende: if bereit
-  } // Ende: if warten, bis alle für's Spielende bereit sind
+  } // Ende: if warten, bis alle fï¿½r's Spielende bereit sind
 
 
 }  // spielSchritt()
@@ -577,7 +582,7 @@ void bonusAnimationSchritt() {
     }
 
     mWarteAufTaste = true;
-    /* Kein Warte-Timeout mehr. Einfach Leertaste drücken */
+    /* Kein Warte-Timeout mehr. Einfach Leertaste drï¿½cken */
     //mWarteTimeout = nachbonus_wartezeit;
   } // Ende: if Bonus-Animation fertig
 
@@ -590,11 +595,11 @@ void bonusAnimationSchritt() {
     Hier passiert die eigentliche Arbeit. */
 void zeitSchrittIntern() {
 
-  /* Während Pause läuft das Spiel nicht weiter */
+  /* Wï¿½hrend Pause lï¿½uft das Spiel nicht weiter */
   if (mPause)
     return;
   
-  /* Warten wir grad drauf, dass der Benutzer eine Taste drückt? */
+  /* Warten wir grad drauf, dass der Benutzer eine Taste drï¿½ckt? */
   if (mWarteAufTaste) {
 
     if (mWarteTimeout) {
@@ -626,10 +631,10 @@ void zeitSchrittIntern() {
 
   if (mGModus == gmodus_bonus_warte) {
     /* Wir haben grade ein bisschen gewartet, damit der Benutzer seine
-       Level-Endpunkte bewundern kann. Jetzt geht's weiter mit dem nächsten
+       Level-Endpunkte bewundern kann. Jetzt geht's weiter mit dem nï¿½chsten
        Level... */
 			
-    /* Alten Level stoppen (ist vermutlich nicht wirklich nötig) */
+    /* Alten Level stoppen (ist vermutlich nicht wirklich nï¿½tig) */
     stopLevel();
  		
     /* neuer Level */
@@ -659,7 +664,7 @@ void zeitSchrittIntern() {
     return;
   } 	
 	
-  /* Spiel grade erst gestartet? Dann Texte löschen */
+  /* Spiel grade erst gestartet? Dann Texte lï¿½schen */
   if (mGModus == gmodus_spiel_start) {
     for (int i = 0; i < mSpielerZahl; i++)
       mSpielfeld[i]->setText("");
@@ -679,7 +684,7 @@ void zeitSchrittIntern() {
     /* ... normaler Spielschritt */
     
 
-    /* Evtl. Signale abfangen, um die Logdatei abspeichern zu können. */
+    /* Evtl. Signale abfangen, um die Logdatei abspeichern zu kï¿½nnen. */
     signaleAn();
     
     try {
@@ -696,7 +701,7 @@ void zeitSchrittIntern() {
       } catch (Fehler) {}
 
       /* Im Debug-Modus soll das Spielfeld weiter angezeigt werden,
-         wenn ein Fehler während des Spiels passiert. */
+         wenn ein Fehler wï¿½hrend des Spiels passiert. */
       stopSpiel(gDebug);
       
       /* Wenn das Speichern der log-Datei geklappt hat, soll ggf.
@@ -714,16 +719,16 @@ void zeitSchrittIntern() {
 }
 
 
-/** Wird von startLevel() und von zeitSchritt() aufgerufen. Lässt
-    sämtliche Blops animieren. */
+/** Wird von startLevel() und von zeitSchritt() aufgerufen. Lï¿½sst
+    sï¿½mtliche Blops animieren. */
 void animiere() {
   
   Blop::beginGleichzeitig();
   
-  /* Alle Grafiken löschen */
+  /* Alle Grafiken lï¿½schen */
   Blop::lazyLeereStapel();
 
-  /* Erst mal das globale Blop ausführen. */
+  /* Erst mal das globale Blop ausfï¿½hren. */
   ld->spielSchritt();
   
   /* Die eigentliche Animation */
@@ -761,13 +766,13 @@ void sendeGraue(bool reSp, int g) {
 
 
 /** reSp bittet den anderen Spieler um eine Reihe. Er selbst
-    hat Höhe h. Antwort ist eine der Konstanten bewege_reihe_xxx */
+    hat Hï¿½he h. Antwort ist eine der Konstanten bewege_reihe_xxx */
 int bitteUmReihe(bool reSp, int h) {
   return mSpielfeld[!reSp]->bitteUmReihe(h);
 }
 
 
-/** reSp will einen Stein vom anderen Spieler (rüberreihe) */
+/** reSp will einen Stein vom anderen Spieler (rï¿½berreihe) */
 void willStein(bool reSp, Blop & s) {
   mSpielfeld[!reSp]->gebStein(s);
 }
@@ -776,7 +781,7 @@ void willStein(bool reSp, Blop & s) {
 
 
 
-/** Liefert den Namen und Pfad der Log-Datei zurück
+/** Liefert den Namen und Pfad der Log-Datei zurï¿½ck
     ($HOME/cuyo.log) */
 Str getLogName() {
   char * ho = getenv("HOME");
@@ -856,7 +861,7 @@ void signaleAus() {
 
 
 
-/********************** public Methoden (für das Spiel) **********************/
+/********************** public Methoden (fï¿½r das Spiel) **********************/
 /* (stehen in cuyo.h) */
 
 
@@ -867,7 +872,7 @@ void signaleAus() {
 
 
 
-/** liefert true, wenn das Spiel normal läuft, false
+/** liefert true, wenn das Spiel normal lï¿½uft, false
 		wenn das Spiel am zuende gehen ist */
 bool getSpielLaeuft() {
   CASSERT(mGModus != gmodus_kein_spiel);
@@ -880,25 +885,25 @@ bool getSpielPause() {
   return mPause;
 }
 
-/** Liefert die Anzahl der Mitspieler zurück. */
+/** Liefert die Anzahl der Mitspieler zurï¿½ck. */
 int getSpielerZahl() {
   return mSpielerZahl;
 }
 
 
-/** Liefert das Pause-Bildchen zurück */
+/** Liefert das Pause-Bildchen zurï¿½ck */
 Bilddatei * getPauseBild() {
   return mPauseBild;
 }
 
 
-/** Liefert true, wenn debug-Rüberreihen-Test aktiv ist */
+/** Liefert true, wenn debug-Rï¿½berreihen-Test aktiv ist */
 bool getRueberReihenTest() {
   return mRueberReihenTest;
 }
 
 
-/** Liefert ein Spielfeld zurück. */
+/** Liefert ein Spielfeld zurï¿½ck. */
 Spielfeld * getSpielfeld(bool reSp) {
   return mSpielfeld[reSp];
 }
@@ -906,7 +911,7 @@ Spielfeld * getSpielfeld(bool reSp) {
 
 
 
-/*********************** public Methoden fürs ui **************************/
+/*********************** public Methoden fï¿½rs ui **************************/
 /* (stehen in ui2cuyo.h) */
 
 
@@ -950,7 +955,7 @@ void init() {
   mKI = new KIPlayer(mSpielfeld[1]);
 
   setSpielerModus(spielermodus);
-    // Sollte erst nach Erzeugen der Menüs aufgerufen werden...
+    // Sollte erst nach Erzeugen der Menï¿½s aufgerufen werden...
 
   mIntLevelName = PrefsDaten::getLastLevel();
   mLevelNr = ld->getLevelNr(mIntLevelName);
@@ -975,9 +980,9 @@ void setPause(bool pause) {
 }
 
 
-/** Ein key-Event halt... (Kümmert sich um alle Tasten,
-    die während des Spiels so gedrückt werden...). */
-void keyEvent(const SDL_keysym & taste) {
+/** Ein key-Event halt... (Kï¿½mmert sich um alle Tasten,
+    die wï¿½hrend des Spiels so gedrï¿½ckt werden...). */
+void keyEvent(const SDL_Keysym & taste) {
 
   if (mPause) {
     switch (taste.sym) {
@@ -1014,7 +1019,7 @@ void keyEvent(const SDL_keysym & taste) {
   } else if (mGModus == gmodus_spiel) {
     int sp, t;
     if (PrefsDaten::getTaste(taste.sym, sp, t)) {
-      /* Im 1-Spieler-Modus und im KI-Modus alle Tastendrücke an
+      /* Im 1-Spieler-Modus und im KI-Modus alle Tastendrï¿½cke an
 	 Spieler 1 senden: */
       if (mSpielerZahl == 1 || mGegenKI) sp = 0;
 
@@ -1022,7 +1027,7 @@ void keyEvent(const SDL_keysym & taste) {
       mSpielfeld[sp]->taste(t);
       return;
     }
-  } // if spiel läuft
+  } // if spiel lï¿½uft
   
   
   /* Event noch nicht verarbeitet. Dann vielleicht debug? */
@@ -1031,8 +1036,8 @@ void keyEvent(const SDL_keysym & taste) {
   
 /** Eine Taste wurde gedrueckt, von der das ui befunden hat, dass
     es sich um eine debug-Taste handeln koennte.
-    Liefert zurueck, ob die Taste tatsächlich erkannt werden konnte. */
-bool debugKeyEvent(const SDL_keysym & taste) {
+    Liefert zurueck, ob die Taste tatsï¿½chlich erkannt werden konnte. */
+bool debugKeyEvent(const SDL_Keysym & taste) {
 
   char buch = taste.sym;
   if ((taste.mod & KMOD_SHIFT) && buch >= 'a' && buch <= 'z')
@@ -1092,7 +1097,7 @@ bool debugKeyEvent(const SDL_keysym & taste) {
     print_to_stderr(_sprintf("Debug: Replay log file = %d\n", mAbspielen));
     
   } else if (buch == 'g') {
-    /* Hoffentlich darf man gModus einfach so ändern... */
+    /* Hoffentlich darf man gModus einfach so ï¿½ndern... */
 
     if (mGModus == gmodus_spiel) {
       mGModus = gmodus_warte_gewonnen;
@@ -1147,7 +1152,7 @@ bool debugKeyEvent(const SDL_keysym & taste) {
 
 
 /*
-für xtrace:
+fï¿½r xtrace:
 extern "C" {
 int XInternAtom(Display *display, char *atom_name, int only_if_exists);
 }
@@ -1156,12 +1161,12 @@ int XInternAtom(Display *display, char *atom_name, int only_if_exists);
 
 
 /** Die Haupt-Zeitschritt-Routine. Wird direkt
-    vom ui aufgerufen. Ruft alle spielschritt()-Routinen u.ä. auf. */
+    vom ui aufgerufen. Ruft alle spielschritt()-Routinen u.ï¿½. auf. */
 void zeitSchritt() {
   CASSERT(mGModus != gmodus_kein_spiel);
 
 /*
-für xtrace:
+fï¿½r xtrace:
  XInternAtom(qt_xdisplay(),"zeitschritt A",1);
 */
 
@@ -1213,7 +1218,7 @@ int getSpielerModus() {
 }
 
 /** Setzt #Spieler, KI-Modus; gemerkte Level-Nummer wird auf 0
-    zurueckgesetzt. Vorbedingung: Es läuft grad kein Spiel. */
+    zurueckgesetzt. Vorbedingung: Es lï¿½uft grad kein Spiel. */
 void setSpielerModus(int spm) {
   CASSERT(mGModus==gmodus_kein_spiel);
   if (spm == spielermodus_computer) {
@@ -1260,14 +1265,14 @@ Version berechneVersion() {
 }
 
 
-/* Übernimmt die Dinge, die durch version spezifiziert werden.
+/* ï¿½bernimmt die Dinge, die durch version spezifiziert werden.
    Alles andere bleibt beim alten,
-   bis auf daß der alte Wert von mZusatzVersionen verlorengeht.  */
+   bis auf daï¿½ der alte Wert von mZusatzVersionen verlorengeht.  */
 void setzeVersion(const Version & version) {
   mZusatzVersionen = version;
 
-  /* Achtung! Jetzt enthält mZusatzVersionen erstmal zu viel.
-     Aber der Überschuß wird gleich rausgelöscht. */
+  /* Achtung! Jetzt enthï¿½lt mZusatzVersionen erstmal zu viel.
+     Aber der ï¿½berschuï¿½ wird gleich rausgelï¿½scht. */
 
   try {
     mSpielerZahl = (

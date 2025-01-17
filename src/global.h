@@ -21,14 +21,16 @@ Modified 2002,2006,2008,2010,2011 by the cuyo developers
 #ifndef GLOBAL_H
 #define GLOBAL_H
 
+#include <SDL2/SDL.h>
+
 class Str;
 
 
 /* In dieser Datei werden all die Dinge definiert, von denen ich nicht
-   weiß, wo ich sie hin tun soll. Unter anderem ein paar globale Variablen. */
+   weiï¿½, wo ich sie hin tun soll. Unter anderem ein paar globale Variablen. */
 
 
-/** True, wenn -d übergeben wurde, d. h. im Debug-Modus. */
+/** True, wenn -d ï¿½bergeben wurde, d. h. im Debug-Modus. */
 extern bool gDebug;
 
 /** Pfad, wo das Cuyo-Programm liegt, das aufgerufen wurde (aus
@@ -36,31 +38,31 @@ extern bool gDebug;
     Leveln zu suchen. */
 extern Str gCuyoPfad;
 
-/** True, wenn der Benutzer den Namen einer ld-Datei übergeben hat. */
+/** True, wenn der Benutzer den Namen einer ld-Datei ï¿½bergeben hat. */
 extern bool gDateiUebergeben;
 
-/** Wenn eine ld-Datei übergeben wurde, dann ist das der Name davon. */
+/** Wenn eine ld-Datei ï¿½bergeben wurde, dann ist das der Name davon. */
 extern Str gLevelDatei;
 
-
+extern SDL_Window *sdlWindow;
 
 
 
 /** Entfernt von p alles, was nach dem ersten Punkt kommt. Ist dazu da
-    um aus einem "bla.xpm", was unter pics steht, den Namen für Programme
+    um aus einem "bla.xpm", was unter pics steht, den Namen fï¿½r Programme
     zu extrahieren. */
 Str picsEndungWeg(const Str & p);
 
 
 /** d sollte ein Pfad mit Dateiname sein. Liefert nur den Pfad-Anteil
-    zurück (d. h. alles vor dem letzten "/". Liefert "./", falls d keinen
-    "/" enthält. */
+    zurï¿½ck (d. h. alles vor dem letzten "/". Liefert "./", falls d keinen
+    "/" enthï¿½lt. */
 Str nimmPfad(Str d);
 
 
 /** d sollte ein Pfad mit Dateiname sein. Liefert nur den nicht-Pfad-Anteil
-    zurück (d. h. alles nach dem letzten "/". Liefert alles, falls d keinen
-    "/" enthält. */
+    zurï¿½ck (d. h. alles nach dem letzten "/". Liefert alles, falls d keinen
+    "/" enthï¿½lt. */
 Str vergissPfad(Str d);
 
 

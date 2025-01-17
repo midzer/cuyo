@@ -21,7 +21,7 @@ Modified 2001,2002,2005,2006,2008,2010,2011,2014 by the cuyo developers
 #ifndef FALL_H
 #define FALL_H
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "blop.h"
 #include "blopbesitzer.h"
@@ -36,24 +36,24 @@ Modified 2001,2002,2005,2006,2008,2010,2011,2014 by the cuyo developers
 #define richtung_senk 3
 #define richtung_unplatziert 4 // das Fall, das als naechstes kommen wird...
 
-// Wert für get_X bis get_YY, wenn das Blop nicht existiert
+// Wert fï¿½r get_X bis get_YY, wenn das Blop nicht existiert
 #define blop_pos_nix -1
 
 
 
 struct FallPos {
   /** x-Koord vom Fall in Feldern; bei unplatzierten Blops ist das
-      die Pos, an der der Blop später auftauchen wird. */
+      die Pos, an der der Blop spï¿½ter auftauchen wird. */
   int x;
   /** y-Koord vom Fall in Pixeln (absolut, und nicht relativ zum ggf.
-      wegen Rüberreihen verschobenen Spielfeld).
+      wegen Rï¿½berreihen verschobenen Spielfeld).
       Bei unplatzierten blobs ist das die Pos. relativ zum Preview-Feld 
       (und nicht die Pos., an der es auftauchen wird) */
   int yy;
   /** Richtung und Anzahl der Blops. Siehe Konstanten. */
   int r;
 	
-  /** Liefert die Anzahl der Blops vom Fall zurück. */
+  /** Liefert die Anzahl der Blops vom Fall zurï¿½ck. */
   int getAnz() const;
 	
   int getX(int a) const;
@@ -65,7 +65,7 @@ struct FallPos {
 
 class Spielfeld;
 
-/** Enthält alle Informationen über das Fall: Existenz, Position
+/** Enthï¿½lt alle Informationen ï¿½ber das Fall: Existenz, Position
 		(inkl. genaue Drehpos), Farben, ...
   */
 
@@ -80,7 +80,7 @@ class Fall: public BlopBesitzer {
   FallPos mPos;
 
  private:
-  /** True, wenn rechter Spieler (für Sound nötig) */
+  /** True, wenn rechter Spieler (fï¿½r Sound nï¿½tig) */
   bool mRechterSpieler;
   /** Schnell fallen? */
   bool mSchnell;
@@ -88,7 +88,7 @@ class Fall: public BlopBesitzer {
   int mExtraDreh;
   /** Ist es noch nicht ganz fertig waagerecht verschoben? */
   int mExtraX;
-  /** Wurde Taste links bzw. rechts gedrückt? */
+  /** Wurde Taste links bzw. rechts gedrï¿½ckt? */
   int mExtraLinks, mExtraRechts;
   /** Die Blops */
   Blop mBlop[2];
@@ -98,29 +98,29 @@ class Fall: public BlopBesitzer {
 
 	
   /** kopiert einen fallenden Blop nach mDaten und liefert den
-      Zielblop in mDaten zurück (als Referenz), damit man einen
+      Zielblop in mDaten zurï¿½ck (als Referenz), damit man einen
       land-Event senden kann. Sendet den land-Event nicht selbst,
-      weil Cual-Code erwarten könnte, dass erst beide Blops
+      weil Cual-Code erwarten kï¿½nnte, dass erst beide Blops
       gefestigt werden und dann erst die Events kommen.
-      Kann 0 zurückliefern (wenn der Blop keinen Platz auf
+      Kann 0 zurï¿½ckliefern (wenn der Blop keinen Platz auf
       dem Bildschirm hat). */
   Blop * festige(int n);
 	
-  /** Liefert true, wenn das Fall grade auf Tastendrücke reagiert */
+  /** Liefert true, wenn das Fall grade auf Tastendrï¿½cke reagiert */
   bool steuerbar() {
     return mPos.r == richtung_waag || mPos.r == richtung_senk;
   }
 	
   /** Prueft, ob an Position p schon was im Weg ist oder nicht.
-      Wenn irgendwo drüber in der Spalte was nicht-schwebendes ist,
-      zählt das auch als im Weg.
+      Wenn irgendwo drï¿½ber in der Spalte was nicht-schwebendes ist,
+      zï¿½hlt das auch als im Weg.
       @return eine Konstante belegt_... */
   int testBelegt(FallPos p) const;
 	
   /** Liefert true, wenn das Fallende senkrecht ist */
   bool istSenkrecht() const;
 	
-  /** Lässt nur noch Blop a übrig */
+  /** Lï¿½sst nur noch Blop a ï¿½brig */
   void halbiere(int a);
 	
   /** Liefert loc_x */
@@ -134,7 +134,7 @@ class Fall: public BlopBesitzer {
   int getYY(int a) const;
 
   /** Kodiert alle Informationen des Drehens in eine Zahl.
-      Ist für getXX und getYY da */
+      Ist fï¿½r getXX und getYY da */
   int getDrehIndex(int a) const;
 
   /** Bestimm mFallRect neu (Fall-ueberdeckendes Rechteck) */
@@ -146,14 +146,14 @@ class Fall: public BlopBesitzer {
 
  public:
  
-  /**  Muß einmal aufgerufen werden */
+  /**  Muï¿½ einmal aufgerufen werden */
   void initialisiere();
 
   /** Erzeugt ein neues Fall, der sich noch nicht im Spielfeld befindet.
       Bei reinkommen = true kommt das Fall ins Preview-Feld reingerutscht.
-      Sonst ist es sofort da (für Spielanfang) */
+      Sonst ist es sofort da (fï¿½r Spielanfang) */
   void erzeug(bool reinkommen = true);
-  /** Bringt ein Fall ins Spiel, d.h. setzt die Koordinaten. Liefert false, wenn dafür kein Platz ist */
+  /** Bringt ein Fall ins Spiel, d.h. setzt die Koordinaten. Liefert false, wenn dafï¿½r kein Platz ist */
   bool insSpiel();
   /** Entfernt das Fall ganz */
   void zerstoere();
@@ -164,11 +164,11 @@ class Fall: public BlopBesitzer {
   void spielSchrittPlatziertIntern();
   
  public:
-  /** Bewegt das Fall ggf. nach unten und kümmert sich ggf. um
+  /** Bewegt das Fall ggf. nach unten und kï¿½mmert sich ggf. um
       Verwandlungen. */
   void spielSchritt();
   
-  /** Führt die Animationen durch. Innerhalb einer Gleichzeit aufrufen. */
+  /** Fï¿½hrt die Animationen durch. Innerhalb einer Gleichzeit aufrufen. */
   void animiere();
 
   /** Bewegt das Fall eins nach links. Wird in einer Gleichzeit aufgerufen. */
@@ -177,34 +177,34 @@ class Fall: public BlopBesitzer {
   void tasteRechts();
   /** Dreht das Fall.
       Version 1 wird in einer Gleichzeit aufgerufen,
-      Version 2 danach außerhalb von Gleichzeiten. */
+      Version 2 danach auï¿½erhalb von Gleichzeiten. */
   void tasteDreh1();
   void tasteDreh2();
-  /** Ändert die Fallgeschwindigkeit vom Fall.
+  /** ï¿½ndert die Fallgeschwindigkeit vom Fall.
       Wird in einer Gleichzeit aufgerufen. */
   void tasteFall();
 
   /** Liefert true, wenn das Fall (noch) am Platzen ist
       (wg. Spielende) */
   bool getAmPlatzen() const;
-  /** Liefert einen Pointer auf die Blops zurück. Wird vom
-      KIPlayer und von ort_absolut::finde() benötigt. */
+  /** Liefert einen Pointer auf die Blops zurï¿½ck. Wird vom
+      KIPlayer und von ort_absolut::finde() benï¿½tigt. */
   const Blop * getBlop() const;
   Blop * getBlop();
-  /** Liefert die Anzahl der Blops vom Fall zurück. */
+  /** Liefert die Anzahl der Blops vom Fall zurï¿½ck. */
   int getAnz() const {
     return mPos.getAnz();
   }
-  /** Lässt alle Blops vom Fall platzen (Spielende). */
+  /** Lï¿½sst alle Blops vom Fall platzen (Spielende). */
   void lassPlatzen();
   /** Malt das Fall. */
   void malen() const;
   /** Liefert true, wenn das Fall existiert.
-      Mit Argument: Wenn diese Hälfte existiert. */
+      Mit Argument: Wenn diese Hï¿½lfte existiert. */
   bool existiert(int a=0) const;
   /** Liefert true, wenn das Fall gerade am zerfallen ist
       (d. h. existiert, aber aus nur noch einem Blop besteht).
-      In dieser Zeit darf nämlich keine Explosion gezündet
+      In dieser Zeit darf nï¿½mlich keine Explosion gezï¿½ndet
       werden. (Erst warten, bis der andere Blop auch angekommen
       ist.) */
   bool istEinzel() const;

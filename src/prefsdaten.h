@@ -24,10 +24,10 @@ Modified 2003,2006,2010,2011,2014 by the cuyo developers
 #include <set>
 #include <vector>
 
-#include "SDL.h"
+#include "SDL2/SDL.h"
 
-/* Konstanten für das Tasten-Array */
-/* Achtung: Vor Ändern dieser Konstanten checken, ob
+/* Konstanten fï¿½r das Tasten-Array */
+/* Achtung: Vor ï¿½ndern dieser Konstanten checken, ob
    ui::zeigePrefs() immernoch so von diesen Konstanten abhaengt. */
 #define taste_anz 4
 #define taste_links 0
@@ -37,7 +37,7 @@ Modified 2003,2006,2010,2011,2014 by the cuyo developers
 
 
 
-/** Datenstruktur für das, was in .cuyo steht:
+/** Datenstruktur fï¿½r das, was in .cuyo steht:
     Das, was man im preferences-Dialog und im Hauptmenue einstellen kann und
     welche Level gewonnen wurden. */
 
@@ -56,13 +56,13 @@ namespace PrefsDaten {
   
   /** Liefert true, wenn die Taste k belegt ist, und speichert dann
       in sp und t ab, was die Taste tut. */
-  bool getTaste(SDLKey k, int & sp, int & t);
+  bool getTaste(SDL_Keycode k, int & sp, int & t);
   
-  SDLKey getTaste(int sp, int t);
+  SDL_Keycode getTaste(int sp, int t);
   double getKIGeschwLin();
   int getKIGeschwLog();
   
-  void setTaste(int sp, int t, SDLKey code);
+  void setTaste(int sp, int t, SDL_Keycode code);
   void setKIGeschwLog(int kigl);
 
   bool getSound();

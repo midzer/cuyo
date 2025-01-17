@@ -17,7 +17,7 @@
 */
 
 #include <stddef.h>
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "maske.h"
 #include "sdltools.h"

@@ -40,17 +40,17 @@ namespace Cuyo {
   void destroy();
   
 
-  /** Ein key-Event halt... (Kümmert sich um alle Tasten,
-      die während des Spiels so gedrückt werden...). */
-  void keyEvent(const SDL_keysym & taste);
+  /** Ein key-Event halt... (Kï¿½mmert sich um alle Tasten,
+      die wï¿½hrend des Spiels so gedrï¿½ckt werden...). */
+  void keyEvent(const SDL_Keysym & taste);
   
   /** Eine Taste wurde gedrueckt, von der das ui befunden hat, dass
       es sich um eine debug-Taste handeln koennte.
-      Liefert zurueck, ob die Taste tatsächlich erkannt werden konnte. */
-  bool debugKeyEvent(const SDL_keysym & taste);
+      Liefert zurueck, ob die Taste tatsï¿½chlich erkannt werden konnte. */
+  bool debugKeyEvent(const SDL_Keysym & taste);
 
   /** Die Haupt-Zeitschritt-Routine. Wird direkt
-      vom ui aufgerufen. Ruft alle spielschritt()-Routinen u.ä. auf. */
+      vom ui aufgerufen. Ruft alle spielschritt()-Routinen u.ï¿½. auf. */
   void zeitSchritt();
 
   /** Markiert alle Graphik auf upzudaten; danach muss noch malSpielfeld()
@@ -63,7 +63,7 @@ namespace Cuyo {
   /** NaechstesFall neu malen. Wird vom ui aufgerufen. */
   void malNaechstesFall(int sp);
 
-  /** Startet das Spiel für die eingestellte Spielerzahl und mit dem
+  /** Startet das Spiel fï¿½r die eingestellte Spielerzahl und mit dem
       angegebenen Level */
   void startSpiel(int level);
 
@@ -74,7 +74,7 @@ namespace Cuyo {
   int getSpielerZahl();
   int getSpielerModus();
   /** Setzt #Spieler, KI-Modus; gemerkte Level-Nummer wird auf 0
-      zurueckgesetzt. Vorbedingung: Es läuft grad kein Spiel. */
+      zurueckgesetzt. Vorbedingung: Es lï¿½uft grad kein Spiel. */
   void setSpielerModus(int spm);
 
   Version berechneVersion();
@@ -90,10 +90,10 @@ namespace Cuyo {
 
 
 
-  /** Womöglich in der falschen Datei: Hier wird reingespeichert,
+  /** Womï¿½glich in der falschen Datei: Hier wird reingespeichert,
       welche Version (zuletzt) auf der Kommandozeile stand.
       Achtung! Das passiert schon vor Cuyo::init(), also vor der
-      Lebenszeit von Cuyo, wenn Cuyo eine hätte. */
+      Lebenszeit von Cuyo, wenn Cuyo eine hï¿½tte. */
   extern Version mKommandoZeilenVersion;
 
 }

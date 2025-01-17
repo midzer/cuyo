@@ -21,9 +21,10 @@ Modified 2006,2008,2010,2011 by the cuyo developers
 #ifndef SDLTOOLS_H
 #define SDLTOOLS_H
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
-#include <maske.h>
+#include "maske.h"
+#include "global.h"
 
 #define scale_base 4
 
@@ -37,7 +38,7 @@ struct Color {
   Color(Uint8 r, Uint8 g, Uint8 b): mR(r), mG(g), mB(b) {}
   
   /* Convert to SDL pixel value */
-  Uint32 getPixel(SDL_PixelFormat *fmt = SDL_GetVideoSurface()->format) const {
+  Uint32 getPixel(SDL_PixelFormat *fmt = SDL_GetWindowSurface(sdlWindow)->format) const {
     return SDL_MapRGB(fmt, mR, mG, mB);
   }
   
@@ -73,7 +74,7 @@ namespace SDLTools {
 
   /* Convert Qt-Key into SDL-Key; don't use Qt constants: we don't want to
      depend on Qt just to be able to read old .cuyo files. */
-  SDLKey qtKey2sdlKey(int qtk);
+  SDL_Keycode qtKey2SDL_Keycode(int qtk);
 
 
   SDL_Rect rect(int x, int y, int w = 0, int h = 0);

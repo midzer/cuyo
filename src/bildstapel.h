@@ -22,13 +22,13 @@ Modified 2002,2003,2005,2006,2011,2014 by the cuyo developers
 #define BILDSTAPEL_H
 
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
-/** So viele Bilder dürfen höchstens für einen Blop gemalt werden. */
+/** So viele Bilder dï¿½rfen hï¿½chstens fï¿½r einen Blop gemalt werden. */
 #define max_bild_anz 20
 
 
-/* Für spezvar_outX, wenn nix ausgegeben werden soll. */
+/* Fï¿½r spezvar_outX, wenn nix ausgegeben werden soll. */
 #define spezvar_out_nichts 0x7fff
 
 
@@ -42,27 +42,27 @@ class Sorte;
 
 
 
-/** Enthält die komplette Information darüber, wie ein blop grade
+/** Enthï¿½lt die komplette Information darï¿½ber, wie ein blop grade
     aussieht. Also:
-    - Eine Liste von Bildern, die gemalt werden müssen. Für jedes Bild:
+    - Eine Liste von Bildern, die gemalt werden mï¿½ssen. Fï¿½r jedes Bild:
       - Sorte (Achtung: Muss nicht mit der aktuellen Blop-Sorte
-        übereinstimmen, wenn sich der Blop grade verwandelt hat. Oder
+        ï¿½bereinstimmen, wenn sich der Blop grade verwandelt hat. Oder
 	wenn ein Nachbarblob hier her gemalt hat.);
         Datei-Nr; Pos; Viertel
-    - Platz-Zustand des Blops. (Ist vielleicht etwas unschön, dass das
+    - Platz-Zustand des Blops. (Ist vielleicht etwas unschï¿½n, dass das
       die einzige Stelle ist, wo sich ein Blop seinen Platz-Zustand merkt.
       ist aber ja eigentlich auch egal.)
     - Eventuelle Debug-Output-Werte
     
-    Das existiert vor allem deshalb als eigenständiges Objekt, damit man
+    Das existiert vor allem deshalb als eigenstï¿½ndiges Objekt, damit man
     einen aktuellen Bildstapel mit einem veralteten vergleichen kann (um
     zu wissen, ob man den Blob neu malen muss).
     
     Verwendung:
-    - Erst initStapel() aufrufen. Dann mit speichereBild() die gewünschten
+    - Erst initStapel() aufrufen. Dann mit speichereBild() die gewï¿½nschten
       Bilder speichern.
     - Mit == kann verglichen werden, ob zwei Bildstapel das selbe malen.
-    - Mit malen() kann der Stapel tatsächlich gemalt werden.
+    - Mit malen() kann der Stapel tatsï¿½chlich gemalt werden.
     
     */
 
@@ -85,14 +85,14 @@ class BildStapel {
 
 
 
-  /** Maximale Stapelhöhe. Wird aus den Leveldaten ausgelesen. */
+  /** Maximale Stapelhï¿½he. Wird aus den Leveldaten ausgelesen. */
   int mMaxAnz;
-  /** Tatsächliche Stapelhoehe */
+  /** Tatsï¿½chliche Stapelhoehe */
   int mAnz;
   
   BildEbene * mStapel;
   
-  /** Die Debug-Zahlen, die über das Blob geschrieben werden sollen. */
+  /** Die Debug-Zahlen, die ï¿½ber das Blob geschrieben werden sollen. */
   int mDebugOut1, mDebugOut2;
   
   /** Aktueller Platz-Zustand. */
@@ -120,7 +120,7 @@ public:
   bool operator==(const BildStapel & b) const;
 
   /** Entfernt alle Bilder. Aufrufen, bevor
-      speichereBild() für jedes Bild aufgerufen wird. */
+      speichereBild() fï¿½r jedes Bild aufgerufen wird. */
   void initStapel(int platz);
  
   void speichereBild(Sorte * so, int dat, int pos, int viertel, int ebene = 0);
@@ -129,7 +129,7 @@ public:
     
   /** malt den Bildstapel. xx und yy sind in Pixeln angegeben;
       Stimmt die folgende Behauptung??
-      der Hintergrund wird vorher gelöscht.
+      der Hintergrund wird vorher gelï¿½scht.
       If apply_mirror is set and the level is an upside-down one, then the
       respective coordinate-transformation is applied. */
   void malen(int xx, int yy, bool apply_mirror=true) const;
@@ -139,15 +139,15 @@ public:
 
   
   /** Liefert true, wenn der Stapel leer ist. Wird benutzt, um
-      eine Fehlermeldung auszuspucken, wenn während eines Events
+      eine Fehlermeldung auszuspucken, wenn wï¿½hrend eines Events
        gemalt wird. */
   bool istLeer() const;
  
-  /** Für Debug-Ausgaben */ 
+  /** Fï¿½r Debug-Ausgaben */ 
   void print() const;
 
 private:
-  /** Gibt die Zahl n aus. Wird für Debug-Output von malen()
+  /** Gibt die Zahl n aus. Wird fï¿½r Debug-Output von malen()
       benutzt. */
   void malDebug(int xx, int yy, int n) const;
 };

@@ -46,7 +46,7 @@ enum {
   anz_blattpics
 };
 
-/* Menüpunkte werden an verschiedenen Linien zentriert. Die Positionen
+/* Menï¿½punkte werden an verschiedenen Linien zentriert. Die Positionen
    dieser Linien werden getrennt berechnet. Siehe BlattMenu::oeffnen */
 enum ZentrierLinie {
   zl_zentriert, zl_accel, zl_daten, zl_anzahl
@@ -62,7 +62,7 @@ public:
   virtual ~Blatt() {}
 
   virtual void doEvent(const SDL_Event & evt);
-  virtual void keyEvent(const SDL_keysym & ) {}
+  virtual void keyEvent(const SDL_Keysym & ) {}
   virtual void resizeEvent() {}
   virtual void mouseButtonEvent(bool , int , int ) {}
   virtual void mouseMotionEvent(bool , int , int  , int , int) {}
@@ -91,7 +91,7 @@ class BlattSpiel: public Blatt {
   ~BlattSpiel();
 
   virtual void oeffnen(int lnr);
-  virtual void keyEvent(const SDL_keysym & taste);
+  virtual void keyEvent(const SDL_Keysym & taste);
   virtual void resizeEvent();
   virtual void anzeigen();
   virtual void zeitSchritt();
@@ -110,13 +110,13 @@ class BlattSpiel: public Blatt {
 class MenuEintrag;
 
 
-/* Konstanten für mausbereich.mEintrag */
+/* Konstanten fï¿½r mausbereich.mEintrag */
 #define eintrag_keiner (-1)
 #define eintrag_scrollleiste (-2)
 
-/* Der einzige Subbereich, der für Tastatur-User existiert. */
+/* Der einzige Subbereich, der fï¿½r Tastatur-User existiert. */
 #define subbereich_default 0
-/* Die folgenden Konstanten sind nur zur Übergabe von oder an
+/* Die folgenden Konstanten sind nur zur ï¿½bergabe von oder an
    Funktionen und nicht zum Speichern in einem MausBereich. */
 #define subbereich_hyperaktiv (-2)
 #define subbereich_keiner (-1)
@@ -126,9 +126,9 @@ class MenuEintrag;
 struct MausBereich {
 
   int mEintrag;
-  /* Die Bedeutung von subbereich hängt von der Menüeintragart ab.
-     Subbereich ist nur für Maususer. Aus Sicht von Tastatur-Usern
-     gibt es nur den default-Subbereich. (Sobald eine Taste gedrückt
+  /* Die Bedeutung von subbereich hï¿½ngt von der Menï¿½eintragart ab.
+     Subbereich ist nur fï¿½r Maususer. Aus Sicht von Tastatur-Usern
+     gibt es nur den default-Subbereich. (Sobald eine Taste gedrï¿½ckt
      wird, sollte auch wieder dort hin geschaltet werden.) */
   int mSubBereich;
   
@@ -149,7 +149,7 @@ struct MausBereich {
 
 class MenuEintragSubmenu;
 
-enum yneuwahl {   /* Zur Übergabe an calcScroll():
+enum yneuwahl {   /* Zur ï¿½bergabe an calcScroll():
 		     wo (vertikal) soll der mWahl-Eintrag stehen? */
   ynw_mitte,
   ynw_oben,
@@ -158,43 +158,43 @@ enum yneuwahl {   /* Zur Übergabe an calcScroll():
 
 class BlattMenu: public Blatt {
   friend struct DrawDing;
-  friend class MenuEintrag;  /* Damit Menüpunkte doEscape() aufrufen können */
+  friend class MenuEintrag;  /* Damit Menï¿½punkte doEscape() aufrufen kï¿½nnen */
 
  protected:
-  /* Soll es auch dann eine Scrollleiste haben, wenn sie unnötig ist?
+  /* Soll es auch dann eine Scrollleiste haben, wenn sie unnï¿½tig ist?
      (=> hat auch escape-button) */
   bool mImmerScrollleiste;
   std::vector<MenuEintrag*> mEintraege;
   std::vector<int> mEintraegeY;  /* relativ zu mY0.
 				    Geht eins weiter als mEintraege,
-				    so daß es auch die Gesamthöhe enthält. */
-  BlattMenu * mObermenu;    /* NULL für das Hauptmenü */
+				    so daï¿½ es auch die Gesamthï¿½he enthï¿½lt. */
+  BlattMenu * mObermenu;    /* NULL fï¿½r das Hauptmenï¿½ */
   
-  /* Wenn der Eintrag, wo dies ein Untermenü ist, erfahren möchte, wenn
-     das Menü verlassen wird, sollte er sich mit setObereintrag() hier
+  /* Wenn der Eintrag, wo dies ein Untermenï¿½ ist, erfahren mï¿½chte, wenn
+     das Menï¿½ verlassen wird, sollte er sich mit setObereintrag() hier
      eintragen. */
   MenuEintragSubmenu * mObereintrag;
 
-  /* Wenn was Hyperaktiv ist, kann mWahl trotzdem ein anderer Menüpunkt
-     sein: wenn sich die Maus über einem anderen Menüpunkt befindet.
-     (Tastendrücke gehen dann aber an den hyperaktiven Eintrag) */
+  /* Wenn was Hyperaktiv ist, kann mWahl trotzdem ein anderer Menï¿½punkt
+     sein: wenn sich die Maus ï¿½ber einem anderen Menï¿½punkt befindet.
+     (Tastendrï¿½cke gehen dann aber an den hyperaktiven Eintrag) */
   MausBereich mWahl;
-  /* True, wenn Button unten; wird (im Moment) nur für Scrollleistenpfeile
+  /* True, wenn Button unten; wird (im Moment) nur fï¿½r Scrollleistenpfeile
      gebraucht. */
   bool mPress;
   int mHyperaktiv;  // eintrag_keiner wenn nix hyperaktiv ist
   Str mInfoText;
-  int mInfoW;       // negativ für "kein Scrollen", sonst Textbreite
+  int mInfoW;       // negativ fï¿½r "kein Scrollen", sonst Textbreite
   int mInfoX;       /* current position of scrolling info text.
 		       Can be negative. In fact, the scrolling text is drawn
 		       twice: This is the left copy, the right one starts
 		       at mInfox+mInfoW. */
 
-  /* mX0 = x-Koordinate fürs alignen... getrennt nach 
-     mY0 = y-Koordinate vom oberen Rand von Menüpunkt 0
+  /* mX0 = x-Koordinate fï¿½rs alignen... getrennt nach 
+     mY0 = y-Koordinate vom oberen Rand von Menï¿½punkt 0
      (evtl. weit oberhalb vom Bildschirm) */
   int mX0[zl_anzahl], mY0, mZeigVon, mZeigBis;
-  /* mAnimXX: Wie ohne Anim, aber tatsächliche Position während einer
+  /* mAnimXX: Wie ohne Anim, aber tatsï¿½chliche Position wï¿½hrend einer
      Scroll-Animation (im Gegensatz zu: Zielposition) */
   int mAnimY0, mAnimZeigVon, mAnimZeigBis;
   /* Aktuelle Scrollgeschwindigkeit */
@@ -220,7 +220,7 @@ class BlattMenu: public Blatt {
   void neuerEintrag(MenuEintrag*);
 
   virtual void oeffnen(bool durchMaus, int wahl = eintrag_keiner);
-  virtual void keyEvent(const SDL_keysym & taste);
+  virtual void keyEvent(const SDL_Keysym & taste);
   virtual void mouseButtonEvent(bool press, int x, int y);
   virtual void mouseMotionEvent(bool press, int x, int y, int x_alt, int y_alt);
   virtual void resizeEvent();
@@ -233,19 +233,19 @@ class BlattMenu: public Blatt {
     
   void menuLoeschen();
 
-  /* Ändert mWahl und kümmert sich drum, dass Graphik geupdatet wird */
+  /* ï¿½ndert mWahl und kï¿½mmert sich drum, dass Graphik geupdatet wird */
   void setWahl(MausBereich wahl);
   void setWahl(int eintrag, int subBereich = subbereich_default);
  
-  /* Ändert mHyperaktiv und kümmert sich drum, dass Graphik geupdatet wird */
+  /* ï¿½ndert mHyperaktiv und kï¿½mmert sich drum, dass Graphik geupdatet wird */
   void setHyperaktiv(int ha);
 
-  /* Kümmert sich um mInfotext und mInfoY.
-     Wird aufgerufen, wenn sich mInfotext vielleicht ändern soll.
+  /* Kï¿½mmert sich um mInfotext und mInfoY.
+     Wird aufgerufen, wenn sich mInfotext vielleicht ï¿½ndern soll.
      Also unter anderem von setWahl() und setHyperaktiv() */
   void updateInfo();
 
-  /* Teilt dem Eintrag seinen neuen Subbereich mit. Der Eintrag kümmert
+  /* Teilt dem Eintrag seinen neuen Subbereich mit. Der Eintrag kï¿½mmert
      sich dann um sein Graphik-Update */
   void updateEintrag(int e);
   
@@ -286,7 +286,7 @@ class BlattStartAt: public BlattMenu {
   BlattStartAt(): BlattMenu(true) {}  /* true: Scrollleiste immer da... und esc-Button */
  
   virtual void oeffnen(bool durchMaus, int wahl = eintrag_keiner);
-    /* Hier wird der int ignoriert, da sich die Klasse selbst drum kümmert */
+    /* Hier wird der int ignoriert, da sich die Klasse selbst drum kï¿½mmert */
  protected:
   virtual void doReturn(bool durchMaus);
 };

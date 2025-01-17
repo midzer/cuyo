@@ -21,12 +21,12 @@ Modified 2002,2006,2008,2010,2011 by the cuyo developers
 #ifndef PUNKTEFELD_H
 #define PUNKTEFELD_H
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #include "bilddatei.h"
 
-/** Zeigt die Punkte eines Spielers hübsch an. Achtung: Erst _nach_
-    ld-Datei-Laden erzeugen. (Weil erst dann die nötigen Bildchen
+/** Zeigt die Punkte eines Spielers hï¿½bsch an. Achtung: Erst _nach_
+    ld-Datei-Laden erzeugen. (Weil erst dann die nï¿½tigen Bildchen
     geladen werden.) */
 class Punktefeld {
 public:
@@ -48,7 +48,7 @@ private:
       weil sonst das log-Zeugs durcheinander kommt. Schade eigentlich. Dann
       machen wir uns halt unseren eigenen. */
   static unsigned int gRandSeed;
-  /** True, wenn sich was geändert hat, d. h. wenn der Bildschirminhalt
+  /** True, wenn sich was geï¿½ndert hat, d. h. wenn der Bildschirminhalt
       nicht aktuell ist */
   bool mUpdateNoetig;
 

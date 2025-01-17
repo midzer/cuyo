@@ -21,15 +21,15 @@ Modified 2003-2006,2008,2010,2011,2014 by the cuyo developers
 #include <cstdlib>
 #include <vector>
 
-#include <SDL.h>
-#include <SDL_mixer.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 
 #include "cuyointl.h"
 #include "sound.h"
 #include "pfaditerator.h"
 #include "fehler.h"
 
-/* Um rauszufinden, ob's ein oder zwei Spieler gibt, für Stereo */
+/* Um rauszufinden, ob's ein oder zwei Spieler gibt, fï¿½r Stereo */
 #include "cuyo.h"
 
 #include "prefsdaten.h"
@@ -78,7 +78,7 @@ void init() {
 
   /* Sound wird nur dann jetzt schon initialisiert, wenn
      Sound in den Prefs angeschaltet ist. Auf Computern,
-     auf denen Sound nicht geht, braucht SDL nämlich manchmal
+     auf denen Sound nicht geht, braucht SDL nï¿½mlich manchmal
      ziemlich lang um zu merken, dass es nicht geht. */  
   checkePrefsStatus();
 }
@@ -98,15 +98,15 @@ void destroy() {
 
 
 /** Sollte aufgerufen werden, wenn sich Pref->sound
-    möglicherweise geändert hat */
+    mï¿½glicherweise geï¿½ndert hat */
 void checkePrefsStatus() {
 
-  /* Möglicherweise muss die Musik gestoppt werden */
+  /* Mï¿½glicherweise muss die Musik gestoppt werden */
   if (mSoundGeht && !PrefsDaten::getSound())
     setMusic("");
     
 
-  /* Möglicherweise sound-Initialisierung nachholen */
+  /* Mï¿½glicherweise sound-Initialisierung nachholen */
   if (mSoundInitialisiert)
     return;
   if (!PrefsDaten::getSound())
@@ -172,7 +172,7 @@ void setMusic(Str na) {
 
 
 
-/** Lädt den angegebenen Sample und liefert eine Nummer zurück,
+/** Lï¿½dt den angegebenen Sample und liefert eine Nummer zurï¿½ck,
     mit dem man ihn abspielen kann. */
 int ladSample(Str na) {
 
@@ -197,7 +197,7 @@ int ladSample(Str na) {
   
   
 /** Gibt alle Samples wieder frei, die mit ladSample geladen worden
-    sind, außer die, die init() geladen hat. Sollte nach Levelende
+    sind, auï¿½er die, die init() geladen hat. Sollte nach Levelende
     aufgerufen werden, wenn die Levelsounds nicht mehr gebraucht werden.
     (Aber erst, wenn die ld-Dateien einzeln geladen werden.) */
 void loescheUserSamples() {
@@ -215,9 +215,9 @@ void loescheUserSamples() {
 
 
 /** Spielt das Sample mit der angegebenen Nummer (die entweder eine
-    der obigen Konstanten ist oder von ladSample zurückgeliefert wurde).
-    so,xz,xn bestimmen die x-Position für Stereo-Effekte.
-    Dabei ist xz/xn ein Bruch, 0 für den linken und 1 für den rechten
+    der obigen Konstanten ist oder von ladSample zurï¿½ckgeliefert wurde).
+    so,xz,xn bestimmen die x-Position fï¿½r Stereo-Effekte.
+    Dabei ist xz/xn ein Bruch, 0 fï¿½r den linken und 1 fï¿½r den rechten
     Rand von so. Bei so=so_global werden xz und xn ignoriert. */
 void playSample(int nr, SoundOrt so, int xz /*=1*/, int xn /*=2*/) {
   if (!mSoundGeht || !PrefsDaten::getSound())
