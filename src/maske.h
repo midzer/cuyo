@@ -19,7 +19,7 @@
 #ifndef MASKE_H
 #define MASKE_H
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 struct RohMaske {
   friend class Maske;

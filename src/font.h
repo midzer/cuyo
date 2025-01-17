@@ -28,7 +28,7 @@ Modified 2006,2008,2010,2011 by the cuyo developers
 
 
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include "bilddatei.h"
 
 class Str;

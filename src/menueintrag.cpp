@@ -47,11 +47,11 @@ Modified 2006-2008,2010,2011,2014 by the cuyo developers
 /*****************************************************************************/
 
 DrawDing::DrawDing(const Str & text, int hotkey,
-   	           int binSubBereich, /* Subbereich, zu dem dieses Drawding gehört */
+   	           int binSubBereich, /* Subbereich, zu dem dieses Drawding gehï¿½rt */
                    int x, int y,
 		   int align /*= AlignHCenter*/,   /* Akzeptiert nur waagerechtes Zeug,
 				       senkrecht ist immer zentriert. */
-                   Font * font, /*= NULL*/  /* Default hängt von aktSubBereich ab */
+                   Font * font, /*= NULL*/  /* Default hï¿½ngt von aktSubBereich ab */
 		   int * xmin /*= NULL*/, int * xmax /*= NULL*/
 		   /* Wenn die !=0 sind, wird dort schon mal unsere Ausdehung
 		      reingeschrieben. */) :
@@ -97,8 +97,8 @@ DrawDing::DrawDing(int bild, int bildchen, int x, int y) :
     mX0(x-gric/2), mX1(x+gric/2), mY0(y-gric/2), mY1(y+gric/2), mXPos(mX0),
     mAbschneiden(false) {}
 
-/* Wenn man nicht möchte, dass das Bild zur Größe des Hintergrundrahmens
-   beiträgt, wäre es vielleicht inzwischen sauberer, binsubbereich auf
+/* Wenn man nicht mï¿½chte, dass das Bild zur Grï¿½ï¿½e des Hintergrundrahmens
+   beitrï¿½gt, wï¿½re es vielleicht inzwischen sauberer, binsubbereich auf
    subbereich_keiner zu setzen (und in anzeigen() einbauen, dass das
    erlaubt ist) */
 /* Folgende Funktion geht grad nicht: */
@@ -247,7 +247,7 @@ void MenuEintrag::setSubBereich(int subBereich) {
     updateDrawDinge();
 }
 
-/* Aufrufen, wenn sich möglicherweise der Stromstatus geändert hat */
+/* Aufrufen, wenn sich mï¿½glicherweise der Stromstatus geï¿½ndert hat */
 void MenuEintrag::updateStrom() {
   bool neustrom = getStrom();
   if (neustrom != (mSubBereich != subbereich_keinStrom))
@@ -279,12 +279,12 @@ void MenuEintrag::deactivateAccel() {
 
 void MenuEintrag::anzeigen(int x, int y, bool graue) {
 
-  /* Unschön, könnte irgendwann mal ein Bug werden, tut aber im Moment:
-     Eigentlich müsste ein MenüEintrag informiert werden, wenn es sich
-     ändert, ob die Grauen neben ihm sitzen oder nicht, damit er ein
+  /* Unschï¿½n, kï¿½nnte irgendwann mal ein Bug werden, tut aber im Moment:
+     Eigentlich mï¿½sste ein Menï¿½Eintrag informiert werden, wenn es sich
+     ï¿½ndert, ob die Grauen neben ihm sitzen oder nicht, damit er ein
      Graphik-Update machen kann (mit setUpdateFlag()). Im Moment werden
      die grauen aber immer nur dann verschoben, wenn auch was anderes am
-     Eintrag verändert wird, so dass die erforderlichen Graphik-Updates
+     Eintrag verï¿½ndert wird, so dass die erforderlichen Graphik-Updates
      sowieso geschehen */
 
   CASSERT(mSubBereich != subbereich_nichtInitialisiert);
@@ -354,10 +354,10 @@ void MenuEintrag::anzeigen(int x, int y, bool graue) {
     // Senkrechte Kanten
     bild.malStreifenV(hx0, hy0+h1, h2, SDLTools::rect(gric-w1,gric,w1,gric));
     bild.malStreifenV(hx1-w3, hy0+h1, h2, SDLTools::rect(2*gric,gric,w3,gric));
-    // Fläche
+    // Flï¿½che
     if (w2>0 && h2>0)
       Area::fillRect(hx0+w1, hy0+h1, w2, h2, Color(50, 50, 120));
-        /* Wenn diese Farbe geändert wird, muß das auch in
+        /* Wenn diese Farbe geï¿½ndert wird, muï¿½ das auch in
 	   some_pic_sources/highlight.pov geschehen. */
   }
 
@@ -450,7 +450,7 @@ MenuEintragEscape::MenuEintragEscape(BlattMenu * papi) :
 }
 
 void MenuEintragEscape::doReturn(bool) {
-  /* Sound wird gespielt, wenn das Menü sich zumacht. */
+  /* Sound wird gespielt, wenn das Menï¿½ sich zumacht. */
   doPapiEscape();
 }
 
@@ -492,8 +492,8 @@ void MenuEintragAuswahl::doReturn(bool) {
   //Sound::playSample(sample_menuclick,so_fenster);
   /* Vorsicht: Im Moment *muss* das folgende in dieser Reihenfolge
      passieren wegen des levelpack-menus: Bei doPapiEscape() wird
-     die Graphik des Levelpack-Menüeintrags geupdatet. Der neue
-     Levelpack muss davor schon ausgewählt worden sein. */
+     die Graphik des Levelpack-Menï¿½eintrags geupdatet. Der neue
+     Levelpack muss davor schon ausgewï¿½hlt worden sein. */
   mDoReturnInt(mArg);
   doPapiEscape();
 }
@@ -514,7 +514,7 @@ BlattMenu * auswahlmenu(MenuEintragSubmenu * obereintrag, BlattMenu * obermenu,
   if (titel=="")
     vorlauf = 0;
   else {
-    /* Erstmal alle '~' rauslöschen */
+    /* Erstmal alle '~' rauslï¿½schen */
     Str titel_ = titel;
     for (int i=0; i<titel_.length(); i++)
       if (titel_[i]=='~')
@@ -573,7 +573,7 @@ Str MenuEintragAuswahlmenu::getInfo() {
     : "";
 }
 
-void MenuEintragAuswahlmenu::doHyperaktiv(const SDL_keysym & key, int taste) {
+void MenuEintragAuswahlmenu::doHyperaktiv(const SDL_Keysym & key, int taste) {
   switch (taste) {
     case SDLK_RIGHT:
       doPfeil(1);
@@ -590,9 +590,9 @@ void MenuEintragAuswahlmenu::doHyperaktiv(const SDL_keysym & key, int taste) {
 
 int MenuEintragAuswahlmenu::getMausPos(int x, int y) {
 
-  /* Manuel zusammengeflicktes befindet-sich-die-Maus-über-einem-Pfeil.
+  /* Manuel zusammengeflicktes befindet-sich-die-Maus-ï¿½ber-einem-Pfeil.
      Wenn wir irgendwann mehr solche SubBereiche haben, will man das
-     schöner machen. */
+     schï¿½ner machen. */
     
   if (y >= mHoehe/2) {
     if (x >= mPfeil1X0 && x < mPfeil1X1)
@@ -678,7 +678,7 @@ void MenuEintragAuswahlmenu::updateDDIntern() {
 
 
 //   if (mSubBereich != subbereich_keiner) {
-//     /* Erstmal deaktiviert, weil's mir nicht so gefällt
+//     /* Erstmal deaktiviert, weil's mir nicht so gefï¿½llt
 //     neuDraw() = DrawDing((*mAuswahlen)[schiebAktuell(-1)],-1,
 // 			 0,
 // 			 x0-L_auswahlsep,y,
@@ -708,7 +708,7 @@ void MenuEintragAuswahlmenu::doPfeil(int d) {
   
   /* Abstand zwischen altem und neuem Text bestimmen. Soll eigentlich
      L_auswahlmenu_anim_dx, aber evtl. mehr, wenn sonst der neue Text
-     schon vorher reingeguckt hätte oder umgekehrt */
+     schon vorher reingeguckt hï¿½tte oder umgekehrt */
   int w1 = Font::gMenu->getLineWidth(mAnimationWahlAlt.data()) / 2;
   int w2 = Font::gMenu->getLineWidth((*mAuswahlen)[mGetAktuell()].data()) / 2;
   if (w1 < L_auswahlmenu_pfeilsep - L_auswahlmenu_anim_dx)
@@ -735,7 +735,7 @@ int MenuEintragAuswahlmenu::schiebAktuell(int d) {
 /* Wer hat zur Zeit das Kreuz? */
 /* Wo ist diese Variable besser gekapselt? Wenn sie ein private Member von
    MenuEintragSpielerModus ist oder wenn sie nur hier in dieser Datei steht
-   (und ein "static" hat, damit der Linker auch nicht verrät, dass es diese
+   (und ein "static" hat, damit der Linker auch nicht verrï¿½t, dass es diese
    Variable gibt)? */
 static MenuEintragSpielerModus * gMenuEintragSpielerModusAktuell = NULL;
 
@@ -758,9 +758,9 @@ void MenuEintragSpielerModus::doReturn(bool) {
   //gMenuEintragRestartLastLevel->updateDrawDinge();
 
   /* Da steht im Moment die Funktion drin, die Restart-last-level
-     neu malt (wegen Stromänderung).
-     Eigentlich könnte man hieraus auch gleich einen generischen
-     Ankreuzlisten-MenüEintragTyp machen, im Stil der anderen Auswahlmenüs. */
+     neu malt (wegen Stromï¿½nderung).
+     Eigentlich kï¿½nnte man hieraus auch gleich einen generischen
+     Ankreuzlisten-Menï¿½EintragTyp machen, im Stil der anderen Auswahlmenï¿½s. */
   (*mDoWechsel)();
 
   updateDrawDinge();
@@ -821,7 +821,7 @@ Str MenuEintragTaste::getInfo() {
     : _("To enter a new key, click or press `return' first");
 }
 
-void MenuEintragTaste::doHyperaktiv(const SDL_keysym & taste, int) {
+void MenuEintragTaste::doHyperaktiv(const SDL_Keysym & taste, int) {
   if (taste.sym!=SDLK_ESCAPE) {
     PrefsDaten::setTaste(mSpieler, mTaste, taste.sym);
     doPapiNavigiere(1);
@@ -858,7 +858,7 @@ void MenuEintragAI::updateDDIntern() {
 }
 
 
-void MenuEintragAI::doHyperaktiv(const SDL_keysym &, int taste) {
+void MenuEintragAI::doHyperaktiv(const SDL_Keysym &, int taste) {
   if (taste==SDLK_RIGHT)
     doPfeil(1);
   else if (taste==SDLK_LEFT)
@@ -890,9 +890,9 @@ void MenuEintragAI::doPfeil(int d) {
 
 int MenuEintragAI::getMausPos(int x, int y) {
 
-  /* Manuel zusammengeflicktes befindet-sich-die-Maus-über-einem-Pfeil.
+  /* Manuel zusammengeflicktes befindet-sich-die-Maus-ï¿½ber-einem-Pfeil.
      Wenn wir irgendwann mehr solche SubBereiche haben, will man das
-     schöner machen. */
+     schï¿½ner machen. */
     
   if (x >= mPfeil1X0 && x < mPfeil1X1)
     return 1;
@@ -919,8 +919,8 @@ void MenuEintragSound::updateDDIntern() {
 
 void MenuEintragSound::doReturn(bool) {
   /* Da es auf manchen Rechnern ziemlich lange dauert, bis SDL merkt, dass
-     es den Sound doch nicht anschalten kann, für diese Wartezeit eine optische
-     Rückkopplung */
+     es den Sound doch nicht anschalten kann, fï¿½r diese Wartezeit eine optische
+     Rï¿½ckkopplung */
   mBitteWarten = true;
   updateDrawDinge();
   UI::sofortAllesAnzeigen();
@@ -931,7 +931,7 @@ void MenuEintragSound::doReturn(bool) {
 }
 
 
-void MenuEintragSound::doHyperaktiv(const SDL_keysym &, int taste) {
+void MenuEintragSound::doHyperaktiv(const SDL_Keysym &, int taste) {
   bool alt = PrefsDaten::getSound();
   bool neu = alt;
 

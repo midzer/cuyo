@@ -39,12 +39,12 @@ namespace PrefsDaten {
 
 
 /** Die Steuer-Tasten... */
-SDLKey mTasten[2][4];
+SDL_Keycode mTasten[2][4];
 /** Welche Level wurden schon gewonnen: im 1-Spieler-Modus und im
     Mehr-Spieler-Modus */
 std::set<Str> mGewonneneLevel[2];
 
-/** Geschwindigkeit des KI-Players, so wie man's einstellen möchte */
+/** Geschwindigkeit des KI-Players, so wie man's einstellen mï¿½chte */
 int mKIGeschwLog;
 /** Die Zahl, an der der KI-Player interessiert ist. */
 double mKIGeschwLin;
@@ -62,7 +62,7 @@ int mDifficulty;
 
 
 
-/** Lädt die Preferences aus wo-auch-immer-sie-abgespeichert-werden
+/** Lï¿½dt die Preferences aus wo-auch-immer-sie-abgespeichert-werden
 in die Variablen. */
 void liesPreferences();
 
@@ -83,8 +83,8 @@ void calcKILangsamLin() {
 
 enum PrefsVersion {
   PV_first = 0,
-  PV_SDLKeys = 1,
-  PV_current = PV_SDLKeys
+  PV_SDL_Keycodes = 1,
+  PV_current = PV_SDL_Keycodes
 };
 
 
@@ -110,7 +110,7 @@ bool getLevelGewonnen(bool sp2, int lnr) {
 /** sp2: true bei zweispielermodus */
 void schreibGewonnenenLevel(bool sp2, const Str intlena) {
   if (mGewonneneLevel[sp2].find(intlena)==mGewonneneLevel[sp2].end()) {
-    /* Level war bisher noch nie gewonnen; also in Liste einfügen */
+    /* Level war bisher noch nie gewonnen; also in Liste einfï¿½gen */
     mGewonneneLevel[sp2].insert(intlena);
     schreibPreferences();
   }
@@ -120,7 +120,7 @@ void schreibGewonnenenLevel(bool sp2, const Str intlena) {
 
 /** Liefert true, wenn die Taste k belegt ist, und speichert dann
     in sp und t ab, was die Taste tut. */
-bool getTaste(SDLKey k, int & sp, int & t) {
+bool getTaste(SDL_Keycode k, int & sp, int & t) {
   for (sp = 0; sp < 2; sp++)
     for (t = 0; t < taste_anz; t++)
       if (k == mTasten[sp][t])
@@ -132,7 +132,7 @@ bool getTaste(SDLKey k, int & sp, int & t) {
 
 
 
-/** Liefert den Namen und Pfad der Prefs-Datei zurück
+/** Liefert den Namen und Pfad der Prefs-Datei zurï¿½ck
     ($HOME/.cuyo) */
 Str getPrefsName() {
   char * ho = getenv("HOME");
@@ -152,7 +152,7 @@ Str getPrefsName() {
 
 
 
-/** Lädt die Preferences aus wo-auch-immer-sie-abgespeichert-werden
+/** Lï¿½dt die Preferences aus wo-auch-immer-sie-abgespeichert-werden
 in die Variablen. */
 void liesPreferences() {
 	
@@ -169,15 +169,15 @@ void liesPreferences() {
   /* Default-Tasten */
   //int dt[2][4] = {{Qt::Key_A, Qt::Key_D, Qt::Key_W, Qt::Key_S},
   //  {Qt::Key_Left, Qt::Key_Right, Qt::Key_Up, Qt::Key_Down}};
-  SDLKey dt[2][4] = {{SDLK_a, SDLK_d, SDLK_w, SDLK_s},
+  SDL_Keycode dt[2][4] = {{SDLK_a, SDLK_d, SDLK_w, SDLK_s},
                      {SDLK_LEFT, SDLK_RIGHT, SDLK_UP, SDLK_DOWN}};
   char tn[4][9] = {"left", "right", "turn", "down"};
 																	
   for (i = 0; i < 2; i++) {
     prd.setAbschnitt(_sprintf("keys %d", i + 1));
     for (int j = 0; j < 4; j++) {
-      if (version >= PV_SDLKeys) {
-        mTasten[i][j] = (SDLKey) prd.getZahlEintrag(tn[j], dt[i][j]);
+      if (version >= PV_SDL_Keycodes) {
+        mTasten[i][j] = (SDL_Keycode) prd.getZahlEintrag(tn[j], dt[i][j]);
 	
       } else {
         /* Alte Version: Tasten stehen noch im Qt-Format in der Datei */
@@ -185,7 +185,7 @@ void liesPreferences() {
 	if (t == -1111)
 	  mTasten[i][j] = dt[i][j];
 	else
-          mTasten[i][j] = SDLTools::qtKey2sdlKey(t);
+          mTasten[i][j] = SDLTools::qtKey2SDL_Keycode(t);
       }
     }
   }
@@ -276,11 +276,11 @@ void schreibPreferences() {
 
 
 
-SDLKey getTaste(int sp, int t) { return mTasten[sp][t]; }
+SDL_Keycode getTaste(int sp, int t) { return mTasten[sp][t]; }
 double getKIGeschwLin() { return mKIGeschwLin; }
 int getKIGeschwLog() { return mKIGeschwLog; }
 
-void setTaste(int sp, int t, SDLKey code) { mTasten[sp][t] = code; }
+void setTaste(int sp, int t, SDL_Keycode code) { mTasten[sp][t] = code; }
 void setKIGeschwLog(int kigl) { mKIGeschwLog = kigl; calcKILangsamLin(); }
 
 bool getSound() { return mSound; }

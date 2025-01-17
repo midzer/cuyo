@@ -31,7 +31,7 @@ Modified 2006,2008,2010,2011,2014 by the cuyo developers
 #include <stdio.h>
 
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include "sdltools.h"
 
 #include "font.h"
@@ -57,8 +57,8 @@ namespace UI {
 /* (stehen nicht in der .h-Datei) */
 
 
-int mRealWindowWidth = -1;
-int mRealWindowHeight = -1;
+int mRealWindowWidth = 640;
+int mRealWindowHeight = 480;
 
 
 
@@ -85,7 +85,7 @@ Blatt * mBlatt;
 /* (stehen nicht in der .h-Datei) */
 
 
-/** Führt alle Menü-Befehle aus */
+/** Fï¿½hrt alle Menï¿½-Befehle aus */
 void menuAufruf(int id);
 
 void vielleichtAllesAnzeigen();
@@ -140,7 +140,7 @@ void destroy() {
 
 void doEvent(SDL_Event & evt) {
   /* GGf. debug-Tasten behandeln */
-  if (evt.type == SDL_KEYDOWN && (evt.key.keysym.mod & (KMOD_ALT | KMOD_META)))
+  if (evt.type == SDL_KEYDOWN && (evt.key.keysym.mod & (KMOD_ALT | KMOD_MODE)))
     if (Cuyo::debugKeyEvent(evt.key.keysym))
       return;
       
@@ -156,7 +156,7 @@ void doEvent(SDL_Event & evt) {
 
 
 
-/* Ist vielleicht zur Zeit etwas unnötig, eine eigene ui-Zeitschritt-Fkt
+/* Ist vielleicht zur Zeit etwas unnï¿½tig, eine eigene ui-Zeitschritt-Fkt
    zu haben. Vielleicht kommt aber ja mal wieder was dazu, was das ui
    tun will */
 void zeitSchritt() {
@@ -175,8 +175,8 @@ void run() {
   
   
     /* Alle wartenden Events aus der Queue holen. Wenn eins dieser Events
-       ein Graphik-Update fordert, dann wird das sofort ausgeführt, auch
-       wenn wir in Zeitnot sind. Deshalb von früher rumliegende
+       ein Graphik-Update fordert, dann wird das sofort ausgefï¿½hrt, auch
+       wenn wir in Zeitnot sind. Deshalb von frï¿½her rumliegende
        Graphikupdate-Bestellungen kurz wegspeichern */
     bool gun_merk = mGraphikUpdateNoetig;
     mGraphikUpdateNoetig = false;
@@ -191,7 +191,7 @@ void run() {
       mGraphikUpdateNoetig = gun_merk;
     }
     
-    /* Ein bisschen Zeit für's Betriebsystem */
+    /* Ein bisschen Zeit fï¿½r's Betriebsystem */
     /* (Geht das nicht besser?) */
     SDL_Delay(10);
     
@@ -206,9 +206,9 @@ void run() {
       if (ausfallen) graphikAusgefallen++; else graphikAusgefallen = 0;
       
       if (!ausfallen) {
-        /* Graphik (falls nötig) updaten. Möglicherweise handelt es sich
+        /* Graphik (falls nï¿½tig) updaten. Mï¿½glicherweise handelt es sich
            um einen Update, der gar nicht von diesem zeitSchritt()-Aufruf
-           gefordert wurde, sondern von einem älteren */
+           gefordert wurde, sondern von einem ï¿½lteren */
         vielleichtAllesAnzeigen();
       }
 
@@ -248,13 +248,13 @@ void sofortAllesAnzeigen() {
 #endif
 
   /*
-  für xtrace:
+  fï¿½r xtrace:
    XInternAtom(qt_xdisplay(),"zeitschritt B",1);
   */
 
   /* Hier finden die ganzen Area::xxx Malbefehle statt. Die Malroutinen
-     sind selbst dafür verantwortlich, nur das neu zu malen, was sich
-     geändert hat. Außerdem müssen sie Area::updateRect() aufrufen für
+     sind selbst dafï¿½r verantwortlich, nur das neu zu malen, was sich
+     geï¿½ndert hat. Auï¿½erdem mï¿½ssen sie Area::updateRect() aufrufen fï¿½r
      die Bereiche, wo sie was neu gemalt haben */
   mBlatt->anzeigen();
   
@@ -263,7 +263,7 @@ void sofortAllesAnzeigen() {
   Area::doUpdate();
   
   /*
-  für xtrace:
+  fï¿½r xtrace:
   XInternAtom(qt_xdisplay(),"zeitschritt C",1);
   */
 
@@ -319,7 +319,7 @@ void stopSpiel() {
    Blatt grad keinen oeffnen()-Aufruf braucht. */
 void setBlatt(Blatt * b) {
   mBlatt = b;
-  /* Der gesamte Bildschirm hat sich geändert, nicht nur das, was das
+  /* Der gesamte Bildschirm hat sich geï¿½ndert, nicht nur das, was das
      (neu) aktive Blatt vielleicht denkt: */
   Area::updateAll();
   nachEventAllesAnzeigen();

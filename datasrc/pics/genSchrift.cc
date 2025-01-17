@@ -22,7 +22,7 @@
 #include <cstring>
 #include <cerrno>
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <SDL_image.h>
 
 
@@ -45,7 +45,7 @@ int radius;
 #define ges_radius (radius + schwarzer_rand)
 #define meinMax 200.0
 
-/* von x,y,z wird nur die Richtung, nicht die Länge verwendet */
+/* von x,y,z wird nur die Richtung, nicht die Lï¿½nge verwendet */
 #define licht_x (-0.6)
 #define licht_y (-1.3)
 #define licht_z (0.7)
@@ -423,7 +423,7 @@ void alpha_abrunden() {
     bool p4 = getPixel(src, x, y-1).f.a > alpha_threshold;
     int nachbarn = p1+p2+p3+p4;
 
-    /* Bei Alpha = 0 nicht auf true setzen; da würde die Farbe vom
+    /* Bei Alpha = 0 nicht auf true setzen; da wï¿½rde die Farbe vom
        Pixel gar nicht stimmen */
     if (nachbarn >= 3 && getPixel(src, x, y).f.a >= 1) p0 = true;
     if (nachbarn <= 1) p0 = false;

@@ -113,7 +113,7 @@ void Blatt::doEvent(const SDL_Event & evt) {
         mouseButtonEvent(evt.button.state == SDL_PRESSED, evt.button.x, evt.button.y);
       }
       break;
-    case SDL_VIDEORESIZE:
+    case SDL_WINDOWEVENT_RESIZED:
       /* Bildschirminhalt neu malen */
       resizeEvent();
       break;
@@ -189,7 +189,7 @@ void BlattSpiel::oeffnen(int lnr) {
 
 
 
-void BlattSpiel::keyEvent(const SDL_keysym & taste) {
+void BlattSpiel::keyEvent(const SDL_Keysym & taste) {
   Cuyo::keyEvent(taste);
 }
 
@@ -219,7 +219,7 @@ void BlattSpiel::malInfos(int sp, int x) {
 
   Area::enter(SDLTools::rect(x, L_punkte_y,
                              L_infos_breite, L_punkte_hoehe));
-  /* Wenn sich die Randfarbe geändert hat, dann Punkte auf
+  /* Wenn sich die Randfarbe geï¿½ndert hat, dann Punkte auf
      jeden Fall neu malen */
   mPunktefeld[sp]->updateGraphik(mDekoUpdaten);
   Area::leave();
@@ -396,7 +396,7 @@ void BlattMenu::oeffnen(bool /*durchMaus*/, int wahl /*= eintrag_keiner*/) {
   mHyperaktiv = eintrag_keiner;
   mWahl = MausBereich(wahl);
   /* Nicht die nachfolgenden Setzroutinen verwenden, weil sonst
-     evtl. ein nicht-mehr existenter voriger gewählter Menüpunkt neu
+     evtl. ein nicht-mehr existenter voriger gewï¿½hlter Menï¿½punkt neu
      gemalt wird. */
   //setHyperaktiv(eintrag_keiner);
   //setWahl(wahl);
@@ -405,7 +405,7 @@ void BlattMenu::oeffnen(bool /*durchMaus*/, int wahl /*= eintrag_keiner*/) {
   for (size_t i = 0; i < mEintraege.size(); i++)
     updateEintrag(i);
 
-  /* Dafür manuell der Infozeile sagen, dass sie geupdatet werden muss */
+  /* Dafï¿½r manuell der Infozeile sagen, dass sie geupdatet werden muss */
   updateInfo();
 
   /* Zentrierlinien berechnen */
@@ -439,14 +439,14 @@ void BlattMenu::oeffnen(bool /*durchMaus*/, int wahl /*= eintrag_keiner*/) {
 
 int keypadersatz[10] = {
   SDLK_INSERT, SDLK_END, SDLK_DOWN, SDLK_PAGEDOWN, SDLK_LEFT,
-  SDLK_KP5, SDLK_RIGHT, SDLK_HOME, SDLK_UP, SDLK_PAGEUP};
+  SDLK_KP_5, SDLK_RIGHT, SDLK_HOME, SDLK_UP, SDLK_PAGEUP};
 
-void BlattMenu::keyEvent(const SDL_keysym & taste) {
+void BlattMenu::keyEvent(const SDL_Keysym & taste) {
 
   /* Wenn die Taste einen Ascii-Code hat, dann wollen wir mit
      dem weiterarbeiten. (d.h. shift-& auf franzoesischer Tastatur
      ist 1) */
-  int t = taste.unicode;
+  int t = taste.sym;
   /* Fuer sonstige Tasten (Pfeile, etc.) nehmen wir den SDL-Code */
   if (t <= 0 || t > 255)
     t = taste.sym;
@@ -460,8 +460,8 @@ void BlattMenu::keyEvent(const SDL_keysym & taste) {
      Art wie Pfeiltasten wirken.
      (Manchmal macht SDL das automatisch; das scheint aber buggy
      zu sein.) */
-  if (t>=SDLK_KP0 && t<=SDLK_KP9)
-    t = keypadersatz[t-SDLK_KP0];
+  if (t>=SDLK_KP_0 && t<=SDLK_KP_9)
+    t = keypadersatz[t-SDLK_KP_0];
   
   
 //   /* Keycode normalisieren */
@@ -513,7 +513,7 @@ void BlattMenu::keyEvent(const SDL_keysym & taste) {
       doReturn(false);
       break;
     default:
-      /* Accelerator-Taste gedrückt? */
+      /* Accelerator-Taste gedrï¿½ckt? */
       for (int i = 0; i < (int) mEintraege.size(); i++) {
         if (t == mEintraege[i]->getAccel() && mEintraege[i]->getWaehlbar()) {
 	  
@@ -522,7 +522,7 @@ void BlattMenu::keyEvent(const SDL_keysym & taste) {
 	  return;
         }
       }
-      /* Vielleicht ist der gewählte Eintrag aktiv? */
+      /* Vielleicht ist der gewï¿½hlte Eintrag aktiv? */
       if (mWahl.mEintrag >= 0)
 	if (mEintraege[mWahl.mEintrag]->getAktiv()) {
 	  mEintraege[mWahl.mEintrag]->doHyperaktiv(taste,t);
@@ -564,7 +564,7 @@ MausBereich BlattMenu::getMausPos(int x, int y) {
   int e=mEintraege.size();
   for (y-=mY0; e>=0 && y<mEintraegeY[e]; e--) {}
   /*                ~~ C garantiert, dass die rechte Seite nur
-     ausgeführt wird, wenn's nötig ist */
+     ausgefï¿½hrt wird, wenn's nï¿½tig ist */
   if (e < mAnimZeigVon || e >= mAnimZeigBis)
     return MausBereich();
   if (!mEintraege[e]->getWaehlbar())
@@ -590,8 +590,8 @@ int BlattMenu::getTastenCursorPos() {
 
 void BlattMenu::mouseMotionEvent(bool press, int x, int y, int x_alt, int y_alt) {
 
-  /* Bei gedrückter Maustaste rumfahren
-     => Dort, wo der Knopf runter ging bleibt's ausgewählt */
+  /* Bei gedrï¿½ckter Maustaste rumfahren
+     => Dort, wo der Knopf runter ging bleibt's ausgewï¿½hlt */
   if (press) {
     return;
   }
@@ -625,7 +625,7 @@ void BlattMenu::mouseButtonEvent(bool press, int x, int y) {
   if (mWahl.mEintrag >= 0)
     doReturn(true);
   else if (mWahl.mEintrag == eintrag_scrollleiste) {
-    /* Um ganz hoch oder runter zu scrollen, können wir einfach auf
+    /* Um ganz hoch oder runter zu scrollen, kï¿½nnen wir einfach auf
        viel zu weit setzen; setScrollZielLow macht das dann schon richtig */
     switch (mWahl.mSubBereich) {
       case 0: setScrollZielLow(99999); break;
@@ -654,20 +654,20 @@ void BlattMenu::anzeigen() {
   
   /* Oberer und unterer Rand */
   if (mRaenderUpdaten) {
-    /* Rand oberhalb des Menüs */
+    /* Rand oberhalb des Menï¿½s */
     Area::fillRect(0, 0, L_fenster_breite_menus, mAnimY0+mEintraegeY[mAnimZeigVon],
 		   Color(30, 30, 70));
     Area::updateRect(0, 0,
 		     L_fenster_breite_menus, mAnimY0+mEintraegeY[mAnimZeigVon]);
 		     
-    /* Zwischen Menü und Infozeile */
-    /* Mark: Häh, ist das nicht das gleiche wie
+    /* Zwischen Menï¿½ und Infozeile */
+    /* Mark: Hï¿½h, ist das nicht das gleiche wie
        mAnimY0+mEintraegeY[mAnimZeigBis] ? */
-    /* Immi: Weiß auch nicht mehr. Vielleicht wusste ich nicht, dass
-       mEintraegeY eins weiter geht als Gesamtzahl der Einträge */
+    /* Immi: Weiï¿½ auch nicht mehr. Vielleicht wusste ich nicht, dass
+       mEintraegeY eins weiter geht als Gesamtzahl der Eintrï¿½ge */
     int y_u = mAnimY0+mEintraegeY[mAnimZeigBis - 1]
       + mEintraege[mAnimZeigBis - 1]->mHoehe;
-    /* Provisorisch: Das Hauptmenü ist zu lang, wenn "debug-mode" drunter steht;
+    /* Provisorisch: Das Hauptmenï¿½ ist zu lang, wenn "debug-mode" drunter steht;
        das produziert graphik-Fehler... */
     if (L_fenster_hoehe - L_info_hoehe - y_u > 0) {
       Area::fillRect(0, y_u, L_fenster_breite_menus, L_fenster_hoehe - L_info_hoehe - y_u,
@@ -675,7 +675,7 @@ void BlattMenu::anzeigen() {
       Area::updateRect(0, y_u, L_fenster_breite_menus, L_fenster_hoehe - L_info_hoehe - y_u);
     }
     
-    /* Wenn diese Farbe geändert wird, muß das auch in
+    /* Wenn diese Farbe geï¿½ndert wird, muï¿½ das auch in
        some_pic_sources/highlight.pov und some_pic_sources/Makefile
        geschehen. Und in menueintrag.cpp */
        
@@ -762,17 +762,17 @@ void BlattMenu::zeitSchritt() {
     UI::nachEventAllesAnzeigen();
   }
   
-  /* Menüeinträge dürfen ihre Privat-Animation haben */
+  /* Menï¿½eintrï¿½ge dï¿½rfen ihre Privat-Animation haben */
   for (size_t i=0; i<mEintraege.size(); i++)
     mEintraege[i]->zeitSchritt();
   
-  /* Maus auf Scrollpfeil gedrückt? */
+  /* Maus auf Scrollpfeil gedrï¿½ckt? */
   if (mWahl.mEintrag == eintrag_scrollleiste && mPress) {
     if (mWahl.mSubBereich == 1) scrollleisteScroll(1); // hoch
     else if (mWahl.mSubBereich == 2) scrollleisteScroll(-1); // runter
   }
   
-  /* Echte Scrollpos an gewünschte anpassen */
+  /* Echte Scrollpos an gewï¿½nschte anpassen */
   scrollZeitSchritt();
 }
 
@@ -828,7 +828,7 @@ void BlattMenu::menuLoeschen() {
 
 
 
-/* Ändert wahl und kümmert sich drum, dass Graphik geupdatet wird */
+/* ï¿½ndert wahl und kï¿½mmert sich drum, dass Graphik geupdatet wird */
 void BlattMenu::setWahl(MausBereich wahl) {
   int walt = mWahl.mEintrag;
   mWahl = wahl;
@@ -873,7 +873,7 @@ void BlattMenu::updateInfo() {
 
 
 
-/* Teilt dem Eintrag seinen neuen Subbereich mit. Der Eintrag kümmert
+/* Teilt dem Eintrag seinen neuen Subbereich mit. Der Eintrag kï¿½mmert
    sich dann um sein Graphik-Update */
 void BlattMenu::updateEintrag(int e) {
   if (e < 0) return;
@@ -909,10 +909,10 @@ void BlattMenu::scrollleisteScroll(int sgn) {
    sprung = true => keine Animation, sondern direkt dort hin. */  
 void BlattMenu::setScrollZielHigh(yneuwahl ynw /*=ynw_mitte*/, bool sprung /* = false */) {
 
-  /* Kein Menüpunkt gewählt? Dann nach oben */
+  /* Kein Menï¿½punkt gewï¿½hlt? Dann nach oben */
   int w = mWahl.mEintrag < 0 ? 0 : mWahl.mEintrag;
 
-  /* Erstmal nehmen wir an, daß wir mWahl gemäß ynw ausrichten wollen */
+  /* Erstmal nehmen wir an, daï¿½ wir mWahl gemï¿½ï¿½ ynw ausrichten wollen */
   int neuy = (L_menu_hoehe - mEintraege[w]->mHoehe)/2 - mEintraegeY[w];
   switch (ynw) {
     case ynw_mitte: break;
@@ -931,11 +931,11 @@ void BlattMenu::setScrollZielHigh(yneuwahl ynw /*=ynw_mitte*/, bool sprung /* = 
 void BlattMenu::setScrollZielLow(int neuy, bool sprung /* = false */) {
 
   if (!istScrollbar()) {
-    /* Das Menü passt komplett auf den Bildschirm. Dann wird der Scrollwunsch ignoriert. */
+    /* Das Menï¿½ passt komplett auf den Bildschirm. Dann wird der Scrollwunsch ignoriert. */
     neuy = (L_menu_hoehe-mEintraegeY[mEintraege.size()])/2;
     
   } else {
-    /* Wenn scrollbar, dann aber nicht weiter rausscrollen als gesund wäre */
+    /* Wenn scrollbar, dann aber nicht weiter rausscrollen als gesund wï¿½re */
     if (neuy>L_menu_scroll_freiraum) {
       neuy = L_menu_scroll_freiraum;
     } else if (neuy+mEintraegeY[mEintraege.size()]+L_menu_scroll_freiraum<L_menu_hoehe) {
@@ -978,7 +978,7 @@ void BlattMenu::scrollZeitSchritt() {
     return;
   }
   
-  /* Wie schnell wären wir am liebsten, unter Berücksichtigung des Bremswegs?
+  /* Wie schnell wï¿½ren wir am liebsten, unter Berï¿½cksichtigung des Bremswegs?
      Die Formel mit der Wurzel und dem Abrunden sollte aufs Pixel genau stimmen. */
   int diff = mY0 - mAnimY0;
   int sgn = diff > 0 ? 1 : -1;
@@ -1007,7 +1007,7 @@ void BlattMenu::scrollZeitSchritt() {
 
 void BlattStartAt::oeffnen(bool durchMaus, int) {
   /* Zu umstaendlich:
-     Im Moment liefert getMoeglicheLevel einen Vector von Strings zurück,
+     Im Moment liefert getMoeglicheLevel einen Vector von Strings zurï¿½ck,
      der hier in einen Vector von Menueintraegen konvertiert werden muss.
      Besser waere, wenn direkt das Menu erzeugt werden koennte. */
   //std::vector<Str> levNamen;
@@ -1032,24 +1032,24 @@ void BlattStartAt::oeffnen(bool durchMaus, int) {
   CASSERT(wanz > 0);
   int gewaehlt = (ungeordnet ? 1 : wanz);
   /* MenuEintragAuswahl kann hier nicht verwendet werden: MenuEintragAuswahl()
-     setzt das Blatt nach Return-Drücken auf Obermenü zurück; hier muss das
+     setzt das Blatt nach Return-Drï¿½cken auf Obermenï¿½ zurï¿½ck; hier muss das
      Blatt aber auf Spiel gesetzt werden.
-     (=> Im Moment kommt MenuEintragAuswahl nur noch an einer Stelle vor. Dafür
+     (=> Im Moment kommt MenuEintragAuswahl nur noch an einer Stelle vor. Dafï¿½r
      lohnt sich eigentlich keine eigene Klasse.) */
 
-  /* Darf erst jetzt aufgerufen werden; das Menü muss vorher schon aufgebaut
+  /* Darf erst jetzt aufgerufen werden; das Menï¿½ muss vorher schon aufgebaut
      worden sein */
 
   int lnr = Cuyo::getLetzterLevel();
   if (lnr != 0 && lnr<=wanz) gewaehlt = lnr;
-  /* Wahl zählt bei 0 los, level bei 1 */
+  /* Wahl zï¿½hlt bei 0 los, level bei 1 */
   BlattMenu::oeffnen(durchMaus, gewaehlt - 1);
 }
 
 
 void BlattStartAt::doReturn(bool) {
   Sound::playSample(sample_menuclick,so_fenster);
-  /* Wahl zählt bei 0 los, level bei 1 */
+  /* Wahl zï¿½hlt bei 0 los, level bei 1 */
   UI::startSpiel(mWahl.mEintrag + 1);
 }
 

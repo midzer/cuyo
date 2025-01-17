@@ -34,11 +34,14 @@ Modified 2006-2008,2010,2011,2014 by the cuyo developers
    are possible) */
 
 #define videomode_flags_w \
-  (SDL_SWSURFACE/*|SDL_DOUBLEBUF*/|SDL_ANYFORMAT|SDL_VIDEORESIZE)
+  (SDL_SWSURFACE/*|SDL_DOUBLEBUF|SDL_ANYFORMAT*/|SDL_VIDEORESIZE)
 #define videomode_flags_f \
-  (SDL_SWSURFACE/*|SDL_DOUBLEBUF*/|SDL_ANYFORMAT|SDL_FULLSCREEN)
+  (SDL_SWSURFACE/*|SDL_DOUBLEBUF|SDL_ANYFORMAT*/|SDL_FULLSCREEN)
 
-
+SDL_Window *sdlWindow = NULL;
+SDL_Renderer *sdlRenderer = NULL;
+SDL_Surface *screen = NULL;
+SDL_Texture *screenTexture = NULL;
 
 namespace Area {
   void init();
@@ -93,7 +96,7 @@ int getScale(int w, int h) {
 
 
 void computeScaleAndShift() {
-  SDL_Surface * s = SDL_GetVideoSurface();
+  SDL_Surface * s = screen;
   gScale = getScale(s->w, s->h);
   gShiftX = (s->w - gVirtualWidth * gScale / scale_base) / 2;
   gShiftY = (s->h - gVirtualHeight * gScale / scale_base) / 2;
@@ -109,38 +112,7 @@ void computeScaleAndShift() {
    in windowed mode);
    returns false, if there seem to be no fullscreen mode available */
 bool fullscreenSize(int & w, int & h) {
-  SDL_Rect **modes;
-  /* format = 0: search for best video mode */
-  modes = SDL_ListModes(0, videomode_flags_f);
   
-  /* No size possible ?!? Let's hope that this is just because there
-     is no fullscreen mode available. (As fullscreenSize() is called
-     even in windowed mode, it is important that we do not just crash.) */
-  if (modes == (SDL_Rect**) 0) {
-    /* In case we just tried to guess a good window size, let's
-       just return a value which we hope to be good. */
-    w = L_preferred_width;
-    h = L_preferred_height;
-    return false;
-  }
-  
-  /* Any size possible in fullscreen mode... */
-  if (modes == (SDL_Rect**) -1) {
-    w = L_preferred_width;
-    h = L_preferred_height;
-  }
-  
-  /* Return the smallest resolution which is as least as
-     big as L_usual_width x L_usual_height,
-     or otherwise the biggest existing one */
-  bool found = false;
-  for (int i = 0; modes[i]; i++) {
-    if (modes[i]->w >= L_usual_width && modes[i]->h >= L_usual_height  ||  !found) {
-      w = modes[i]->w;
-      h = modes[i]->h;
-      found = true;
-    }
-  }
   return true;
 }
 
@@ -172,9 +144,26 @@ void setVideoMode(int w, int h) {
      requesting a software surface
      BitsPerPixel = 0: Take the current BitsPerPixel
      SDL_ANYFORMAT: Other pixel depths are ok, too. */
-  SDL_Surface * s = SDL_SetVideoMode(w, h, 0,
+  /*SDL_Surface * s = SDL_SetVideoMode(w, h, 0,
         gFullScreen ? videomode_flags_f : videomode_flags_w);
-  SDLASSERT(s);
+  SDLASSERT(s);*/
+
+  sdlWindow = SDL_CreateWindow("Cuyo",
+                          SDL_WINDOWPOS_UNDEFINED,
+                          SDL_WINDOWPOS_UNDEFINED,
+                          w, h,
+                          SDL_WINDOW_ALLOW_HIGHDPI);
+  sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, 0);
+  SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+  screen = SDL_CreateRGBSurface(0, w, h, 32,
+                                0x00FF0000,
+                                0x0000FF00,
+                                0x000000FF,
+                                0xFF000000);
+  screenTexture = SDL_CreateTexture(sdlRenderer,
+                                    SDL_PIXELFORMAT_ARGB8888,
+                                    SDL_TEXTUREACCESS_STREAMING,
+                                    w, h);
   
   computeScaleAndShift();
 }
@@ -184,14 +173,14 @@ void computeMaskedFormat() {
 
   CASSERT(gSampleSurface32);
 
-  SDL_Surface * s = SDL_GetVideoSurface();
+  SDL_Surface * s = screen;
   
   gMaskedFormat = *(s->format);
   if (gMaskedFormat.palette) {
     int ncolours = gMaskedFormat.palette->ncolors;
 
-    /* Erst mal eine Kopie der Palette anlegen. Böse Dinge könnten passieren,
-       wenn das displaysurface sie ändert. */
+    /* Erst mal eine Kopie der Palette anlegen. Bï¿½se Dinge kï¿½nnten passieren,
+       wenn das displaysurface sie ï¿½ndert. */
     SDL_Color * neufarben = new SDL_Color[ncolours];
     memcpy((void*) neufarben, (void*) gMaskedFormat.palette->colors,
 	   ncolours * sizeof(SDL_Color));
@@ -201,14 +190,14 @@ void computeMaskedFormat() {
     gMaskedFormat.palette = neupal;
 
     if (ncolours < 255) {
-      gMaskedFormat.colorkey = ncolours + 1;
+      //gMaskedFormat.colorkey = ncolours + 1;
       gColkeyErsatz = 0;  // Wird eh nicht benutzt...
     }
     else {
-      /* Jetzt müssen wir eine entbehrliche Farbe suchen */
+      /* Jetzt mï¿½ssen wir eine entbehrliche Farbe suchen */
       int dmin = 1000;
       int c1best=0, c2best=0;
-        // Initialisierung ist unnötig, spart aber Warnungen
+        // Initialisierung ist unnï¿½tig, spart aber Warnungen
 
       SDL_Color * colours = gMaskedFormat.palette->colors;
 
@@ -231,7 +220,7 @@ void computeMaskedFormat() {
 
       #undef DIST
 
-      gMaskedFormat.colorkey = c2best;
+      //gMaskedFormat.colorkey = c2best;
       gColkeyErsatz = c1best;
     }
   }
@@ -263,11 +252,12 @@ void initSDL(int opt_w, int opt_h) {
   
  
   SDL_EventState(SDL_KEYUP, SDL_IGNORE);
-  SDL_EventState(SDL_ACTIVEEVENT, SDL_IGNORE);
+  SDL_EventState(SDL_WINDOWEVENT_ENTER, SDL_IGNORE);
+  SDL_EventState(SDL_WINDOWEVENT_LEAVE, SDL_IGNORE);
   
   /* We need the characters corresponding to key-events for the menus:
      For example, on a French keyboard, shift-& is 1 */
-  SDL_EnableUNICODE(1);
+  //SDL_EnableUNICODE(1);
 
   Area::init();
 }
@@ -300,7 +290,7 @@ void setVirtualWindowSize(int w, int h) {
 void setWindowTitle(const char * title) {
   char * title_ = convert_for_window_title(title);
   char * icon = convert_for_window_title("Cuyo");
-  SDL_WM_SetCaption(title_,icon);
+  //SDL_WM_SetCaption(title_,icon);
   free(title_);
   free(icon);
 }
@@ -317,16 +307,16 @@ void setLevelTitle(const Str & levelname) {
 
 /* Convert Qt-Key into SDL-Key; don't use Qt constants: we don't want to depend on
    Qt just to be able to read old .cuyo files. */
-SDLKey qtKey2sdlKey(int qtk) {
+SDL_Keycode qtKey2SDL_Keycode(int qtk) {
 
   /* Letters are uppercase in Qt and lowercase in SDL */
   if (qtk >= 'A' && qtk <= 'Z')
-    return (SDLKey) (qtk - 'A' + 'a');
+    return (SDL_Keycode) (qtk - 'A' + 'a');
   
   /* Don't change other Ascii Characters.
-     (Maybe Ä, Ö, Ü, etc are a problem) */
+     (Maybe ï¿½, ï¿½, ï¿½, etc are a problem) */
   if (qtk <= 255)
-    return (SDLKey) qtk;
+    return (SDL_Keycode) qtk;
 
   /* Other important keys */
   switch (qtk) {
@@ -337,7 +327,7 @@ SDLKey qtKey2sdlKey(int qtk) {
     case 0x1006: return SDLK_INSERT;
     case 0x1007: return SDLK_DELETE;
     case 0x1008: return SDLK_PAUSE;
-    case 0x1009: return SDLK_PRINT;
+    //case 0x1009: return SDLK_PRINT;
     case 0x100a: return SDLK_SYSREQ;
     case 0x100b: return SDLK_CLEAR;
     case 0x1010: return SDLK_HOME;
@@ -417,7 +407,7 @@ SDL_Surface * createSurface32(int w, int h) {
   rmask.f = gmask.f = bmask.f = amask.f = 0;
   rmask.k[0] = gmask.k[1] = bmask.k[2] = amask.k[3] = 0xff;
 
-  SDL_Surface * s = SDL_CreateRGBSurface(SDL_HWSURFACE, w, h, 32, rmask.f, gmask.f, bmask.f, amask.f);
+  SDL_Surface * s = SDL_CreateRGBSurface(0, w, h, 32, rmask.f, gmask.f, bmask.f, amask.f);
   SDLASSERT(s);
   return s;
 }
@@ -454,20 +444,20 @@ SDL_Surface * maskedDisplayFormat(SDL_Surface * src) {
   SDLASSERT(ret);
 
   if (gMaskedFormat.palette) {
-    /* SDL sieht nicht vor, daß Alpha zu ColourKey konvertiert wird.
+    /* SDL sieht nicht vor, daï¿½ Alpha zu ColourKey konvertiert wird.
        Seufz. Also selber nachbearbeiten. */
     SDLASSERT(!SDL_MUSTLOCK(src) && !SDL_MUSTLOCK(ret));
 
-    ret->flags |= SDL_SRCCOLORKEY;
-    Uint8 colkey = gMaskedFormat.colorkey;
-    ret->format->colorkey = colkey;
+    ret->flags |= SDL_TRUE;
+    //Uint8 colkey = gMaskedFormat.colorkey;
+    //ret->format->colorkey = colkey;
     Uint32 amask = src->format->Amask;
     Uint8 * srcrow = (Uint8 *) src->pixels;
     Uint8 * retrow = (Uint8 *) ret->pixels;
     int w = src->w;
     int p1 = src->pitch;
     int p2 = ret->pitch;
-    for (int i=src->h; i; i--, srcrow+=p1, retrow+=p2) {
+    /*for (int i=src->h; i; i--, srcrow+=p1, retrow+=p2) {
       Uint32 * srcpix = (Uint32 *) srcrow;
       Uint8 * retpix = retrow;
       for (int j=w; j; j--, srcpix++, retpix++)
@@ -475,7 +465,7 @@ SDL_Surface * maskedDisplayFormat(SDL_Surface * src) {
 	  *retpix = colkey;
 	else if ((*retpix)==colkey)
 	  *retpix = gColkeyErsatz;
-    }
+    }*/
   }
   return ret;
 }
@@ -596,8 +586,9 @@ bool pollEvent(SDL_Event & evt) {
   if (!SDL_PollEvent(&evt))
     return false;
   
-  if (evt.type == SDL_VIDEORESIZE) {
-    setVideoMode(evt.resize.w, evt.resize.h);
+  if (evt.type == SDL_WINDOWEVENT_RESIZED) {
+    //setVideoMode(evt.window.data1, evt.window.data2);
+    //computeScaleAndShift();
   } else if (evt.type == SDL_MOUSEMOTION) {
     evt.motion.x -= gShiftX;
     evt.motion.y -= gShiftY;
@@ -747,9 +738,9 @@ namespace Area {
   void boundS(int & x, int & y) {
     if (x<0) x=0;
     if (y<0) y=0;
-    SDL_Surface * screen = SDL_GetVideoSurface();
-    if (x>screen->w) x=screen->w;
-    if (y>screen->h) y=screen->h;
+    SDL_Surface * s = screen;
+    if (x>s->w) x=s->w;
+    if (y>s->h) y=s->h;
   }
 
   void boundS(SDL_Rect & r) {
@@ -766,7 +757,7 @@ namespace Area {
   void setClipRectV(SDL_Rect r) {
     transformV2S(r);
     boundS(r);
-    SDL_SetClipRect(SDL_GetVideoSurface(), &r);
+    SDL_SetClipRect(screen, &r);
   }
   
   
@@ -831,7 +822,7 @@ namespace Area {
     if (mActDepth == 0) {
       /* Outer most area is the only one which allows
          to draw outside */
-      SDL_Surface * s = SDL_GetVideoSurface();
+      SDL_Surface * s = screen;
       SDL_Rect r = SDLTools::rect(0, 0, s->w, s->h);
       SDL_SetClipRect(s, &r);
     } else
@@ -863,7 +854,7 @@ namespace Area {
 	mask->masked_blit(mBackground,
 			  ir.x-mBackgroundRect.x, ir.y-mBackgroundRect.y,
 			  mr,
-			  SDL_GetVideoSurface(),ir);
+			  screen, ir);
       }
     }
   }
@@ -886,7 +877,7 @@ namespace Area {
     srcrect.w = dstrect.w;
     srcrect.h = dstrect.h;
 
-    SDL_BlitSurface(src, &srcrect, SDL_GetVideoSurface(), &dstrect);
+    SDL_BlitSurface(src, &srcrect, screen, &dstrect);
   }
   
   void blitSurface(SDL_Surface *src, int dstx, int dsty) {
@@ -895,12 +886,12 @@ namespace Area {
     boundS(dstrect);
     SDL_Rect srcrect = SDLTools::rect(dstrect.x-dstx,dstrect.y-dsty,
 				      dstrect.w,dstrect.h);
-    SDL_BlitSurface(src, &srcrect, SDL_GetVideoSurface(), &dstrect);
+    SDL_BlitSurface(src, &srcrect, screen, &dstrect);
   }
 
 
   void fillRect(SDL_Rect dst, const Color & c) {
-    SDL_Surface * s = SDL_GetVideoSurface();
+    SDL_Surface * s = screen;
     transformA2S(dst);
     boundS(dst);
     if (((Sint16) dst.w) < 0 || ((Sint16) dst.h) < 0)
@@ -919,7 +910,7 @@ namespace Area {
                       SDLTools::gVirtualWidth, SDLTools::gVirtualHeight);
     transformV2S(r);
     
-    SDL_Surface * s = SDL_GetVideoSurface();
+    SDL_Surface * s = screen;
     SDL_Rect dst;
     
     dst = SDLTools::rect(0, 0, r.x, s->h);
@@ -973,14 +964,18 @@ namespace Area {
 
   /* To be called only by ui.cpp */
   void doUpdate() {
-    if (mUpdateAll)
-      SDL_UpdateRect(SDL_GetVideoSurface(), 0, 0, 0, 0);
+    /*if (mUpdateAll)
+      SDL_UpdateRect(screen, 0, 0, 0, 0);
     else {
       //print_to_stderr(_sprintf("%d\n", mNumUpdateRects));
-      SDL_UpdateRects(SDL_GetVideoSurface(), mNumUpdateRects, mUpdateRects);
-    }
+      SDL_UpdateRects(screen, mNumUpdateRects, mUpdateRects);
+    }*/
     mUpdateAll = false;
     mNumUpdateRects = 0;
+    SDL_UpdateTexture(screenTexture, NULL, screen->pixels, screen->pitch);
+    SDL_RenderClear(sdlRenderer);
+    SDL_RenderCopy(sdlRenderer, screenTexture, NULL, NULL);
+    SDL_RenderPresent(sdlRenderer);
   }
 
 }

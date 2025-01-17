@@ -122,7 +122,7 @@ void Bilddatei::datenLoeschen() {
 }
 
 
-/** Lädt das Bild mit dem angegebenen Namen. Sucht in verschiedenen
+/** Lï¿½dt das Bild mit dem angegebenen Namen. Sucht in verschiedenen
     Pfaden danach.Throwt ggf. */
 void Bilddatei::laden(Str name) {
 
@@ -187,10 +187,10 @@ void Bilddatei::malBildchen(int xx, int yy,
   SDL_Rect srcr = SDLTools::rect(gric * (n % bpr), gric * (n / bpr), gric, gric);
   
   if (k != viertel_alle) {
-    /* Richtiges Viertel in Datei wählen */
+    /* Richtiges Viertel in Datei wï¿½hlen */
     if (k & viertel_qr) srcr.x += gric/2;
     if (k & viertel_qu) srcr.y += gric/2;
-    /* Richtiges Ziel-Viertel wählen */
+    /* Richtiges Ziel-Viertel wï¿½hlen */
     if (k & viertel_zr) xx += gric/2;
     if (k & viertel_zu) yy += gric/2;
     srcr.w = srcr.h = gric/2;
@@ -200,17 +200,17 @@ void Bilddatei::malBildchen(int xx, int yy,
   Area::maskBackground(&mMaske, srcr, xx, yy);
 }
 
-/** liefert zurück, wie viele Bildchen in dieser Datei sind. */
+/** liefert zurï¿½ck, wie viele Bildchen in dieser Datei sind. */
 int Bilddatei::anzBildchen() const{
   return (mBreite / gric) * (mHoehe / gric);
 }
 
-/** liefert die Gesamthoehe in Pixeln zurück */
+/** liefert die Gesamthoehe in Pixeln zurï¿½ck */
 int Bilddatei::getBreite() const {
   return mBreite;
 }
 
-/** liefert die Gesamthoehe in Pixeln zurück */
+/** liefert die Gesamthoehe in Pixeln zurï¿½ck */
 int Bilddatei::getHoehe() const {
   return mHoehe;
 }
@@ -250,9 +250,9 @@ void Bilddatei::malBildAusschnitt(int xx, int yy, const SDL_Rect & src) const {
 
 
 /* Malt das angegebene Rechteck (bzw. Teile davon) so oft, dass
-   ein horizontaler Streifen der Länge l entsteht. Geht davon aus,
+   ein horizontaler Streifen der Lï¿½nge l entsteht. Geht davon aus,
    das in dem Bildchen das src-Rechteck horizontal einheitlich ist.
-   Je größer src, desto schneller geht das malen. */
+   Je grï¿½ï¿½er src, desto schneller geht das malen. */
 void Bilddatei::malStreifenH(int xx, int yy, int l, const SDL_Rect & src) const {
   int xx2 = xx + l;
   while (xx < xx2) {
@@ -286,8 +286,8 @@ void Bilddatei::bildNachbearbeiten() {
 
     bool gleich = (src!=mBildOriginal->mBild);
       /* Wenn src *nicht* das Original ist, dann
-	 kann direkt src gefärbt werden, d. h.
-	 dst der Färbung = src der Färbung. */
+	 kann direkt src gefï¿½rbt werden, d. h.
+	 dst der Fï¿½rbung = src der Fï¿½rbung. */
 
     SDL_Surface* dst;
     if (gleich)
@@ -322,7 +322,10 @@ void Bilddatei::bildNachbearbeiten() {
 
   if (mBild)
     SDL_FreeSurface(mBild);
-  mBild = SDLTools::maskedDisplayFormat(src);
+  //mBild = SDLTools::maskedDisplayFormat(src);
+  //mBild = SDL_DisplayFormatAlpha(src);
+  mBild = SDL_ConvertSurfaceFormat(src, SDL_PIXELFORMAT_RGBA8888, 0);
+  //mBild = src;
 
   if (mNativBild)
     SDL_FreeSurface(mNativBild);
@@ -336,7 +339,7 @@ void Bilddatei::bildNachbearbeiten() {
 void Bilddatei::sorgeFuerNativBild() {
   if (!mNativBild) {
     CASSERT(mBild);
-    mNativBild=SDL_ConvertSurface(mBild,SDL_GetVideoSurface()->format,0);
+    mNativBild=SDL_ConvertSurface(mBild,SDL_GetWindowSurface(sdlWindow)->format,0);
     SDLASSERT(mNativBild);
   }
 }

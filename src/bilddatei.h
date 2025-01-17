@@ -21,7 +21,7 @@ Modified 2001,2002,2006,2008,2010,2011 by the cuyo developers
 #ifndef BILDDATEI_H
 #define BILDDATEI_H
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <vector>
 
 #include "sdltools.h"
@@ -29,16 +29,16 @@ Modified 2001,2002,2006,2008,2010,2011 by the cuyo developers
 #include "stringzeug.h"
 
 
-/* Zur Übergabe an malBildchen(): Welches Viertel soll gemalt werden?
-   Entweder viertel_alle übergeben oder
+/* Zur ï¿½bergabe an malBildchen(): Welches Viertel soll gemalt werden?
+   Entweder viertel_alle ï¿½bergeben oder
    viertel_q** | viertel_z**
    Ersteres (Quelle) gibt an, welches Viertel aus der Datei genommen wird,
    zweiteres (Ziel) in welches Viertel gemalt wird.
 */
 #define viertel_alle (-1)
 
-/* Achtung: Wenn die nachfolgenden Konstanten geändert werden, muss
-   auch const_werte in blop.cpp geändert werden. */
+/* Achtung: Wenn die nachfolgenden Konstanten geï¿½ndert werden, muss
+   auch const_werte in blop.cpp geï¿½ndert werden. */
 #define viertel_qlo 0
 #define viertel_qro 1
 #define viertel_qlu 2
@@ -55,7 +55,7 @@ Modified 2001,2002,2006,2008,2010,2011 by the cuyo developers
 #define viertel_zr 4
 #define viertel_zu 8
 
-/* Für range-Check (siehe BildStapel::speichereBild()) */
+/* Fï¿½r range-Check (siehe BildStapel::speichereBild()) */
 #define viertel_min (-1)
 #define viertel_max 15
 
@@ -65,7 +65,7 @@ Modified 2001,2002,2006,2008,2010,2011 by the cuyo developers
 class BildOriginal;
 
 /**verwaltet ein xpm als Ansammlung von 16x16-Bildchen; und auch sonstige
-  *Bilder. Kümmert sich insbesondere um Umfärbung und Bildschirmskalierung
+  *Bilder. Kï¿½mmert sich insbesondere um Umfï¿½rbung und Bildschirmskalierung
   */
 
 class Bilddatei {
@@ -75,12 +75,12 @@ class Bilddatei {
   
   void datenLoeschen();
 
-  /* Für gleiche Quelle aber unabhängige Nachbearbeitung.
-     Diese wird gleich schon mal in Form einer Umfärbung vollzogen. */
+  /* Fï¿½r gleiche Quelle aber unabhï¿½ngige Nachbearbeitung.
+     Diese wird gleich schon mal in Form einer Umfï¿½rbung vollzogen. */
   Bilddatei(Bilddatei *, const Color &);
 
 
-  /** Lädt das Bild mit dem angegebenen Namen. Sucht in verschiedenen
+  /** Lï¿½dt das Bild mit dem angegebenen Namen. Sucht in verschiedenen
       Pfaden danach.Throwt ggf. */
   void laden(Str name);
   void klonen(Bilddatei & quelle);
@@ -90,22 +90,22 @@ class Bilddatei {
   /** malt das k-te Viertel vom n-te Bildchen an xx,yy. Oder evtl. das
       ganze Bildchen */
   void malBildchen(int xx, int yy, int n, int k = viertel_alle) const;
-  /** liefert zurück, wie viele Bildchen in dieser Datei sind. */
+  /** liefert zurï¿½ck, wie viele Bildchen in dieser Datei sind. */
   int anzBildchen() const;
   /** malt das gesamte Bild */
   void malBild(int xx, int yy) const;
   /** malt einen beliebigen Bildausschnitt */
   void malBildAusschnitt(int xx, int yy, const SDL_Rect & src) const;
   /* Malt das angegebene Rechteck (bzw. Teile davon) so oft, dass
-     ein horizontaler Streifen der Länge l entsteht. Geht davon aus,
+     ein horizontaler Streifen der Lï¿½nge l entsteht. Geht davon aus,
      das in dem Bildchen das src-Rechteck horizontal einheitlich ist.
-     Je größer src, desto schneller geht das malen. */
+     Je grï¿½ï¿½er src, desto schneller geht das malen. */
   void malStreifenH(int xx, int yy, int l, const SDL_Rect & src) const;
   /* Das selbe in vertikal */
   void malStreifenV(int xx, int yy, int l, const SDL_Rect & src) const;
-  /** liefert die Gesamtbreite in Pixeln zurück */
+  /** liefert die Gesamtbreite in Pixeln zurï¿½ck */
   int getBreite() const;
-  /** liefert die Gesamthoehe in Pixeln zurück */
+  /** liefert die Gesamthoehe in Pixeln zurï¿½ck */
   int getHoehe() const;
 
   /** liefert true, wenn das Bild (erfolgreich) geladen ist */
